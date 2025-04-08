@@ -15,6 +15,7 @@ public class Cultural extends Atraccion{
 
 	public int getEdadMin() {
 		return edadMin;
+		//hola
 	}
 
 	public void setEdadMin(int edadMin) {

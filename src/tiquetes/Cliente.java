@@ -16,6 +16,7 @@ public ArrayList<Tiquete> getTiquetes() {
 
 public void setTiquetes(ArrayList<Tiquete> tiquetes) {
 	this.tiquetes = tiquetes;
+	//hola
 }
 
 

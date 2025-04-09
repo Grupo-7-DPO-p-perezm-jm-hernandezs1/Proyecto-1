@@ -2,9 +2,9 @@ package tiquetes;
 
 public class Tiquete {
 	protected boolean usado;
-	protected int valor;
+	protected double valor;
 	protected String exclusividad;
-	public Tiquete(boolean usado, String exclusividad) {
+	public Tiquete(boolean usado, String exclusividad,double valor) {
 		super();
 		this.usado = usado;
 		this.exclusividad = exclusividad;
@@ -21,10 +21,10 @@ public class Tiquete {
 	public void setExclusividad(String exclusividad) {
 		this.exclusividad = exclusividad;
 	}
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 	

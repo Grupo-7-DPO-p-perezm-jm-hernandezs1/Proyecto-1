@@ -22,7 +22,9 @@ public class Escritor_tiquete {
             // Escribir cada tiquete en el archivo (similar a como se hace con canciones)
             for (Tiquete tiquete : tiquetes) {
                 
-                escritor.println(tiquete.isUsado() + "--" + tiquete.getExclusividad()+"--" + tiquete.getValor());
+                escritor.println(tiquete.isUsado()+"--"+tiquete.getExclusividad()+"--"+tiquete.getValor());
+                escritor.println(tiquete.getExclusividad());
+                escritor.println(tiquete.getValor());
             }
             
             escritor.close();

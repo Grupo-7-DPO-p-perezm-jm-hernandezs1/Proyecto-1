@@ -1,5 +1,5 @@
 package tiquetes;
 
-public class FastPass {
-
+public class FastPass extends Compra {
+private boolean 
 }

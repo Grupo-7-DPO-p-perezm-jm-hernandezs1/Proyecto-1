@@ -1,20 +1,16 @@
-package empleados;
+package atracciones_y_espectaculos;
 
 import java.util.ArrayList;
 
-import atracciones_y_espectaculos.Atraccion;
-import atracciones_y_espectaculos.Espectaculo;
-
-public class Capacitacion {
-private String tipo;
-private ArrayList<Atraccion> atracciones;
-private ArrayList<Espectaculo> espectaculos;
-public Capacitacion(String tipo, ArrayList<Atraccion> atracciones, ArrayList<Espectaculo> espectaculos) {
+public class Restriccion_clima {
+protected String tipo;
+protected ArrayList<Atraccion> atracciones;
+protected ArrayList<Espectaculo> espectaculos;
+public Restriccion_clima(String tipo, ArrayList<Atraccion> atracciones, ArrayList<Espectaculo> espectaculos) {
 	super();
 	this.tipo = tipo;
 	this.atracciones = atracciones;
 	this.espectaculos = espectaculos;
-	
 }
 public String getTipo() {
 	return tipo;
@@ -34,8 +30,6 @@ public ArrayList<Espectaculo> getEspectaculos() {
 public void setEspectaculos(ArrayList<Espectaculo> espectaculos) {
 	this.espectaculos = espectaculos;
 }
-// Metodos reales
-
 
 
 }

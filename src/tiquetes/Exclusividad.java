@@ -1,77 +1,47 @@
 package tiquetes;
 
+import java.util.ArrayList;
+
+import atracciones_y_espectaculos.Atraccion;
+import atracciones_y_espectaculos.Espectaculo;
+
 public class Exclusividad {
-    private boolean familiar;
-    private boolean oro;
-    private boolean diamante;
+   protected String nombre;
+   protected ArrayList<Atraccion> atracciones;
+   protected ArrayList<Espectaculo> espectaculos;
+   
+public Exclusividad(String nombre, ArrayList<Atraccion> atracciones, ArrayList<Espectaculo> espectaculos) {
+	super();
+	this.nombre = nombre;
+	this.atracciones = atracciones;
+	this.espectaculos = espectaculos;
+	
+	
+}
 
-    public Exclusividad(boolean familiar, boolean oro, boolean diamante) {
-        this.familiar = familiar;
-        this.oro = false;
-        this.diamante = false;
-        
-        if (familiar) {
-            setFamiliar(true);
-        } else if (oro) {
-            setOro(true);
-        } else if (diamante) {
-            setDiamante(true);
-        }
-    }
+public String getNombre() {
+	return nombre;
+}
 
-    public boolean isFamiliar() {
-        return familiar;
-    }
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
 
-    public void setFamiliar(boolean familiar) {
-        if (familiar) {
-            this.familiar = true;
-            this.oro = false;
-            this.diamante = false;
-        } else {
-            this.familiar = false;
-        }
-    }
+public ArrayList<Atraccion> getAtracciones() {
+	return atracciones;
+}
 
-    public boolean isOro() {
-        return oro;
-    }
+public void setAtracciones(ArrayList<Atraccion> atracciones) {
+	this.atracciones = atracciones;
+}
 
-    public void setOro(boolean oro) {
-        if (oro) {
-            this.oro = true;
-            this.familiar = false;
-            this.diamante = false;
-        } else {
-            this.oro = false;
-        }
-    }
+public ArrayList<Espectaculo> getEspectaculos() {
+	return espectaculos;
+}
 
-    public boolean isDiamante() {
-        return diamante;
-    }
-
-    public void setDiamante(boolean diamante) {
-        if (diamante) {
-            this.diamante = true;
-            this.familiar = false;
-            this.oro = false;
-        } else {
-            this.diamante = false;
-        }
-    }
-
-    public String getExclusividad() {
-        if (isFamiliar()) {
-            return "familiar";
-        }
-        if (isOro()) {
-            return "oro";
-        }
-        if (isDiamante()) {
-            return "diamante";
-        }
-        return "ninguno"; 
-    }
+public void setEspectaculos(ArrayList<Espectaculo> espectaculos) {
+	this.espectaculos = espectaculos;
+}
+   
    
 }

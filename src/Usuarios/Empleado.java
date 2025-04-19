@@ -1,4 +1,4 @@
-package empleados;
+package Usuarios;
 
 public class Empleado {
 

@@ -3,29 +3,37 @@ package tiquetes;
 import java.util.Date;
 
 public class Temporada extends Tiquete{
-	private String tipo;
-	private Date fecha;
-	public Temporada(boolean usado, String exclusividad, String tipo, Date fecha) {
-		super(usado, exclusividad);
-		this.tipo = tipo;
-		this.fecha = fecha;
+	protected  Exclusividad exclusividad;
+	protected Date fechaInicio;
+	protected Date fechaFinal;
+	public Temporada(boolean usado, Exclusividad exclusividad, double valor, Exclusividad exclusividad2, Date fechaInicio,
+			Date fechaFinal) {
+		super(usado, exclusividad, valor);
+		this.exclusividad = exclusividad;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
 	}
-	public String getTipo() {
-		return tipo;
+	public Exclusividad getExclusivid() {
+		return exclusividad;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setExclusividad(Exclusividad exclusividad) {
+		this.exclusividad = exclusividad;
 	}
-	public Date getFecha() {
-		return fecha;
+	public Date getFechaInicio() {
+		return fechaInicio;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
 	}
 	
-	public static int getTiempo() {
-		return 0;
-		
-	}
+	
+	
+	
 	
 }

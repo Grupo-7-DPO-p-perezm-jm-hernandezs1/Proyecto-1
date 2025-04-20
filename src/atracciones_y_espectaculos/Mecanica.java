@@ -1,7 +1,6 @@
 package atracciones_y_espectaculos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Mecanica extends Atraccion {
     private int minAltura;
@@ -27,7 +26,6 @@ public class Mecanica extends Atraccion {
  this.nivelRiesgo = nivelRiesgo;
 }
 
-    // Getters y Setters
     public int getMinAltura() {
         return minAltura;
     }

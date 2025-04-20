@@ -23,7 +23,12 @@ public class Atraccion {
 		this.minEdad = minEdad;
 		this.funcionando = funcionando;
 		
-		
+	}
+	public boolean isFuncionando() {
+		return funcionando;
+	}
+	public void setFuncionando(boolean funcionando) {
+		this.funcionando = funcionando;
 	}
 	public String getNombre() {
 		return nombre;

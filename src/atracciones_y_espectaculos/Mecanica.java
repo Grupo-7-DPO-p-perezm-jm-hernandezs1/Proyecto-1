@@ -7,6 +7,7 @@ public class Mecanica extends Atraccion {
 	private int maxPeso;
 	private ArrayList<String> restriccionesSalud;
 	private String nivelRiesgo;
+
 	
 	public Mecanica(String lugar, int cupoMaximo, ArrayList<String> recomendaciones, ArrayList<String> restriccionClima,
 			int numeroEmpleados, int minEdad, boolean deTemporada, int minAltura, int maxAltura, int minPeso,

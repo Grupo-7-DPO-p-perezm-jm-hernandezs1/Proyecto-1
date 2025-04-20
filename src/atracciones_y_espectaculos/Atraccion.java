@@ -3,27 +3,39 @@ package atracciones_y_espectaculos;
 import java.util.ArrayList;
 
 public class Atraccion {
+	protected String nombre;
 	protected String lugar;
 	protected int cupoMaximo;
-	protected ArrayList<String> recomendaciones;
-	protected ArrayList <String> restriccionClima;
+	protected ArrayList <Restriccion_clima> restriccionClima;
 	protected int numeroEmpleados;
 	protected int minEdad;
-	protected boolean deTemporada;
+	protected boolean funcionando;
 	
-	
-	public Atraccion(String lugar, int cupoMaximo, ArrayList<String> recomendaciones,
-			ArrayList<String> restriccionClima, int numeroEmpleados, int minEdad, boolean deTemporada) {
+
+	public Atraccion(String nombre, String lugar, int cupoMaximo, ArrayList<Restriccion_clima> restriccionClima,
+			int numeroEmpleados, int minEdad, boolean funcionando) {
 		super();
+		this.nombre = nombre;
 		this.lugar = lugar;
 		this.cupoMaximo = cupoMaximo;
-		this.recomendaciones = recomendaciones;
 		this.restriccionClima = restriccionClima;
 		this.numeroEmpleados = numeroEmpleados;
-		this.deTemporada = deTemporada;
+		this.minEdad = minEdad;
+		this.funcionando = funcionando;
+		
 	}
-	
-	
+	public boolean isFuncionando() {
+		return funcionando;
+	}
+	public void setFuncionando(boolean funcionando) {
+		this.funcionando = funcionando;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public String getLugar() {
 		return lugar;
 	}
@@ -36,16 +48,10 @@ public class Atraccion {
 	public void setCupoMaximo(int cupoMaximo) {
 		this.cupoMaximo = cupoMaximo;
 	}
-	public ArrayList<String> getRecomendaciones() {
-		return recomendaciones;
-	}
-	public void setRecomendaciones(ArrayList<String> recomendaciones) {
-		this.recomendaciones = recomendaciones;
-	}
-	public ArrayList<String> getRestriccionClima() {
+	public ArrayList<Restriccion_clima> getRestriccionClima() {
 		return restriccionClima;
 	}
-	public void setRestriccionClima(ArrayList<String> restriccionClima) {
+	public void setRestriccionClima(ArrayList<Restriccion_clima> restriccionClima) {
 		this.restriccionClima = restriccionClima;
 	}
 	public int getNumeroEmpleados() {
@@ -54,12 +60,10 @@ public class Atraccion {
 	public void setNumeroEmpleados(int numeroEmpleados) {
 		this.numeroEmpleados = numeroEmpleados;
 	}
-	public boolean isDeTemporada() {
-		return deTemporada;
+	public int getMinEdad() {
+		return minEdad;
 	}
-	public void setDeTemporada(boolean deTemporada) {
-		this.deTemporada = deTemporada;
+	public void setMinEdad(int minEdad) {
+		this.minEdad = minEdad;
 	}
-	
-	
 }

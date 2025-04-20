@@ -1,73 +1,76 @@
 package atracciones_y_espectaculos;
+
 import java.util.ArrayList;
+
 public class Mecanica extends Atraccion {
-	private int minAltura;
-	private int maxAltura;
-	private int minPeso;
-	private int maxPeso;
-	private ArrayList<String> restriccionesSalud;
-	private String nivelRiesgo;
-	
-	public Mecanica(String lugar, int cupoMaximo, ArrayList<String> recomendaciones, ArrayList<String> restriccionClima,
-			int numeroEmpleados, int minEdad, boolean deTemporada, int minAltura, int maxAltura, int minPeso,
-			int maxPeso, ArrayList<String> restriccionesSalud, String nivelRiesgo) {
-		super(lugar, cupoMaximo, recomendaciones, restriccionClima, numeroEmpleados, minEdad, deTemporada);
-		this.minAltura = minAltura;
-		this.maxAltura = maxAltura;
-		this.minPeso = minPeso;
-		this.maxPeso = maxPeso;
-		this.restriccionesSalud = restriccionesSalud;
-		this.nivelRiesgo = nivelRiesgo;
-	}
+    private int minAltura;
+    private int maxAltura;
+    private int minPeso;
+    private int maxPeso;
+    private RestriccionSalud restriccionSalud; 
+    private String nivelRiesgo;
 
-	public int getMinAltura() {
-		return minAltura;
-	}
+    public Mecanica(String nombre, String lugar, int cupoMaximo, 
+            ArrayList<Restriccion_clima> restriccionClima,  
+            int numeroEmpleados, int minEdad, boolean funcionando, 
+            int minAltura, int maxAltura, int minPeso, int maxPeso,
+            RestriccionSalud restriccionSalud, String nivelRiesgo) {
+ 
+ super(nombre, lugar, cupoMaximo, restriccionClima, numeroEmpleados, minEdad, funcionando);
+ 
+ this.minAltura = minAltura;
+ this.maxAltura = maxAltura;
+ this.minPeso = minPeso;
+ this.maxPeso = maxPeso;
+ this.restriccionSalud = restriccionSalud;
+ this.nivelRiesgo = nivelRiesgo;
+}
 
-	public void setMinAltura(int minAltura) {
-		this.minAltura = minAltura;
-	}
+    public int getMinAltura() {
+        return minAltura;
+    }
 
-	public int getMaxAltura() {
-		return maxAltura;
-	}
+    public void setMinAltura(int minAltura) {
+        this.minAltura = minAltura;
+    }
 
-	public void setMaxAltura(int maxAltura) {
-		this.maxAltura = maxAltura;
-	}
+    public int getMaxAltura() {
+        return maxAltura;
+    }
 
-	public int getMinPeso() {
-		return minPeso;
-	}
+    public void setMaxAltura(int maxAltura) {
+        this.maxAltura = maxAltura;
+    }
 
-	public void setMinPeso(int minPeso) {
-		this.minPeso = minPeso;
-	}
+    public int getMinPeso() {
+        return minPeso;
+    }
 
-	public int getMaxPeso() {
-		return maxPeso;
-	}
+    public void setMinPeso(int minPeso) {
+        this.minPeso = minPeso;
+    }
 
-	public void setMaxPeso(int maxPeso) {
-		this.maxPeso = maxPeso;
-	}
+    public int getMaxPeso() {
+        return maxPeso;
+    }
 
-	public ArrayList<String> getRestriccionesSalud() {
-		return restriccionesSalud;
-	}
+    public void setMaxPeso(int maxPeso) {
+        this.maxPeso = maxPeso;
+    }
 
-	public void setRestriccionesSalud(ArrayList<String> restriccionesSalud) {
-		this.restriccionesSalud = restriccionesSalud;
-	}
+    public RestriccionSalud getRestriccionSalud() {
+        return restriccionSalud;
+    }
 
-	public String getNivelRiesgo() {
-		return nivelRiesgo;
-	}
+    public void setRestriccionSalud(RestriccionSalud restriccionSalud) {
+        this.restriccionSalud = restriccionSalud;
+    }
 
-	public void setNivelRiesgo(String nivelRiesgo) {
-		this.nivelRiesgo = nivelRiesgo;
-	}
-	
-	
-	
+    public String getNivelRiesgo() {
+        return nivelRiesgo;
+    }
+
+    public void setNivelRiesgo(String nivelRiesgo) {
+        this.nivelRiesgo = nivelRiesgo;
+    }
 }

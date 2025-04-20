@@ -25,15 +25,6 @@ public class Atraccion {
 		
 		
 	}
-	
-	public boolean isFuncionando() {
-		return funcionando;
-	}
-
-	public void setFuncionando(boolean funcionando) {
-		this.funcionando = funcionando;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}

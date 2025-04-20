@@ -22,6 +22,17 @@ public class RestriccionSalud {
 	public void setAtraccionesMecanica(ArrayList<Mecanica> atraccionesMecanica) {
 		this.atraccionesMecanica = atraccionesMecanica;
 	}
-	
+	public void agregarAtraccion(Mecanica atraccion) {
+		atraccionesMecanica.add(atraccion);
+    }
+    
+    public void eliminarAtraccion(String nombre) {
+        for (Atraccion atraccion : atraccionesMecanica) {
+            if (atraccion.getNombre().equals(nombre)) {
+            	atraccionesMecanica.remove(atraccion);
+                return;
+            }
+        }
+    }
 	
 }

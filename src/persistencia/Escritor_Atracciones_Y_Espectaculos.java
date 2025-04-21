@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import atracciones_y_espectaculos.Atraccion;
@@ -62,12 +63,16 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        PrintWriter escritor = new PrintWriter(new File("./data/Atracciones_y_Espectaculos.txt"));
 	        
 	        for (Espectaculo espectaculo : espectaculos) {
-	            String linea = espectaculo. + "--" +
-	                          atraccion.getLugar() + "--" +
-	                          atraccion.getMinEdad() + "--" +
-	                          atraccion.getNombre() + "--" +
-	                          atraccion.getNumeroEmpleados() + "--" +
-	                          atraccion.isFuncionando();
+	        	ArrayList<LocalDateTime> fechas = espectaculo.getFechas();
+	        	ArrayList<LocalDateTime> horarios = espectaculo.getHorario();
+	            String linea = "fechas";
+	            for (LocalDateTime fecha : fechas) {
+	            	linea = linea+"--"+fecha;
+	            }
+	            linea = linea+"horario";
+	            for (LocalDateTime horario : horarios) {
+	            	linea = linea+"--"+horario;
+	            }
 	            escritor.println(linea);
 	        }
 	        escritor.close();

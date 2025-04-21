@@ -6,16 +6,16 @@ public class Cultural extends Atraccion{
 
 	private  int edadMin;
 
-	public Cultural(String lugar, int cupoMaximo, ArrayList<String> recomendaciones, ArrayList<String> restriccionClima,
-			int numeroEmpleados, int minEdad, boolean deTemporada, int edadMin) {
-		super(lugar, cupoMaximo, recomendaciones, restriccionClima, numeroEmpleados, minEdad, deTemporada);
+	public Cultural(String nombre, String lugar, int cupoMaximo, 
+            ArrayList<Restriccion_clima> restriccionClima,  
+            int numeroEmpleados, int minEdad, boolean funcionando, int edadMin) {
+		 super(nombre, lugar, cupoMaximo, restriccionClima, numeroEmpleados, minEdad, funcionando);
 		
 		this.edadMin = edadMin;
 	}
 
 	public int getEdadMin() {
 		return edadMin;
-		//hol
 	}
 
 	public void setEdadMin(int edadMin) {

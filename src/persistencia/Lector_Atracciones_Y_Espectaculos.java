@@ -30,7 +30,7 @@ public class Lector_Atracciones_Y_Espectaculos {
                 if (linea.startsWith("MECANICA") || linea.startsWith("CULTURAL")) {
                     String[] partes = linea.split("--");
                     
-                    // Datos comunes
+                  
                     int cupoMaximo = Integer.parseInt(partes[2]);
                     String lugar = partes[3];
                     int minEdad = Integer.parseInt(partes[4]);
@@ -38,7 +38,6 @@ public class Lector_Atracciones_Y_Espectaculos {
                     int numEmpleados = Integer.parseInt(partes[6]);
                     boolean funcionando = Boolean.parseBoolean(partes[7]);
                     
-                    // Procesar restricciones de clima
                     List<Restriccion_clima> restriccionesClima = new ArrayList<>();
                     int idxRestriccionClima = Arrays.asList(partes).indexOf("restriccion_clima");
                     if (idxRestriccionClima != -1) {

@@ -90,5 +90,12 @@ public class GestorAtracciones {
 	public void registrarAtraccion() {
 		
 	}
-	
+	public Atraccion buscarAtraccionPorNombre(String nombre) {
+	    for (Atraccion atraccion : atracciones) {
+	        if (atraccion.getNombre().equalsIgnoreCase(nombre)) {
+	            return atraccion;
+	        }
+	    }
+	    return null; 
+	}
 }

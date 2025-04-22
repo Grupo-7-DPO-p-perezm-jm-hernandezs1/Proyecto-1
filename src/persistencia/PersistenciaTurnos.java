@@ -67,7 +67,7 @@ public class PersistenciaTurnos {
                 TipoTurno tipo = TipoTurno.valueOf(partes[3]);
                 String nombreDestino = partes[4];
                 //Por si algo esto es para que el gestorPersonas.getUsuario retorna un usuario y lo convertimos en Empleado. :d
-                Empleado empleado = (Empleado) gestorPersonas.getUsuario(login);
+                Empleado empleado = (Empleado) gestorPersonas.getPersona(login);
                 Object destino = tipo == TipoTurno.ATRACCION
                         ? atracciones.get(nombreDestino)
                         : lugares.get(nombreDestino);

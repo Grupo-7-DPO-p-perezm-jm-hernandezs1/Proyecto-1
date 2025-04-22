@@ -87,8 +87,24 @@ public class GestorAtracciones {
 	        }
 	    }
 	}
-	public void registrarAtraccion() {
-		
+	public void registrarAtraccionMecanica(String nombre, String lugar, int cupoMaximo, 
+            ArrayList<Restriccion_clima> restriccionClima,  
+            int numeroEmpleados, int minEdad, boolean funcionando, 
+            int minAltura, int maxAltura, int minPeso, int maxPeso,
+            RestriccionSalud restriccionSalud, String nivelRiesgo) {
+		Mecanica mecanica = new Mecanica ( nombre,  lugar,  cupoMaximo, 
+	             restriccionClima,  
+	             numeroEmpleados,  minEdad,  funcionando, 
+	             minAltura,  maxAltura,  minPeso,  maxPeso,
+	             restriccionSalud,  nivelRiesgo);
+		atracciones.add(mecanica);
+	}
+	public void registrarAtraccionCultural(String nombre, String lugar, int cupoMaximo, 
+            ArrayList<Restriccion_clima> restriccionClima,  
+            int numeroEmpleados, int minEdad, boolean funcionando, int edadMin) {
+		Cultural cultural = new Cultural ( nombre,  lugar,  cupoMaximo,  restriccionClima,  
+	             numeroEmpleados,  minEdad,  funcionando,  edadMin);
+		atracciones.add(cultural);
 	}
 	
 }

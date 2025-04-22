@@ -1,60 +1,80 @@
 package atracciones_y_espectaculos;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Mecanica extends Atraccion {
-    private int minAltura;
-    private int maxAltura;
-    private int minPeso;
-    private int maxPeso;
-    private RestriccionSalud restriccionSalud; 
+    private double minAltura;
+    private double maxAltura;
+    private double minPeso;
+    private double maxPeso;
+    private RestriccionSalud restriccionSalud;
     private String nivelRiesgo;
 
-    public Mecanica(String nombre, String lugar, int cupoMaximo, 
-            ArrayList<Restriccion_clima> restriccionClima,  
-            int numeroEmpleados, int minEdad, boolean funcionando, 
-            int minAltura, int maxAltura, int minPeso, int maxPeso,
-            RestriccionSalud restriccionSalud, String nivelRiesgo) {
+    public Mecanica(String nombre, 
+                   String lugar, 
+                   int numeroEmpleados, 
+                   int minEdad, 
+                   boolean funcionando,
+                   int cupoMaximo,
+                   List<Restriccion_clima> restriccionesClima,
+                   double minAltura, 
+                   double maxAltura, 
+                   double minPeso, 
+                   double maxPeso,
+                   String nivelRiesgo,
+                   RestriccionSalud restriccionSalud) {
+        
+        super(nombre, lugar, cupoMaximo, restriccionesClima, numeroEmpleados, minEdad, funcionando);
+        
+        this.minAltura = minAltura;
+        this.maxAltura = maxAltura;
+        this.minPeso = minPeso;
+        this.maxPeso = maxPeso;
+        this.nivelRiesgo = nivelRiesgo;
+        this.restriccionSalud = restriccionSalud;
+        
  
- super(nombre, lugar, cupoMaximo, restriccionClima, numeroEmpleados, minEdad, funcionando);
- 
- this.minAltura = minAltura;
- this.maxAltura = maxAltura;
- this.minPeso = minPeso;
- this.maxPeso = maxPeso;
- this.restriccionSalud = restriccionSalud;
- this.nivelRiesgo = nivelRiesgo;
-}
+        if (restriccionesClima != null) {
+            for (Restriccion_clima restriccion : restriccionesClima) {
+                restriccion.agregarAtraccion(this);
+            }
+        }
+        
+        if (restriccionSalud != null) {
+            restriccionSalud.getAtraccionesMecanica().add(this);
+        }
+    }
 
-    public int getMinAltura() {
+  
+    public double getMinAltura() {
         return minAltura;
     }
 
-    public void setMinAltura(int minAltura) {
+    public void setMinAltura(double minAltura) {
         this.minAltura = minAltura;
     }
 
-    public int getMaxAltura() {
+    public double getMaxAltura() {
         return maxAltura;
     }
 
-    public void setMaxAltura(int maxAltura) {
+    public void setMaxAltura(double maxAltura) {
         this.maxAltura = maxAltura;
     }
 
-    public int getMinPeso() {
+    public double getMinPeso() {
         return minPeso;
     }
 
-    public void setMinPeso(int minPeso) {
+    public void setMinPeso(double minPeso) {
         this.minPeso = minPeso;
     }
 
-    public int getMaxPeso() {
+    public double getMaxPeso() {
         return maxPeso;
     }
 
-    public void setMaxPeso(int maxPeso) {
+    public void setMaxPeso(double maxPeso) {
         this.maxPeso = maxPeso;
     }
 
@@ -63,7 +83,17 @@ public class Mecanica extends Atraccion {
     }
 
     public void setRestriccionSalud(RestriccionSalud restriccionSalud) {
+       
+        if (this.restriccionSalud != null) {
+            this.restriccionSalud.getAtraccionesMecanica().remove(this);
+        }
+        
         this.restriccionSalud = restriccionSalud;
+        
+       
+        if (restriccionSalud != null) {
+            restriccionSalud.getAtraccionesMecanica().add(this);
+        }
     }
 
     public String getNivelRiesgo() {
@@ -72,5 +102,16 @@ public class Mecanica extends Atraccion {
 
     public void setNivelRiesgo(String nivelRiesgo) {
         this.nivelRiesgo = nivelRiesgo;
+    }
+    
+    public void agregarRestriccionesClima(List<Restriccion_clima> nuevasRestricciones) {
+        if (nuevasRestricciones != null) {
+            for (Restriccion_clima restriccion : nuevasRestricciones) {
+                if (!this.getRestriccionClima().contains(restriccion)) {
+                    this.getRestriccionClima().add(restriccion);
+                    restriccion.agregarAtraccion(this);
+                }
+            }
+        }
     }
 }

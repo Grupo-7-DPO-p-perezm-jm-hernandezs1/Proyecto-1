@@ -34,13 +34,13 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	                          atraccion.getNumeroEmpleados() + "--" +
 	                          atraccion.isFuncionando();
 	            
-	            // Restricciones de clima
 	            List<Restriccion_clima> restriccionesClima = atraccion.getRestriccionClima();
-	            linea = linea + "--restricion_clima--";
+	            linea = linea + "--restriccion_clima--";
 	            for(Restriccion_clima restriccionClima: restriccionesClima) {
-	                linea = linea + "--"+ restriccionClima.getTipo();
+	                linea = linea + "--" + restriccionClima.getTipo();
 	            }
-
+	            
+	            // Restricciones de salud (solo para Mecanica)
 	            if (atraccion instanceof Mecanica) {
 	                Mecanica mecanica = (Mecanica) atraccion;
 	                linea = "MECANICA--" + linea + "--" +
@@ -49,7 +49,8 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	                        mecanica.getMinAltura() + "--" +
 	                        mecanica.getMinPeso() + "--" +
 	                        mecanica.getNivelRiesgo() + "--" +
-	                        "restricion_salud--" + mecanica.getRestriccionSalud().getNombre();
+	                        "restriccion_salud--" +  // Marcador para restricciones de salud
+	                        mecanica.getRestriccionSalud().getNombre();
 	                
 	            } else if (atraccion instanceof Cultural) {
 	                Cultural cultural = (Cultural) atraccion;
@@ -64,6 +65,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        System.err.println("Error al escribir el archivo: " + e.getMessage());
 	    }
 	}
+
 	public void escribirEspectaculos(ArrayList<Espectaculo> espectaculos) {
 		try {
 	        File carpeta = new File("./data/");

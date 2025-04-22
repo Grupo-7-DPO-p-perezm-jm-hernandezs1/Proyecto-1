@@ -13,7 +13,7 @@ public class Atraccion {
 	protected boolean funcionando= true;
 	
 
-	public Atraccion(String nombre, String lugar, int cupoMaximo, ArrayList<Restriccion_clima> restriccionClima,
+	public Atraccion(String nombre, String lugar, int cupoMaximo, List<Restriccion_clima> restriccionClima,
 			int numeroEmpleados, int minEdad, boolean funcionando) {
 		super();
 		this.nombre = nombre;

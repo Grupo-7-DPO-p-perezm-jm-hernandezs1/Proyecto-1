@@ -16,7 +16,7 @@ public class Escritor_Lugares_Trabajo {
 	        if (!carpeta.exists()) {
 	            carpeta.mkdirs();
 	        }
-	        PrintWriter escritor = new PrintWriter(new File("./data/Atracciones_y_Espectaculos.txt"));
+	        PrintWriter escritor = new PrintWriter(new File("./data/LugarTrabajo.txt"));
 	        for (LugarTrabajo lugarTrabajo : lugaresTrabajo) {
 	        	String linea = lugarTrabajo.getNombre()+"--"+
 	        					lugarTrabajo.isAbierto()+"--"+

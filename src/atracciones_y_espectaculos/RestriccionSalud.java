@@ -1,35 +1,37 @@
 package atracciones_y_espectaculos;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class RestriccionSalud {
-	protected String nombre;
-	protected ArrayList <Mecanica> atraccionesMecanica;
-	public RestriccionSalud(String nombre, ArrayList<Mecanica> atraccionesMecanica) {
-		super();
-		this.nombre = nombre;
-		this.atraccionesMecanica = atraccionesMecanica;
-	}
+	private String nombre;
+private List<Mecanica> atracciones;
+
+public RestriccionSalud(String nombre, List<Mecanica> atracciones) {
+    this.nombre = nombre;
+    this.atracciones = atracciones;
+}
+	
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public ArrayList<Mecanica> getAtraccionesMecanica() {
-		return atraccionesMecanica;
+	public List<Mecanica> getAtraccionesMecanica() {
+		return atracciones;
 	}
-	public void setAtraccionesMecanica(ArrayList<Mecanica> atraccionesMecanica) {
-		this.atraccionesMecanica = atraccionesMecanica;
+	public void setAtraccionesMecanica(List<Mecanica> atracciones) {
+		this.atracciones = atracciones;
 	}
 	public void agregarAtraccion(Mecanica atraccion) {
-		atraccionesMecanica.add(atraccion);
+		atracciones.add(atraccion);
     }
     
     public void eliminarAtraccion(String nombre) {
-        for (Atraccion atraccion : atraccionesMecanica) {
+        for (Atraccion atraccion : atracciones) {
             if (atraccion.getNombre().equals(nombre)) {
-            	atraccionesMecanica.remove(atraccion);
+            	atracciones.remove(atraccion);
                 return;
             }
         }

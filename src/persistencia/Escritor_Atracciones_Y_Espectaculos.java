@@ -75,8 +75,9 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        PrintWriter escritor = new PrintWriter(new File("./data/Atracciones_y_Espectaculos.txt"));
 	        
 	        for (Espectaculo espectaculo : espectaculos) {
-	        	ArrayList<LocalDateTime> fechas = espectaculo.getFechas();
-	        	ArrayList<LocalDateTime> horarios = espectaculo.getHorario();
+	        	 
+	        	List<LocalDateTime> fechas = (ArrayList<LocalDateTime>) espectaculo.getFechas();
+	        	List<LocalDateTime> horarios = (ArrayList<LocalDateTime>) espectaculo.getHorario();
 	            String linea = "fechas";
 	            for (LocalDateTime fecha : fechas) {
 	            	linea = linea+"--"+fecha;
@@ -85,6 +86,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	            for (LocalDateTime horario : horarios) {
 	            	linea = linea+"--"+horario;
 	            }
+	            linea= linea+"--"+espectaculo.getNombre();
 	            escritor.println(linea);
 	        }
 	        escritor.close();

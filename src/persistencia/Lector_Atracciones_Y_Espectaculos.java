@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -115,8 +116,8 @@ public class Lector_Atracciones_Y_Espectaculos {
         }
         return atracciones;
     }
-    public List<Espectaculo> leerEspectaculos(String rutaArchivo) throws IOException {
-        List<Espectaculo> espectaculos = new ArrayList<>();
+    public ArrayList<Espectaculo> leerEspectaculos(String rutaArchivo) throws IOException {
+        ArrayList<Espectaculo> espectaculos = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -125,36 +126,53 @@ public class Lector_Atracciones_Y_Espectaculos {
                 if (linea.contains("fechas") && linea.contains("horario")) {
                     String[] partes = linea.split("--");
                     
-                    // Parsear fechas y horarios
-                    List<LocalDateTime> fechas = new ArrayList<>();
-                    List<LocalDateTime> horarios = new ArrayList<>();
-                    boolean enFechas = false, enHorarios = false;
                     
-                    for (String parte : partes) {
+                    String nombre = "";
+                    ArrayList<LocalDateTime> fechas = new ArrayList<>();
+                    ArrayList<LocalDateTime> horarios = new ArrayList<>();
+                    boolean enFechas = false;
+                    boolean enHorarios = false;
+
+                    for (int i = 0; i < partes.length; i++) {
+                        String parte = partes[i];
+                        
                         if (parte.equals("fechas")) {
                             enFechas = true;
                             enHorarios = false;
+                            continue;
                         } else if (parte.equals("horario")) {
                             enFechas = false;
                             enHorarios = true;
-                        } else if (enFechas) {
+                            continue;
+                        }
+
+                        if (enFechas) {
                             fechas.add(LocalDateTime.parse(parte, formatter));
                         } else if (enHorarios) {
-                            horarios.add(LocalDateTime.parse(parte, formatter));
+                            
+                            if (i == partes.length - 1) {
+                                nombre = parte;
+                            } else {
+                                horarios.add(LocalDateTime.parse(parte, formatter));
+                            }
                         }
                     }
-                    
-                    // Constructor de Espectaculo ajustado
-                    Espectaculo espectaculo = new Espectaculo(
-                        fechas,
-                        horarios
-                        // Agrega otros parámetros si el constructor los requiere
-                    );
-                    espectaculos.add(espectaculo);
+
+           
+                    if (!fechas.isEmpty() && !horarios.isEmpty() && !nombre.isEmpty()) {
+                        Espectaculo espectaculo = new Espectaculo(
+                            nombre,
+                            horarios,
+                            fechas,
+                            true 
+                        );
+                        espectaculos.add(espectaculo);
+                    }
                 }
             }
+        } catch (DateTimeParseException e) {
+            System.err.println("Error al parsear fechas/horarios: " + e.getMessage());
         }
         return espectaculos;
     }
-}
 }

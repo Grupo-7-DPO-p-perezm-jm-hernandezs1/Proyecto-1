@@ -6,7 +6,7 @@ public class Cultural extends Atraccion {
 
     private int edadMin;
 
-    // Constructor modificado para coincidir con el lector
+    
     public Cultural(String nombre, 
                    String lugar, 
                    int numeroEmpleados, 
@@ -18,7 +18,7 @@ public class Cultural extends Atraccion {
         super(nombre, lugar, cupoMaximo, restriccionesClima, numeroEmpleados, minEdad, funcionando);
         this.edadMin = edadMin;
         
-        // Vincular esta atracción a sus restricciones de clima
+     
         if (restriccionesClima != null) {
             for (Restriccion_clima restriccion : restriccionesClima) {
                 restriccion.agregarAtraccion(this);
@@ -34,7 +34,7 @@ public class Cultural extends Atraccion {
         this.edadMin = edadMin;
     }
     
-    // Método para agregar restricciones de clima después de la construcción (opcional)
+    
     public void agregarRestriccionesClima(List<Restriccion_clima> nuevasRestricciones) {
         if (nuevasRestricciones != null) {
             for (Restriccion_clima restriccion : nuevasRestricciones) {

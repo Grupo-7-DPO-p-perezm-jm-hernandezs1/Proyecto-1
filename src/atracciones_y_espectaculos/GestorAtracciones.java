@@ -134,12 +134,20 @@ public class GestorAtracciones {
                minEdad);
 		atracciones.add(cultural);
 	}
-	public void activarRestriccionClima(String nombre) {
+
+	}
+  public void activarRestriccionClima(String nombre) {
 		for(Restriccion_clima restriccionClima: restriccionesClima ) {
 			if(restriccionClima.getTipo().equals(nombre)) {
 				restriccionClima.activarRestriccion();
 			}
 		}
 		
-	}
+	public Atraccion buscarAtraccionPorNombre(String nombre) {
+	    for (Atraccion atraccion : atracciones) {
+	        if (atraccion.getNombre().equalsIgnoreCase(nombre)) {
+	            return atraccion;
+	        }
+	    }
+	    return null; 
 }

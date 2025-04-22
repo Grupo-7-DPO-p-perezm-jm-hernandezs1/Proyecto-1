@@ -1,5 +1,93 @@
 package tiquetes;
 
-public class GestorTiquete {
+import persistencia.CatalogoPrecios;
+import persistencia.PersistenciaFastPass;
+import persistencia.PersistenciaTiquetes;
+import atracciones_y_espectaculos.Atraccion;
 
+import java.util.Date;
+import java.util.Scanner;
+
+public class GestorTiquete {
+    private CatalogoPrecios catalogoPrecios;
+    private PersistenciaTiquetes persistencia;
+    private int contador;
+
+    public GestorTiquete() {
+        catalogoPrecios = new CatalogoPrecios();
+        persistencia = new PersistenciaTiquetes();
+        contador = persistencia.leerContador();  // Leemos el contador desde el archivo
+    }
+
+    public String crearIdentificador(String prefijo) {
+        String id = prefijo + "-" + contador;
+        contador++;  // Incrementamos el contador para el siguiente tiquete
+        persistencia.escribirContador(contador);  // Guardamos el nuevo valor del contador en el archivo
+        return id;
+    }
+
+    public String comprarTiqueteTemporada(Date fechaInicio, Date fechaFinal, Categoria categoria) {
+        String id = crearIdentificador("TEMP");
+        double precio = catalogoPrecios.getPrecio("TiqueteTemporada");
+
+        TiqueteTemporada tiquete = new TiqueteTemporada(id, precio, fechaInicio, fechaFinal, categoria);
+
+        persistencia.guardarTiquete(tiquete);
+
+        return id;
+    }
+
+    public String comprarTiqueteGeneral(Categoria categoria) {
+        String id = crearIdentificador("GENE");
+        double precio = catalogoPrecios.getPrecio("TiqueteGeneral");
+
+        TiqueteGeneral tiquete = new TiqueteGeneral(id, precio, categoria);
+
+        persistencia.guardarTiquete(tiquete);
+
+        return id;
+    }
+
+    public String comprarTiqueteBasico() {
+        String id = crearIdentificador("BASI");
+        double precio = catalogoPrecios.getPrecio("TiqueteBasico");
+
+        TiqueteBasico tiquete = new TiqueteBasico(id, precio);
+
+        persistencia.guardarTiquete(tiquete);
+
+        return id;
+    }
+
+    public String comprarTiqueteIndividual(Atraccion atraccion) {
+        String id = crearIdentificador("INDV");
+        double precio = catalogoPrecios.getPrecio("TiqueteIndividual");
+
+        TiqueteIndividual tiquete = new TiqueteIndividual(id, precio, atraccion);
+
+        persistencia.guardarTiquete(tiquete);
+
+        return id;
+    }
+
+    public void cambiarPrecioTiquete(String tipo, double nuevoPrecio) {
+        catalogoPrecios.setPrecio(tipo.toUpperCase(), nuevoPrecio);
+    }
+
+    public String comprarFastPass(Date fechaValida) {
+        // Generar el identificador único para el FastPass
+        String id = crearIdentificador("FAST");
+
+        // Obtener el precio del FastPass desde el CatalogoPrecios
+        double precio = catalogoPrecios.getPrecio("FastPass");
+
+        // Crear el objeto FastPass
+        FastPass fastPass = new FastPass(id, fechaValida, precio);
+
+        // Guardar el FastPass en el archivo correspondiente
+        PersistenciaFastPass.guardarFastPass(fastPass);
+
+        // Devolver el identificador del FastPass
+        return id;
+    }
 }

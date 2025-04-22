@@ -1,33 +1,36 @@
 package tiquetes;
 
-public class Tiquete {
-	protected boolean usado;
-	protected double valor;
-	protected String exclusividad;
-	public Tiquete(boolean usado, String exclusividad,double valor) {
-		super();
-		this.usado = usado;
-		this.exclusividad = exclusividad;
-	}
-	public boolean isUsado() {
-		return usado;
-	}
-	public void setUsado(boolean usado) {
-		this.usado = usado;
-	}
-	public String getExclusividad() {
-		return exclusividad;
-	}
-	public void setExclusividad(String exclusividad) {
-		this.exclusividad = exclusividad;
-	}
-	public double getValor() {
-		return valor;
-	}
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-	
-	
 
+public abstract class Tiquete {	
+	public String identificador;
+    public boolean usado;
+    public double precio;
+
+
+    public Tiquete(String identificador, double precio) {
+        this.identificador = identificador;
+        this.precio = precio;
+        this.usado = false;
+    }
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+    public boolean getUsado() {
+    	return usado;
+    }
+    
 }

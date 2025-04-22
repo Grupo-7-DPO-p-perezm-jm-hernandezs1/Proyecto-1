@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import tiquetes.Tiquete;
-
+import Usuarios.Cliente;
 public class Escritor_tiquete {
     public Escritor_tiquete() {
         

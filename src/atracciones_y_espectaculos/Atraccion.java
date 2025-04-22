@@ -1,15 +1,16 @@
 package atracciones_y_espectaculos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Atraccion {
 	protected String nombre;
 	protected String lugar;
 	protected int cupoMaximo;
-	protected ArrayList <Restriccion_clima> restriccionClima;
+	protected List <Restriccion_clima> restriccionClima;
 	protected int numeroEmpleados;
 	protected int minEdad;
-	protected boolean funcionando;
+	protected boolean funcionando= true;
 	
 
 	public Atraccion(String nombre, String lugar, int cupoMaximo, ArrayList<Restriccion_clima> restriccionClima,
@@ -48,11 +49,11 @@ public class Atraccion {
 	public void setCupoMaximo(int cupoMaximo) {
 		this.cupoMaximo = cupoMaximo;
 	}
-	public ArrayList<Restriccion_clima> getRestriccionClima() {
+	public List<Restriccion_clima> getRestriccionClima() {
 		return restriccionClima;
 	}
-	public void setRestriccionClima(ArrayList<Restriccion_clima> restriccionClima) {
-		this.restriccionClima = restriccionClima;
+	public void setRestriccionClima(List<Restriccion_clima> restriccionesClima) {
+		this.restriccionClima = restriccionesClima;
 	}
 	public int getNumeroEmpleados() {
 		return numeroEmpleados;

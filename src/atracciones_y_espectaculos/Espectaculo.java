@@ -7,7 +7,7 @@ public class Espectaculo {
 	private String nombre;
 	private ArrayList<LocalDateTime> horario;
 	private ArrayList<LocalDateTime> fechas;
-	private boolean funcionando;
+	private boolean funcionando = true;
 	public Espectaculo(String nombre, ArrayList<LocalDateTime> horario, ArrayList<LocalDateTime> fechas,
 			boolean funcionando) {
 		super();

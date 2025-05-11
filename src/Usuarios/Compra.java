@@ -1,24 +1,37 @@
 package Usuarios;
 
 public class Compra {
-public String numeroTiquete;
-public String fechaVencida;
-public Compra(String numeroTiquete, String fechaVencida) {
-	super();
-	this.numeroTiquete = numeroTiquete;
-	this.fechaVencida = fechaVencida;
-}
-public String getNumeroTiquete() {
-	return numeroTiquete;
-}
-public void setNumeroTiquete(String numeroTiquete) {
-	this.numeroTiquete = numeroTiquete;
-}
-public String getFechaVencida() {
-	return fechaVencida;
-}
-public void setFechaVencida(String fechaVencida) {
-	this.fechaVencida = fechaVencida;
-}
 
+    private boolean fechaVencida;
+    private String numeroTiquete;
+
+    // Constructor con parámetros
+    public Compra(boolean fechaVencida, String numeroTiquete) {
+        this.fechaVencida = fechaVencida;
+        this.numeroTiquete = numeroTiquete;
+    }
+
+    public boolean isFechaVencida() {
+        return fechaVencida;
+    }
+
+    public void setFechaVencida(boolean fechaVencida) {
+        this.fechaVencida = fechaVencida;
+    }
+
+    public String getNumeroTiquete() {
+        return numeroTiquete;
+    }
+
+    public void setNumeroTiquete(String numeroTiquete) {
+        this.numeroTiquete = numeroTiquete;
+    }
+
+    @Override
+    public String toString() {
+        return "Compra{" +
+                "fechaVencida=" + fechaVencida +
+                ", numeroTiquete='" + numeroTiquete + '\'' +
+                '}';
+    }
 }

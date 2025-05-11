@@ -24,21 +24,40 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        if (!carpeta.exists()) {
 	            carpeta.mkdirs();
 	        }
+	        
 	        PrintWriter escritor = new PrintWriter(new File("./data/Atracciones_y_Espectaculos.txt"));
 	        
 	        for (Atraccion atraccion : atracciones) {
 	            String linea = atraccion.getCupoMaximo() + "--" +
 	                          atraccion.getLugar() + "--" +
-	                          atraccion.getMinEdad() + "--" +
 	                          atraccion.getNombre() + "--" +
 	                          atraccion.getNumeroEmpleados() + "--" +
 	                          atraccion.isFuncionando();
 	            
 	            List<Restriccion_clima> restriccionesClima = atraccion.getRestriccionClima();
-	            linea = linea + "--restriccion_clima--";
+	            linea = linea + "--";
+	            
 	            for(Restriccion_clima restriccionClima: restriccionesClima) {
-	                linea = linea + "--" + restriccionClima.getTipo();
+	            	linea = linea + "restriccionClima"+ restriccionClima.getTipo()+"..." ;
+	                
+	                ArrayList<String>listaAtraccion = restriccionClima.getAtracciones();
+	                ArrayList<String>listaEspectaculo = restriccionClima.getEspectaculos();
+	              
+	                linea = linea + "...";
+	                for(String atraccion1 :listaAtraccion) {
+	                	linea= linea+","+atraccion1;
+	                	
+	                }
+	                
+	                linea = linea + "...";
+	                for(String atraccion1 :listaEspectaculo) {
+	                	linea= linea+","+atraccion1;
+	                
+	                }
+	             
+	                
 	            }
+	          
 	            
 	            // Restricciones de salud (solo para Mecanica)
 	            if (atraccion instanceof Mecanica) {
@@ -48,9 +67,13 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	                        mecanica.getMaxPeso() + "--" +
 	                        mecanica.getMinAltura() + "--" +
 	                        mecanica.getMinPeso() + "--" +
-	                        mecanica.getNivelRiesgo() + "--" +
-	                        "restriccion_salud--" +  // Marcador para restricciones de salud
-	                        mecanica.getRestriccionSalud().getNombre();
+	                        mecanica.getNivelRiesgo() + "--"+  
+	                        mecanica.getRestriccionSalud().getNombre()+"--";
+	                
+	                ArrayList<String> mecanicas = mecanica.getRestriccionSalud().getAtraccionesMecanica();
+	                for(String mecanica1:mecanicas) {
+	                	linea = linea+ mecanica1+ ",";
+	                }
 	                
 	            } else if (atraccion instanceof Cultural) {
 	                Cultural cultural = (Cultural) atraccion;
@@ -79,6 +102,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        	List<LocalDateTime> fechas = (ArrayList<LocalDateTime>) espectaculo.getFechas();
 	        	List<LocalDateTime> horarios = (ArrayList<LocalDateTime>) espectaculo.getHorario();
 	            String linea = "fechas";
+	            
 	            for (LocalDateTime fecha : fechas) {
 	            	linea = linea+"--"+fecha;
 	            }

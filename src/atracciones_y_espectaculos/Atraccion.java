@@ -9,7 +9,6 @@ public class Atraccion {
 	protected int cupoMaximo;
 	protected List <Restriccion_clima> restriccionClima;
 	protected int numeroEmpleados;
-	protected int minEdad;
 	protected boolean funcionando= true;
 	
 
@@ -21,7 +20,6 @@ public class Atraccion {
 		this.cupoMaximo = cupoMaximo;
 		this.restriccionClima = restriccionClima;
 		this.numeroEmpleados = numeroEmpleados;
-		this.minEdad = minEdad;
 		this.funcionando = funcionando;
 		
 	}
@@ -61,10 +59,5 @@ public class Atraccion {
 	public void setNumeroEmpleados(int numeroEmpleados) {
 		this.numeroEmpleados = numeroEmpleados;
 	}
-	public int getMinEdad() {
-		return minEdad;
-	}
-	public void setMinEdad(int minEdad) {
-		this.minEdad = minEdad;
-	}
+	
 }

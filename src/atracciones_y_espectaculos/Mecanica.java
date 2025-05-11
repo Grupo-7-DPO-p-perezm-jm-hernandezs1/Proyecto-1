@@ -1,6 +1,7 @@
 package atracciones_y_espectaculos;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class Mecanica extends Atraccion {
     private double minAltura;
@@ -16,7 +17,7 @@ public class Mecanica extends Atraccion {
                    int minEdad, 
                    boolean funcionando,
                    int cupoMaximo,
-                   List<Restriccion_clima> restriccionesClima,
+                   ArrayList<Restriccion_clima> restriccionesClima,
                    double minAltura, 
                    double maxAltura, 
                    double minPeso, 
@@ -36,12 +37,12 @@ public class Mecanica extends Atraccion {
  
         if (restriccionesClima != null) {
             for (Restriccion_clima restriccion : restriccionesClima) {
-                restriccion.agregarAtraccion(this);
+                restriccion.agregarAtraccion(this.getNombre());
             }
         }
         
         if (restriccionSalud != null) {
-            restriccionSalud.getAtraccionesMecanica().add(this);
+            restriccionSalud.getAtraccionesMecanica().add(this.getNombre());
         }
     }
 
@@ -85,14 +86,14 @@ public class Mecanica extends Atraccion {
     public void setRestriccionSalud(RestriccionSalud restriccionSalud) {
        
         if (this.restriccionSalud != null) {
-            this.restriccionSalud.getAtraccionesMecanica().remove(this);
+            this.restriccionSalud.getAtraccionesMecanica().remove(this.getNombre());
         }
         
         this.restriccionSalud = restriccionSalud;
         
        
         if (restriccionSalud != null) {
-            restriccionSalud.getAtraccionesMecanica().add(this);
+            restriccionSalud.getAtraccionesMecanica().add(this.getNombre());
         }
     }
 
@@ -104,12 +105,13 @@ public class Mecanica extends Atraccion {
         this.nivelRiesgo = nivelRiesgo;
     }
     
-    public void agregarRestriccionesClima(List<Restriccion_clima> nuevasRestricciones) {
+    
+    public void agregarRestriccionesClima(ArrayList<Restriccion_clima> nuevasRestricciones) {
         if (nuevasRestricciones != null) {
             for (Restriccion_clima restriccion : nuevasRestricciones) {
                 if (!this.getRestriccionClima().contains(restriccion)) {
                     this.getRestriccionClima().add(restriccion);
-                    restriccion.agregarAtraccion(this);
+                    restriccion.agregarAtraccion(this.getNombre());
                 }
             }
         }

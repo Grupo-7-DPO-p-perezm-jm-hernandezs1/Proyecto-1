@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Restriccion_clima {
     protected String tipo;
-    protected ArrayList<Atraccion> atracciones;
-    protected ArrayList<Espectaculo> espectaculos;
+    protected ArrayList<String> atracciones;
+    protected ArrayList<String> espectaculos;
     
-    public Restriccion_clima(String tipo, ArrayList<Atraccion> atracciones, ArrayList<Espectaculo> espectaculos) {
+    public Restriccion_clima(String tipo, ArrayList<String> atracciones, ArrayList<String> espectaculos) {
         super();
         this.tipo = tipo;
         this.atracciones = atracciones;
@@ -22,65 +22,66 @@ public class Restriccion_clima {
         this.tipo = tipo;
     }
     
-    public ArrayList<Atraccion> getAtracciones() {
+    public ArrayList<String> getAtracciones() {
         return atracciones;
     }
     
-    public void setAtracciones(ArrayList<Atraccion> atracciones) {
+    public void setAtracciones(ArrayList<String> atracciones) {
         this.atracciones = atracciones;
     }
     
-    public ArrayList<Espectaculo> getEspectaculos() {
+    public ArrayList<String> getEspectaculos() {
         return espectaculos;
     }
     
-    public void setEspectaculos(ArrayList<Espectaculo> espectaculos) {
+    public void setEspectaculos(ArrayList<String> espectaculos) {
         this.espectaculos = espectaculos;
     }
     
-    public void agregarAtraccion(Atraccion atraccion) {
-        atracciones.add(atraccion);
+    public void agregarAtraccion(String atraccionNombre) {
+        atracciones.add(atraccionNombre);
     }
     
     public void eliminarAtraccion(String nombre) {
-        for (Atraccion atraccion : atracciones) {
-            if (atraccion.getNombre().equals(nombre)) {
+        for (String atraccion : atracciones) {
+            if (atraccion==nombre) {
                 atracciones.remove(atraccion);
                 return;
             }
         }
     }
     
-    public void agregarEspectaculo(Espectaculo espectaculo) {
+    public void agregarEspectaculo(String espectaculo) {
         espectaculos.add(espectaculo);
     }
     
     public void eliminarEspectaculo(String nombre) {
-        for (Espectaculo espectaculo : espectaculos) {
-            if (espectaculo.getNombre().equals(nombre)) {
+        for (String espectaculo : espectaculos) {
+            if (espectaculo==nombre) {
                 espectaculos.remove(espectaculo);
                 return;
             }
         }
     }
     
-    public void activarRestriccion() {
-        for (Atraccion atraccion : atracciones) {
-            atraccion.setFuncionando(false);
-        }
-        for (Espectaculo espectaculo : espectaculos) {
-            espectaculo.setFuncionando(false);
-        }
-    }
+   // public void activarRestriccion() {
+       // for (Atraccion atraccion : atracciones) {
+        //    atraccion.setFuncionando(false);
+       // }
+        //for (Espectaculo espectaculo : espectaculos) {
+          //  espectaculo.setFuncionando(false);
+      //  }
+    //}
     
-    public void quitarRestriccion() {
-        for (Atraccion atraccion : atracciones) {
-            atraccion.setFuncionando(true);
-        }
-        for (Espectaculo espectaculo : espectaculos) {
-            espectaculo.setFuncionando(true);
-        }
-    }
+    //public void quitarRestriccion() {
+      //  for (Atraccion atraccion : atracciones) {
+       //     atraccion.setFuncionando(true);
+     //   }
+    //    for (Espectaculo espectaculo : espectaculos) {
+       //     espectaculo.setFuncionando(true);
+     //   }
+   // }
+    
 }
 
 

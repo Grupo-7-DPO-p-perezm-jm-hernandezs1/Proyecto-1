@@ -32,5 +32,3 @@ public class Escritor_Lugares_Trabajo {
 	}
 	    
 }
-
-

@@ -120,9 +120,38 @@ public class GestorAtracciones {
 	public void activarRestriccionClima(String nombre) {
 		for (Restriccion_clima restriccionClima : restriccionesClima) {
 			if (restriccionClima.getTipo().equals(nombre)) {
+        ArrayList <String>listaAtraccion = restriccionClima.getAtracciones();
+				ArrayList <String> listaEspectaculo= restriccionClima.getEspectaculos();
+				
+				for(String atraccion: listaAtraccion) {
+					for (Atraccion atraccion1: atracciones) {
+						if (atraccion1.getNombre().equals(atraccion)) {
+							atraccion1.setFuncionando(false);
+						}
+					}
+				}
+				for(String espectaculo: listaEspectaculo) {
+					for (Espectaculo espectaculo1: espectaculos) {
+						if (espectaculo1.getNombre().equals(espectaculo)) {
+							espectaculo1.setFuncionando(false);
+						}
+					}
+				
+=======
 				restriccionClima.activarRestriccion();
+
 			}
 		}
+	}
+
+	public Atraccion buscarAtraccionPorNombre(String nombre) {
+		for (Atraccion atraccion : atracciones) {
+			if (atraccion.getNombre().equalsIgnoreCase(nombre)) {
+				return atraccion;
+			}
+		}
+		return null;
+	}
 	}
 
 	public Atraccion buscarAtraccionPorNombre(String nombre) {

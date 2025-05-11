@@ -16,13 +16,9 @@ import atracciones_y_espectaculos.*;
 
 public class Lector_Atracciones_Y_Espectaculos {
 
-    private Map<String, Restriccion_clima> restriccionesClimaCache = new HashMap<>();
-    private Map<String, RestriccionSalud> restriccionesSaludCache = new HashMap<>();
 
     public List<Atraccion> leerAtracciones(String rutaArchivo) throws IOException {
         List<Atraccion> atracciones = new ArrayList<>();
-        Map<String, Restriccion_clima> restriccionesClimaCache = new HashMap<>();
-        Map<String, RestriccionSalud> restriccionesSaludCache = new HashMap<>();
 
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
@@ -33,86 +29,81 @@ public class Lector_Atracciones_Y_Espectaculos {
                   
                     int cupoMaximo = Integer.parseInt(partes[2]);
                     String lugar = partes[3];
-                    int minEdad = Integer.parseInt(partes[4]);
-                    String nombre = partes[5];
-                    int numEmpleados = Integer.parseInt(partes[6]);
-                    boolean funcionando = Boolean.parseBoolean(partes[7]);
+                    String nombre = partes[4];
+                    int numEmpleados = Integer.parseInt(partes[5]);
+                    boolean funcionando = Boolean.parseBoolean(partes[6]);
+                    String restricciones = partes[7];
+                    String[] restriccion= restricciones.split("restriccionClima");
+                    ArrayList<Restriccion_clima> restriccionesClima = new ArrayList<Restriccion_clima>();
+                    for(String cosa: restriccion) {
+                    	String[] partecita = cosa.split("...");
+                    	String tipo = partecita[1];
+                    	String[] atracciones1 =partecita [2].split(",");
+                    	String[] espectaculos1= partecita [3].split(",");
+                    	ArrayList<String> atraccionesNombre = new ArrayList<String>();
+                    	ArrayList<String> espectaculosNombre = new ArrayList<String>();
+                    	for(String atraccion12 : atracciones1) {
+                    		atraccionesNombre.add(atraccion12);
+                    	}
+                    	for(String atraccion12 : espectaculos1) {
+                    		espectaculosNombre.add(atraccion12);
+                    	}
+                    	Restriccion_clima restriccion_partecita =new Restriccion_clima(tipo,atraccionesNombre,espectaculosNombre);
+                    	restriccionesClima.add(restriccion_partecita);
                     
-                    List<Restriccion_clima> restriccionesClima = new ArrayList<>();
-                    int idxRestriccionClima = Arrays.asList(partes).indexOf("restriccion_clima");
-                    if (idxRestriccionClima != -1) {
-                        for (int i = idxRestriccionClima + 1; i < partes.length; i++) {
-                            if (partes[i].equals("restriccion_salud") || 
-                                partes[i].equals("MECANICA") || 
-                                partes[i].equals("CULTURAL")) break;
-                                
-                            String tipo = partes[i];
-                            Restriccion_clima restriccion = restriccionesClimaCache.computeIfAbsent(
-                                tipo, 
-                                t -> new Restriccion_clima(t, new ArrayList<>(), new ArrayList<>())
-                            );
-                            restriccionesClima.add(restriccion);
-                        }
+                    		
+                   
+                    		
+                        
                     }
 
                     // Crear atracción según el tipo
                     Atraccion atraccion;
                     if (linea.startsWith("MECANICA")) {
-                        // Procesar restricción de salud
-                        RestriccionSalud restriccionSalud = null;
-                        int idxRestriccionSalud = Arrays.asList(partes).indexOf("restriccion_salud");
-                        if (idxRestriccionSalud != -1 && idxRestriccionSalud + 1 < partes.length) {
-                            String nombreRestriccion = partes[idxRestriccionSalud + 1];
-                            restriccionSalud = restriccionesSaludCache.computeIfAbsent(
-                                nombreRestriccion,
-                                n -> new RestriccionSalud(n, new ArrayList<>())
-                            );
-                        }
+                        
+                    	int alturaMax = Integer.parseInt(partes[8]);
+                    	int pesoMax= Integer.parseInt(partes[9]);
+                    	int alturaMin= Integer.parseInt(partes[10]);
+                    	int pesoMin = Integer.parseInt(partes[11]);
+                    	int nivelRiesgo =Integer.parseInt(partes[12]);
+                    	String nombreSalud = partes[13];
+                    	String[] nombreMecanicas = partes[13].split(",");
+                    	ArrayList<String> nombreMecanicasFinal = new ArrayList<String>();
+                    	for(String nombre1 : nombreMecanicas) {
+                    		nombreMecanicasFinal.add(nombre);
+                    	}
+                    	RestriccionSalud restriccionSalud = new RestriccionSalud(nombreSalud,nombreMecanicasFinal);
 
-                        // Crear Mecanica con todas las restricciones
                         atraccion = new Mecanica(
                             nombre,
                             lugar,
                             numEmpleados,
-                            minEdad,
                             funcionando,
                             cupoMaximo,
-                            restriccionesClima,  // Restricciones de clima pasadas directamente
-                            Double.parseDouble(partes[partes.length - 7]), // minAltura
-                            Double.parseDouble(partes[partes.length - 6]), // maxAltura
-                            Double.parseDouble(partes[partes.length - 5]), // minPeso
-                            Double.parseDouble(partes[partes.length - 4]), // maxPeso
-                            partes[partes.length - 3], // nivelRiesgo
+                            restriccionesClima,
+                            alturaMin,
+                            alturaMax,
+                            pesoMin,
+                            pesoMax,
+                            nivelRiesgo,
                             restriccionSalud
-                        );
+                            );
 
-                        // Vincular a restricción de salud si existe
-                        if (restriccionSalud != null) {
-                            restriccionSalud.getAtraccionesMecanica().add((Mecanica) atraccion);
-                        }
+               
                     } else {
                         // Crear Cultural con restricciones de clima
                         atraccion = new Cultural(
                             nombre,
                             lugar,
                             numEmpleados,
-                            minEdad,
                             funcionando,
                             cupoMaximo,
                             restriccionesClima,  // Restricciones de clima pasadas directamente
                             Integer.parseInt(partes[partes.length - 1]) // edadMin
                         );
-                    }
-
-                    // Vincular atracción a sus restricciones de clima
-                    for (Restriccion_clima rc : restriccionesClima) {
-                        rc.agregarAtraccion(atraccion);
-                    }
-
-                    atracciones.add(atraccion);
-                }
+                    
             }
-        }
+        
         return atracciones;
     }
     public ArrayList<Espectaculo> leerEspectaculos(String rutaArchivo) throws IOException {
@@ -175,3 +166,4 @@ public class Lector_Atracciones_Y_Espectaculos {
         return espectaculos;
     }
 }
+

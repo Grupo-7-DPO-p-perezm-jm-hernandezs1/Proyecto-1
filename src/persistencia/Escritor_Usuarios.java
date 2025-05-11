@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import Usuarios.Cliente;
 import Usuarios.Compra;
+import Usuarios.Empleado;
+
 
 public class Escritor_Usuarios {
 
@@ -14,14 +16,20 @@ public class Escritor_Usuarios {
     }
 
     public void escribirClientes(ArrayList<Cliente> clientes) {
-        // Asegurarse de que el directorio exista
-        File carpeta = new File("./data/");
+
+       
+        File carpeta = new File(".\\Proyecto-1-main\\data\\clientes.tx");
+
+
         if (!carpeta.exists()) {
             carpeta.mkdirs();
         }
 
-        // Archivo de destino
-        File archivo = new File("./data/Clientes.txt");
+
+       
+        File archivo = new File(".\\Proyecto-1-main\\data\\clientes.tx");
+=======
+
 
         // Si el archivo no existe, lo creamos vacío
         if (!archivo.exists()) {
@@ -31,6 +39,22 @@ public class Escritor_Usuarios {
             } catch (IOException e) {
                 System.err.println("Error al crear el archivo: " + e.getMessage());
             }
+
+        }
+
+
+        
+        try (PrintWriter escritor = new PrintWriter(archivo)) {
+            for (Cliente cliente : clientes) {
+                StringBuilder linea = new StringBuilder();
+                linea.append(cliente.getLogin()).append("--")
+                     .append(cliente.getPassword());
+                
+                ArrayList<Compra> historial = cliente.getHistorial();
+                for (Compra compra : historial) {
+                    linea.append("--")
+                         .append(compra.isFechaVencida()) 
+=======
         }
 
         // Verificar si el archivo está vacío antes de escribir
@@ -51,15 +75,13 @@ public class Escritor_Usuarios {
                 for (Compra compra : historial) {
                     linea.append("--")
                          .append(compra.isFechaVencida()) // Uso de getter
-                         .append("--")
-                         .append(compra.getNumeroTiquete());
-                }
+               }
 
-                // Escribir la línea al archivo
                 escritor.println(linea.toString());
             }
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo: " + e.getMessage());
         }
     }
+
 }

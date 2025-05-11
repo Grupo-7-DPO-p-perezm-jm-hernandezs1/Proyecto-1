@@ -21,7 +21,7 @@ public class Cultural extends Atraccion {
      
         if (restriccionesClima != null) {
             for (Restriccion_clima restriccion : restriccionesClima) {
-                restriccion.agregarAtraccion(this);
+                restriccion.agregarAtraccion(this.getNombre());
             }
         }
     }
@@ -40,7 +40,7 @@ public class Cultural extends Atraccion {
             for (Restriccion_clima restriccion : nuevasRestricciones) {
                 if (!this.getRestriccionClima().contains(restriccion)) {
                     this.getRestriccionClima().add(restriccion);
-                    restriccion.agregarAtraccion(this);
+                    restriccion.agregarAtraccion(this.getNombre());
                 }
             }
         }

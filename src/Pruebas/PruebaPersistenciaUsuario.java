@@ -59,6 +59,5 @@ class PruebaPersistenciaUsuario {
 		ArrayList<Cliente> clientesPrueba = new ArrayList<Cliente>();
 		clientesPrueba.add(clientePrueba);
 		escritorUsuario.escribirClientes(clientesPrueba); // realizacion
-		
 	}
 }

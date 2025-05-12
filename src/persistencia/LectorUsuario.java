@@ -33,10 +33,10 @@ public class LectorUsuario {
         // Verificar si el archivo está vacío antes de intentar leer
         if (archivo.length() == 0) {
             System.out.println("El archivo está vacío. Esperando información...");
-            return clientes;  // Devuelve la lista vacía sin procesar
+            return clientes;  
         }
 
-        // Si el archivo tiene contenido, procedemos a leer
+      
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = lector.readLine()) != null) {
@@ -46,35 +46,31 @@ public class LectorUsuario {
                 if (partes.length >= 2) {
                     String login = partes[0].trim();
                     String password = partes[1].trim();
-
-                    Cliente cliente = new Cliente(login, password, new ArrayList<>());
-
-                    // Leer pares de [fechaVencida, numeroTiquete]
-                    for (int i = 2; i + 1 < partes.length; i += 2) {
-                        try {
-                            boolean fechaVencida = Boolean.parseBoolean(partes[i].trim());
-                            String numeroTiquete = partes[i + 1].trim();
-                            
-                            Compra compra = new Compra(fechaVencida, numeroTiquete);
-                            cliente.getHistorial().add(compra);
-                        } catch (Exception e) {
-                            System.err.println("Error al procesar compra para cliente " + login + ": " + e.getMessage());
-                        }
+                    ArrayList<Compra> historial = new ArrayList<Compra>();
+                 
+                    String[] comprasString = partes[2].split("compra:");
+                    for(String compraS: comprasString) {
+                    	String[] compra= compraS.split(",");
+                    	boolean vencido =  Boolean.parseBoolean(compra[0]);
+                    	String identificador = compra[1];
+                    	Compra finalCompra = new Compra(vencido, identificador);
+                    	historial.add(finalCompra);
+                    	
                     }
+                    Cliente cliente = new Cliente(login, password, historial);
+                    System.out.println(cliente.historial);
 
                     clientes.add(cliente);
-                } else {
-                    System.err.println("Línea inválida: " + linea);
                 }
             }
 
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
-            throw e;
+            throw e; // test donde la ruta no exista
         }
 
         return clientes;
-    }  // <-- ¡Aquí faltaba esta llave de cierre!
+    } 
     public ArrayList<Empleado> leerEmpleados(String rutaArchivo) throws IOException {
         ArrayList<Empleado> empleados = new ArrayList<>();
         File archivo = new File(rutaArchivo);
@@ -107,7 +103,7 @@ public class LectorUsuario {
                         
                        
                         ArrayList<String> atracciones = new ArrayList<>();
-                        if (!especialidadData[1].trim().equalsIgnoreCase("nada")) {
+                        if (!especialidadData[1].trim().equalsIgnoreCase("")) {
                             String[] attrs = especialidadData[1].split(",");
                             for (String attr : attrs) {
                                 atracciones.add(attr.trim());
@@ -116,7 +112,7 @@ public class LectorUsuario {
                         
                         
                         ArrayList<String> lugares = new ArrayList<>();
-                        if (!especialidadData[2].trim().equalsIgnoreCase("nada")) {
+                        if (!especialidadData[2].trim().equalsIgnoreCase("")) {
                             String[] locs = especialidadData[2].split(",");
                             for (String loc : locs) {
                                 lugares.add(loc.trim());

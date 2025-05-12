@@ -7,13 +7,13 @@ public class Atraccion {
 	protected String nombre;
 	protected String lugar;
 	protected int cupoMaximo;
-	protected List <Restriccion_clima> restriccionClima;
+	protected ArrayList <Restriccion_clima> restriccionClima;
 	protected int numeroEmpleados;
 	protected boolean funcionando= true;
 	
 
-	public Atraccion(String nombre, String lugar, int cupoMaximo, List<Restriccion_clima> restriccionClima,
-			int numeroEmpleados, int minEdad, boolean funcionando) {
+	public Atraccion(String nombre, String lugar, int cupoMaximo, ArrayList<Restriccion_clima> restriccionClima,
+			int numeroEmpleados, boolean funcionando) {
 		super();
 		this.nombre = nombre;
 		this.lugar = lugar;
@@ -47,10 +47,10 @@ public class Atraccion {
 	public void setCupoMaximo(int cupoMaximo) {
 		this.cupoMaximo = cupoMaximo;
 	}
-	public List<Restriccion_clima> getRestriccionClima() {
+	public ArrayList<Restriccion_clima> getRestriccionClima() {
 		return restriccionClima;
 	}
-	public void setRestriccionClima(List<Restriccion_clima> restriccionesClima) {
+	public void setRestriccionClima(ArrayList<Restriccion_clima> restriccionesClima) {
 		this.restriccionClima = restriccionesClima;
 	}
 	public int getNumeroEmpleados() {

@@ -14,7 +14,7 @@ public class Mecanica extends Atraccion {
     public Mecanica(String nombre, 
                    String lugar, 
                    int numeroEmpleados, 
-                   int minEdad, 
+                    
                    boolean funcionando,
                    int cupoMaximo,
                    ArrayList<Restriccion_clima> restriccionesClima,
@@ -25,7 +25,7 @@ public class Mecanica extends Atraccion {
                    String nivelRiesgo,
                    RestriccionSalud restriccionSalud) {
         
-        super(nombre, lugar, cupoMaximo, restriccionesClima, numeroEmpleados, minEdad, funcionando);
+        super(nombre, lugar, cupoMaximo, restriccionesClima, numeroEmpleados, funcionando);
         
         this.minAltura = minAltura;
         this.maxAltura = maxAltura;
@@ -96,6 +96,7 @@ public class Mecanica extends Atraccion {
             restriccionSalud.getAtraccionesMecanica().add(this.getNombre());
         }
     }
+    
 
     public String getNivelRiesgo() {
         return nivelRiesgo;

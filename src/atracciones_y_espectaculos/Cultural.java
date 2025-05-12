@@ -1,6 +1,6 @@
 package atracciones_y_espectaculos;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Cultural extends Atraccion {
 
@@ -9,13 +9,12 @@ public class Cultural extends Atraccion {
     
     public Cultural(String nombre, 
                    String lugar, 
-                   int numeroEmpleados, 
-                   int minEdad, 
+                   int numeroEmpleados,  
                    boolean funcionando, 
                    int cupoMaximo,
-                   List<Restriccion_clima> restriccionesClima,
+                   ArrayList<Restriccion_clima> restriccionesClima,
                    int edadMin) {
-        super(nombre, lugar, cupoMaximo, restriccionesClima, numeroEmpleados, minEdad, funcionando);
+        super(nombre, lugar, cupoMaximo, restriccionesClima, numeroEmpleados, funcionando);
         this.edadMin = edadMin;
         
      
@@ -35,7 +34,7 @@ public class Cultural extends Atraccion {
     }
     
     
-    public void agregarRestriccionesClima(List<Restriccion_clima> nuevasRestricciones) {
+    public void agregarRestriccionesClima(ArrayList<Restriccion_clima> nuevasRestricciones) {
         if (nuevasRestricciones != null) {
             for (Restriccion_clima restriccion : nuevasRestricciones) {
                 if (!this.getRestriccionClima().contains(restriccion)) {

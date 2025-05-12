@@ -25,7 +25,8 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	            carpeta.mkdirs();
 	        }
 	        
-	        PrintWriter escritor = new PrintWriter(new File("./data/Atracciones_y_Espectaculos.txt"));
+	        
+	        PrintWriter escritor = new PrintWriter(new File("./data/atracciones_y_espectaculos.txt"));
 	        
 	        for (Atraccion atraccion : atracciones) {
 	            String linea = atraccion.getCupoMaximo() + "--" +
@@ -38,7 +39,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	            linea = linea + "--";
 	            
 	            for(Restriccion_clima restriccionClima: restriccionesClima) {
-	            	linea = linea + "restriccionClima"+ restriccionClima.getTipo()+"..." ;
+	            	linea = linea + ":restriccionClima:"+ restriccionClima.getTipo()+"..." ;
 	                
 	                ArrayList<String>listaAtraccion = restriccionClima.getAtracciones();
 	                ArrayList<String>listaEspectaculo = restriccionClima.getEspectaculos();
@@ -72,7 +73,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	                
 	                ArrayList<String> mecanicas = mecanica.getRestriccionSalud().getAtraccionesMecanica();
 	                for(String mecanica1:mecanicas) {
-	                	linea = linea+ mecanica1+ ",";
+	                	linea = linea+ ","+mecanica1;
 	                }
 	                
 	            } else if (atraccion instanceof Cultural) {
@@ -95,7 +96,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        if (!carpeta.exists()) {
 	            carpeta.mkdirs();
 	        }
-	        PrintWriter escritor = new PrintWriter(new File("./data/Atracciones_y_Espectaculos.txt"));
+	        PrintWriter escritor = new PrintWriter(new File("./data/atracciones_y_espectaculos.txt"));
 	        
 	        for (Espectaculo espectaculo : espectaculos) {
 	        	 

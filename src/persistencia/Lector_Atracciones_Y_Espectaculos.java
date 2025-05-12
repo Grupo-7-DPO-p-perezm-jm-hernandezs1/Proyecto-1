@@ -27,12 +27,12 @@ public class Lector_Atracciones_Y_Espectaculos {
                     String[] partes = linea.split("--");
                     
                   
-                    int cupoMaximo = Integer.parseInt(partes[2]);
-                    String lugar = partes[3];
-                    String nombre = partes[4];
-                    int numEmpleados = Integer.parseInt(partes[5]);
-                    boolean funcionando = Boolean.parseBoolean(partes[6]);
-                    String restricciones = partes[7];
+                    int cupoMaximo = Integer.parseInt(partes[1]);
+                    String lugar = partes[2];
+                    String nombre = partes[3];
+                    int numEmpleados = Integer.parseInt(partes[4]);
+                    boolean funcionando = Boolean.parseBoolean(partes[5]);
+                    String restricciones = partes[6];
                     String[] restriccion= restricciones.split("restriccionClima");
                     ArrayList<Restriccion_clima> restriccionesClima = new ArrayList<Restriccion_clima>();
                     for(String cosa: restriccion) {
@@ -61,12 +61,12 @@ public class Lector_Atracciones_Y_Espectaculos {
                     Atraccion atraccion;
                     if (linea.startsWith("MECANICA")) {
                         
-                    	int alturaMax = Integer.parseInt(partes[8]);
-                    	int pesoMax= Integer.parseInt(partes[9]);
-                    	int alturaMin= Integer.parseInt(partes[10]);
-                    	int pesoMin = Integer.parseInt(partes[11]);
-                    	int nivelRiesgo =Integer.parseInt(partes[12]);
-                    	String nombreSalud = partes[13];
+                    	int alturaMax = Integer.parseInt(partes[7]);
+                    	int pesoMax= Integer.parseInt(partes[8]);
+                    	int alturaMin= Integer.parseInt(partes[9]);
+                    	int pesoMin = Integer.parseInt(partes[10]);
+                    	int nivelRiesgo =Integer.parseInt(partes[11]);
+                    	String nombreSalud = partes[12];
                     	String[] nombreMecanicas = partes[13].split(",");
                     	ArrayList<String> nombreMecanicasFinal = new ArrayList<String>();
                     	for(String nombre1 : nombreMecanicas) {
@@ -98,9 +98,8 @@ public class Lector_Atracciones_Y_Espectaculos {
                             numEmpleados,
                             funcionando,
                             cupoMaximo,
-                            restriccionesClima,  // Restricciones de clima pasadas directamente
-                            Integer.parseInt(partes[partes.length - 1]) // edadMin
-                        );
+                            restriccionesClima, 
+                            Integer.parseInt(partes[partes.length - 1]) 
                     
             }
         
@@ -166,4 +165,3 @@ public class Lector_Atracciones_Y_Espectaculos {
         return espectaculos;
     }
 }
-

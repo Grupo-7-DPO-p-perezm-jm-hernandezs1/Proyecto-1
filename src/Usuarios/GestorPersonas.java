@@ -46,8 +46,8 @@ public void crearCliente(String login, String password, ArrayList<Compra> histor
 	clientes.add(cliente);
 	
 }
-public void crearEmpleado(String login, String password, boolean cocinero, ArrayList<Especialidad> especialidades) {
-	Empleado empleado = new Empleado(login, password, cocinero, especialidades);
+public void crearEmpleado(String login, String password, boolean cocinero, Especialidad especialidad) {
+	Empleado empleado = new Empleado(login, password, cocinero, especialidad);
 	empleados.add(empleado);
 	personas.add(empleado);
 }
@@ -64,4 +64,3 @@ public Persona getPersona(String login) {
 	return respuesta;
 }
 }
-

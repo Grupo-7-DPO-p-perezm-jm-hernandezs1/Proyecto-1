@@ -102,17 +102,17 @@ public class GestorAtracciones {
 		}
 	}
 
-	public void registrarAtraccionMecanica(String nombre, String lugar, int numeroEmpleados, int minEdad,
-			boolean funcionando, int cupoMaximo, List<Restriccion_clima> restriccionesClima, double minAltura,
+	public void registrarAtraccionMecanica(String nombre, String lugar, int numeroEmpleados,
+			boolean funcionando, int cupoMaximo, ArrayList<Restriccion_clima> restriccionesClima, double minAltura,
 			double maxAltura, double minPeso, double maxPeso, String nivelRiesgo, RestriccionSalud restriccionSalud) {
-		Mecanica mecanica = new Mecanica(nombre, lugar, numeroEmpleados, minEdad, funcionando, cupoMaximo,
+		Mecanica mecanica = new Mecanica(nombre, lugar, numeroEmpleados, funcionando, cupoMaximo,
 				restriccionesClima, minAltura, maxAltura, minPeso, maxPeso, nivelRiesgo, restriccionSalud);
 		atracciones.add(mecanica);
 	}
 
 	public void registrarAtraccionCultural(String nombre, String lugar, int numeroEmpleados, int minEdad,
-			boolean funcionando, int cupoMaximo, List<Restriccion_clima> restriccionesClima, int edadMin) {
-		Cultural cultural = new Cultural(nombre, lugar, numeroEmpleados, minEdad, funcionando, cupoMaximo,
+			boolean funcionando, int cupoMaximo, ArrayList<Restriccion_clima> restriccionesClima, int edadMin) {
+		Cultural cultural = new Cultural(nombre, lugar, numeroEmpleados, funcionando, cupoMaximo,
 				restriccionesClima, minEdad);
 		atracciones.add(cultural);
 	}
@@ -137,29 +137,22 @@ public class GestorAtracciones {
 						}
 					}
 				
-=======
-				restriccionClima.activarRestriccion();
 
+			}
 			}
 		}
 	}
 
 	public Atraccion buscarAtraccionPorNombre(String nombre) {
+		
 		for (Atraccion atraccion : atracciones) {
 			if (atraccion.getNombre().equalsIgnoreCase(nombre)) {
 				return atraccion;
 			}
 		}
 		return null;
-	}
+	
 	}
 
-	public Atraccion buscarAtraccionPorNombre(String nombre) {
-		for (Atraccion atraccion : atracciones) {
-			if (atraccion.getNombre().equalsIgnoreCase(nombre)) {
-				return atraccion;
-			}
-		}
-		return null;
-	}
+	
 }

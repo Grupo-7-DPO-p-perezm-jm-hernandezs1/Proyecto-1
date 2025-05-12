@@ -26,7 +26,9 @@ public class Lector_Atracciones_Y_Espectaculos {
                 if (linea.startsWith("MECANICA") || linea.startsWith("CULTURAL")) {
                     String[] partes = linea.split("--");
                     
-                  
+                    
+                    
+                    
                     int cupoMaximo = Integer.parseInt(partes[1]);
                     String lugar = partes[2];
                     String nombre = partes[3];
@@ -65,7 +67,7 @@ public class Lector_Atracciones_Y_Espectaculos {
                     	int pesoMax= Integer.parseInt(partes[8]);
                     	int alturaMin= Integer.parseInt(partes[9]);
                     	int pesoMin = Integer.parseInt(partes[10]);
-                    	int nivelRiesgo =Integer.parseInt(partes[11]);
+                    	String nivelRiesgo =partes[11];
                     	String nombreSalud = partes[12];
                     	String[] nombreMecanicas = partes[13].split(",");
                     	ArrayList<String> nombreMecanicasFinal = new ArrayList<String>();
@@ -92,19 +94,25 @@ public class Lector_Atracciones_Y_Espectaculos {
                
                     } else {
                         // Crear Cultural con restricciones de clima
-                        atraccion = new Cultural(
+                    	int minEdad = Integer.parseInt(partes[7]);
+                    	
+                    	atraccion = new Cultural(
                             nombre,
                             lugar,
                             numEmpleados,
                             funcionando,
                             cupoMaximo,
                             restriccionesClima, 
-                            Integer.parseInt(partes[partes.length - 1]) 
+                            minEdad);
                     
             }
+                    
         
         return atracciones;
     }
+            
+        }
+        }
     public ArrayList<Espectaculo> leerEspectaculos(String rutaArchivo) throws IOException {
         ArrayList<Espectaculo> espectaculos = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;

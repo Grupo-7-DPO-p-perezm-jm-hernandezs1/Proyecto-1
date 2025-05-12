@@ -5,10 +5,11 @@ import Usuarios.Empleado;
 import Usuarios.GestorPersonas;
 import atracciones_y_espectaculos.Atraccion;
 import atracciones_y_espectaculos.LugarTrabajo;
+import persistencia.PersistenciaTurnos;
 
 public class GestorTurnos {
 	private SemanaTurnos semana = new SemanaTurnos();
-
+	private PersistenciaTurnos persistencia = new PersistenciaTurnos();
     public void reiniciarSemana() {
         semana.reiniciarSemana();
     }
@@ -71,6 +72,10 @@ public class GestorTurnos {
 	    }
 
 	    asignarTurno(tipoTurno, destino, empleado, franja, diaTurnos);
+	   
 	}
-	
+	public void guardarSemana() {
+	    persistencia.guardarSemana(semana);
+	}
+
 }

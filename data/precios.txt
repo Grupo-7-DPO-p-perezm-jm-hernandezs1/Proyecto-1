@@ -1,0 +1,4 @@
+TiqueteBasico=2.00
+TiqueteGeneral=1.00
+TiqueteTemporada=10.00
+TiqueteIndividual=90.00

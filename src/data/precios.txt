@@ -1,0 +1,4 @@
+TiqueteTemporada=100.0
+TiqueteBasico=51.0
+TiqueteIndividual=200.0
+TiqueteGeneral=50.0

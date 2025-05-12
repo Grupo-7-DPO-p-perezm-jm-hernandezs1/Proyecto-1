@@ -1,0 +1,4 @@
+BASI-1--100.0
+TEMP-2--150.5--2025-06-01--2025-06-30--Diamante
+GENE-3--80.0--Oro
+INDV-4--120.0--Montaña Rusa

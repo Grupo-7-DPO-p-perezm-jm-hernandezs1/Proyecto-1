@@ -5,6 +5,8 @@ import tiquetes.FastPass;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +41,8 @@ public class PersistenciaFastPass {
             while ((linea = lector.readLine()) != null) {
                 String[] datos = linea.split("--");
                 String identificador = datos[0];
-                Date fechaValida = new SimpleDateFormat("yyyy-MM-dd").parse(datos[1]); 
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate fechaValida = LocalDate.parse(datos[1], formatter);
                 double precio = Double.parseDouble(datos[2]);
 
                 FastPass fastPass = new FastPass(identificador, fechaValida, precio);
@@ -47,7 +50,7 @@ public class PersistenciaFastPass {
             }
 
             lector.close();
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

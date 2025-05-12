@@ -1,13 +1,13 @@
 package tiquetes;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class FastPass {
     private String identificador;
-    private Date fechaValida;
+    private LocalDate fechaValida;
     private double precio;
 
-    public FastPass(String identificador, Date fechaValida, double precio) {
+    public FastPass(String identificador, LocalDate fechaValida, double precio) {
         this.identificador = identificador;
         this.fechaValida = fechaValida;
         this.precio = precio;
@@ -21,11 +21,11 @@ public class FastPass {
         this.identificador = identificador;
     }
 
-    public Date getFechaValida() {
+    public LocalDate getFechaValida() {
         return fechaValida;
     }
 
-    public void setFechaValida(Date fechaValida) {
+    public void setFechaValida(LocalDate fechaValida) {
         this.fechaValida = fechaValida;
     }
 

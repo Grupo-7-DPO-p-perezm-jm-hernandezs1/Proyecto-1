@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import Usuarios.Cliente;
 import persistencia.LectorUsuario;
-import persistencia.LectorUsuario;
 import vista.vistaAdmin;
 import vista.vistaBasica;
 import vista.vistaEmpleado;

@@ -5,7 +5,7 @@ import persistencia.PersistenciaFastPass;
 import persistencia.PersistenciaTiquetes;
 import atracciones_y_espectaculos.Atraccion;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class GestorTiquete {
@@ -22,11 +22,12 @@ public class GestorTiquete {
     public String crearIdentificador(String prefijo) {
         String id = prefijo + "-" + contador;
         contador++;  // Incrementamos el contador para el siguiente tiquete
+        //Cambiar
         persistencia.escribirContador(contador);  // Guardamos el nuevo valor del contador en el archivo
         return id;
     }
 
-    public String comprarTiqueteTemporada(Date fechaInicio, Date fechaFinal, Categoria categoria) {
+    public String comprarTiqueteTemporada(LocalDate fechaInicio, LocalDate fechaFinal, Categoria categoria) {
         String id = crearIdentificador("TEMP");
         double precio = catalogoPrecios.getPrecio("TiqueteTemporada");
 
@@ -74,7 +75,7 @@ public class GestorTiquete {
         catalogoPrecios.setPrecio(tipo.toUpperCase(), nuevoPrecio);
     }
 
-    public String comprarFastPass(Date fechaValida) {
+    public String comprarFastPass(LocalDate fechaValida) {
         // Generar el identificador único para el FastPass
         String id = crearIdentificador("FAST");
 

@@ -12,7 +12,7 @@ import atracciones_y_espectaculos.LugarTrabajo;
 public class PersistenciaTurnos {
     private static final String ARCHIVO_TURNOS = "./data/semana_turnos.txt";
 
-    public static void guardarSemana(SemanaTurnos semana) {
+    public void guardarSemana(SemanaTurnos semana) {
         try {
             File carpeta = new File("./data/");
             if (!carpeta.exists()) {

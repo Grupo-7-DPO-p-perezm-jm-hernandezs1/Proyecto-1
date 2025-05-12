@@ -1,6 +1,8 @@
 package persistencia;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -87,7 +89,7 @@ public class PersistenciaTiquetes {
 
     //Tiquetes totales
     public List<Tiquete> leerTiquetes() {
-        List<Tiquete> tiquetes = new ArrayList<>();
+        List<Tiquete> tiquetes = new ArrayList<Tiquete>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivoTiquetesTotales));
             String linea;
@@ -97,11 +99,11 @@ public class PersistenciaTiquetes {
                 double precio = Double.parseDouble(partes[1]);
 
                 if (id.startsWith("TEMP")) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    Date inicio = sdf.parse(partes[2]);
-                    Date fin = sdf.parse(partes[3]);
-                    Categoria tipo = Categoria.valueOf(partes[4]);
-                    TiqueteTemporada tt = new TiqueteTemporada(id, precio, inicio, fin, tipo);
+                	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                	LocalDate inicio = LocalDate.parse(partes[2], formatter);
+                	LocalDate fin = LocalDate.parse(partes[3], formatter);
+                	Categoria tipo = Categoria.valueOf(partes[4]);
+                	TiqueteTemporada tt = new TiqueteTemporada(id, precio, inicio, fin, tipo);
                     tiquetes.add(tt);
                 } else if (id.startsWith("GENE")) {
                     Categoria tipo = Categoria.valueOf(partes[2]);

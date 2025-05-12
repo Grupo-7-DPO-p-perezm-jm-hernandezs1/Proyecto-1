@@ -1,11 +1,13 @@
 package Principal;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import Usuarios.Cliente;
-import persistencia.Lector_Usuarios;
+import persistencia.LectorUsuario;
+import persistencia.LectorUsuario;
 import vista.vistaAdmin;
 import vista.vistaBasica;
 import vista.vistaEmpleado;
@@ -16,7 +18,7 @@ public class ParquePrincipal {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Lector_Usuarios lector = new Lector_Usuarios();
+        LectorUsuario lector = new LectorUsuario();
 
         try {
             clientes = lector.leerClientes("./data/Clientes.txt");

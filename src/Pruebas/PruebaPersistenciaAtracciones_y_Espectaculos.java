@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import atracciones_y_espectaculos.Atraccion;
 import atracciones_y_espectaculos.Cultural;
+import atracciones_y_espectaculos.Espectaculo;
 import atracciones_y_espectaculos.LugarTrabajo;
 import atracciones_y_espectaculos.Mecanica;
 import atracciones_y_espectaculos.RestriccionSalud;
@@ -115,5 +116,8 @@ class PruebaPersistenciaAtracciones_y_Espectaculos {
 	void testLectorLugarTrabajo() throws IOException{
 		ArrayList<LugarTrabajo> lugaresTrabajo = lectorLugarTrabajo.leerLugarTrabajo();
 	}
-	
+	@Test
+	void testLectorEspectaculo() throws IOException{
+		ArrayList<Espectaculo> espectaculos = lectorAYE.leerEspectaculos(".\\src\\data\\Espectaculos.txt");
+	}
 }

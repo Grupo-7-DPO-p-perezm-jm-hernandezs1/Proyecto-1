@@ -1,20 +1,20 @@
 package atracciones_y_espectaculos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Espectaculo {
     private String nombre;
     private List<LocalDateTime> horario;
-    private List<LocalDateTime> fechas;
+
     private boolean funcionando = true;
     
 
-    public Espectaculo(String nombre, List<LocalDateTime> horario, List<LocalDateTime> fechas,
+    public Espectaculo(String nombre, ArrayList<LocalDateTime> horario, 
                       boolean funcionando) {
         this.nombre = nombre;
         this.horario = horario;
-        this.fechas = fechas;
         this.funcionando = funcionando;
     }
 
@@ -33,15 +33,6 @@ public class Espectaculo {
     public void setHorario(List<LocalDateTime> horario) {
         this.horario = horario;
     }
-
-    public List<LocalDateTime> getFechas() {
-        return fechas;
-    }
-
-    public void setFechas(List<LocalDateTime> fechas) {
-        this.fechas = fechas;
-    }
-
     public boolean isFuncionando() {
         return funcionando;
     }

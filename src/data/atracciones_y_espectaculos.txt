@@ -1,4 +1,4 @@
 CULTURAL--50--Island of Adventure--Cumbia--5--true--Lluvia##VelociRaptor,Rip Ride,Hulk,##Cumbia,Rock al Parque,:restriccionClima:--12
 MECANICA--24--Island of Adventure--VelociRaptor--5--true--Lluvia##VelociRaptor,##Cumbia,:restriccionClima:--1.50--2.10--30.0--100.0--medio--Cardio--,VelociRaptor,Hulk
 MECANICA--24--Island of Adventure--Hulk--7--true--Lluvia##VelociRaptor,Rip Ride,Hulk,##Cumbia,Rock al Parque,--1.50--2.10--30.0--100.0--medio--Cardio--,VelociRaptor,Hulk
-CULTURAL--100--Island of Adventure--Rock al Parque--20--true##Lluvia##VelociRaptor,Rip Ride,Hulk,##Cumbia,Rock al Parque,:restriccionClima:--16
+CULTURAL--100--Island of Adventure--Rock al Parque--20--true--Lluvia##VelociRaptor,Rip Ride,Hulk,##Cumbia,Rock al Parque,:restriccionClima:--16

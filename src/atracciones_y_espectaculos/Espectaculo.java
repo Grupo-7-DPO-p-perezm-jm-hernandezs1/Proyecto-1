@@ -8,6 +8,7 @@ public class Espectaculo {
     private List<LocalDateTime> horario;
     private List<LocalDateTime> fechas;
     private boolean funcionando = true;
+    
 
     public Espectaculo(String nombre, List<LocalDateTime> horario, List<LocalDateTime> fechas,
                       boolean funcionando) {

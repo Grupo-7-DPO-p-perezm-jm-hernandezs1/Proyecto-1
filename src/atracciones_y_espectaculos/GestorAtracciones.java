@@ -9,6 +9,7 @@ public class GestorAtracciones {
 	protected ArrayList<Atraccion> atracciones;
 	protected ArrayList<Espectaculo> espectaculos;
 
+	
 	public GestorAtracciones(ArrayList<Atraccion> atracciones, ArrayList<Espectaculo> espectaculos,
 			ArrayList<Restriccion_clima> restriccionesClima, ArrayList<RestriccionSalud> restriccionesSalud) {
 		super();
@@ -101,6 +102,7 @@ public class GestorAtracciones {
 			}
 		}
 	}
+	
 
 	public void registrarAtraccionMecanica(String nombre, String lugar, int numeroEmpleados,
 			boolean funcionando, int cupoMaximo, ArrayList<Restriccion_clima> restriccionesClima, double minAltura,
@@ -153,6 +155,4 @@ public class GestorAtracciones {
 		return null;
 	
 	}
-
-	
 }

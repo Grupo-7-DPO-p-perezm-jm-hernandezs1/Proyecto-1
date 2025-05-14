@@ -39,24 +39,24 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	            linea = linea + "--";
 	            
 	            for(Restriccion_clima restriccionClima: restriccionesClima) {
-	            	linea = linea + ":restriccionClima:"+ restriccionClima.getTipo()+"..." ;
+	            	linea = linea + restriccionClima.getTipo()+"##" ;
 	                
 	                ArrayList<String>listaAtraccion = restriccionClima.getAtracciones();
 	                ArrayList<String>listaEspectaculo = restriccionClima.getEspectaculos();
 	              
 	                linea = linea + "...";
 	                for(String atraccion1 :listaAtraccion) {
-	                	linea= linea+","+atraccion1;
+	                	linea= linea+atraccion1+",";
 	                	
 	                }
 	                
 	                linea = linea + "...";
 	                for(String atraccion1 :listaEspectaculo) {
-	                	linea= linea+","+atraccion1;
+	                	linea= linea+atraccion1+",";
 	                
 	                }
 	             
-	                
+	                linea = linea + ":restriccionClima:";
 	            }
 	          
 	            

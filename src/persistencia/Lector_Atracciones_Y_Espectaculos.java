@@ -17,50 +17,68 @@ import atracciones_y_espectaculos.*;
 public class Lector_Atracciones_Y_Espectaculos {
 
 
-	public List<Atraccion> leerAtracciones(String rutaArchivo) throws IOException {
-	    List<Atraccion> atracciones = new ArrayList<>();
+	public ArrayList<Atraccion> leerAtracciones(String rutaArchivo) throws IOException {
+	    ArrayList<Atraccion> atracciones = new ArrayList<>();
 
 	    try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
 	        String linea;
 	        while ((linea = lector.readLine()) != null) {
 	            if (linea.startsWith("MECANICA") || linea.startsWith("CULTURAL")) {
+	            	
+	            	Atraccion atraccion;
 	                String[] partes = linea.split("--");
-	                
+	                System.out.println(partes[1]);
 	                int cupoMaximo = Integer.parseInt(partes[1]);
+	                
 	                String lugar = partes[2];
 	                String nombre = partes[3];
 	                int numEmpleados = Integer.parseInt(partes[4]);
 	                boolean funcionando = Boolean.parseBoolean(partes[5]);
 	                String restricciones = partes[6];
-	                String[] restriccion = restricciones.split("restriccionClima");
+	                String[] restriccion = restricciones.split(":restriccionClima:");
+	                
 	                ArrayList<Restriccion_clima> restriccionesClima = new ArrayList<Restriccion_clima>();
 	                
 	                for(String cosa: restriccion) {
-	                    String[] partecita = cosa.split("...");
-	                    String tipo = partecita[1];
-	                    String[] atracciones1 = partecita[2].split(",");
-	                    String[] espectaculos1 = partecita[3].split(",");
+	                	//System.out.println(cosa);
+	                    String[] partecita = cosa.split("##");
+	                    String tipo = partecita[0];
+	                    String[] atracciones1 = partecita[1].split(",");
+	                    String[] espectaculos1 = partecita[2].split(",");
 	                    ArrayList<String> atraccionesNombre = new ArrayList<String>();
 	                    ArrayList<String> espectaculosNombre = new ArrayList<String>();
 	                    
 	                    for(String atraccion12 : atracciones1) {
+	                    	//System.out.println(atraccion12);
 	                        atraccionesNombre.add(atraccion12);
 	                    }
 	                    for(String atraccion12 : espectaculos1) {
-	                        espectaculosNombre.add(atraccion12);
+	                        //espectaculosNombre.add(atraccion12);
+	                        System.out.println(atraccion12);
 	                    }
 	                    
 	                    Restriccion_clima restriccion_partecita = new Restriccion_clima(tipo, atraccionesNombre, espectaculosNombre);
 	                    restriccionesClima.add(restriccion_partecita);
+	                    //System.out.println(restriccionesClima);
 	                }
 
 	                // Crear atracción según el tipo
-	                Atraccion atraccion;
-	                if (linea.startsWith("MECANICA")) {
-	                    int alturaMax = Integer.parseInt(partes[7]);
-	                    int pesoMax = Integer.parseInt(partes[8]);
-	                    int alturaMin = Integer.parseInt(partes[9]);
-	                    int pesoMin = Integer.parseInt(partes[10]);
+	                System.out.println(partes[0]);
+	                String tipo = partes[0];
+	                if (tipo.equals("MECANICA")) {
+	                	//System.out.println(partes[7]);
+	                	//System.out.println(partes[8]);
+	                	//System.out.println(partes[9]);
+	                	//System.out.println(partes[10]);
+	                	//System.out.println(partes[11]);
+	                	//System.out.println(partes[12]);
+	                	//System.out.println(partes[13]);
+	                	
+	                	
+	                    double alturaMax = Double.parseDouble(partes[7]);
+	                    double pesoMax = Double.parseDouble(partes[8]);
+	                    double alturaMin = Double.parseDouble(partes[9]);
+	                    double pesoMin = Double.parseDouble(partes[10]);
 	                    String nivelRiesgo = partes[11];
 	                    String nombreSalud = partes[12];
 	                    String[] nombreMecanicas = partes[13].split(",");
@@ -88,6 +106,7 @@ public class Lector_Atracciones_Y_Espectaculos {
 	                    );
 	                } else {
 	                    // Crear Cultural con restricciones de clima
+	                	//System.out.println(partes[7]);
 	                    int minEdad = Integer.parseInt(partes[7]);
 	                    
 	                    atraccion = new Cultural(
@@ -103,8 +122,10 @@ public class Lector_Atracciones_Y_Espectaculos {
 	                
 	                atracciones.add(atraccion); // Añadir la atracción a la lista
 	            }
+	           
 	        }
 	    }
+	    
 	    
 	    return atracciones;
 	}

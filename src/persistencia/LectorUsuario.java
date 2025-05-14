@@ -36,12 +36,14 @@ public class LectorUsuario {
             return clientes;  
         }
 
+        
       
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.split("--");
 
+                
                 // Validar que al menos haya login y password
                 if (partes.length >= 2) {
                     String login = partes[0].trim();

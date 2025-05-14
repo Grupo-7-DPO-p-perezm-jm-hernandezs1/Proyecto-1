@@ -12,9 +12,11 @@ public class Escritor_Lugares_Trabajo {
 	}
 	public void escribirLugaresTrabajo(ArrayList<LugarTrabajo> lugaresTrabajo) {
 	    try {
+	    	
 	    	File carpeta = new File("./data/");
 	        if (!carpeta.exists()) {
 	            carpeta.mkdirs();
+	            
 	        }
 	        PrintWriter escritor = new PrintWriter(new File("./data/LugarTrabajo.txt"));
 	        for (LugarTrabajo lugarTrabajo : lugaresTrabajo) {

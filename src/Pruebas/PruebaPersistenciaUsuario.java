@@ -38,6 +38,7 @@ class PruebaPersistenciaUsuario {
 	@Test
 	void testLectorCliente() throws IOException{
 		ArrayList<Cliente> clientes = lectorUsuario.leerClientes(".\\src\\data\\clientes.txt");
+		System.out.println(clientes);
 		
 		
 		

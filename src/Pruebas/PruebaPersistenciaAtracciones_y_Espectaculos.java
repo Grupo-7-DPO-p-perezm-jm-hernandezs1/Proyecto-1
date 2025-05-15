@@ -119,5 +119,6 @@ class PruebaPersistenciaAtracciones_y_Espectaculos {
 	@Test
 	void testLectorEspectaculo() throws IOException{
 		ArrayList<Espectaculo> espectaculos = lectorAYE.leerEspectaculos(".\\src\\data\\Espectaculos.txt");
+		assertEquals("Factor X",espectaculos.get(0).getNombre(),"Error");
 	}
 }

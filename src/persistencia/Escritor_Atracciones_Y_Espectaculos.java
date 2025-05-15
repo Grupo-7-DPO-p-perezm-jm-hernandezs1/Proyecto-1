@@ -100,18 +100,16 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        
 	        for (Espectaculo espectaculo : espectaculos) {
 	        	 
-	        	List<LocalDateTime> fechas = (ArrayList<LocalDateTime>) espectaculo.getFechas();
+	      
 	        	List<LocalDateTime> horarios = (ArrayList<LocalDateTime>) espectaculo.getHorario();
-	            String linea = "fechas";
+	            String linea = espectaculo.getNombre();
 	            
-	            for (LocalDateTime fecha : fechas) {
-	            	linea = linea+"--"+fecha;
-	            }
-	            linea = linea+"horario";
+	
+	            
 	            for (LocalDateTime horario : horarios) {
-	            	linea = linea+"--"+horario;
+	            	linea = linea+","+horario;
 	            }
-	            linea= linea+"--"+espectaculo.getNombre();
+	            linea= linea+"--"+espectaculo.isFuncionando();
 	            escritor.println(linea);
 	        }
 	        escritor.close();

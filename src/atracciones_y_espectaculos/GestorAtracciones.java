@@ -3,12 +3,17 @@ package atracciones_y_espectaculos;
 import java.util.ArrayList;
 import java.util.List;
 
+import persistencia.Escritor_Atracciones_Y_Espectaculos;
+import persistencia.Escritor_Lugares_Trabajo;
+
 public class GestorAtracciones {
 	protected ArrayList<Restriccion_clima> restriccionesClima;
 	protected ArrayList<RestriccionSalud> restriccionesSalud;
 	protected ArrayList<Atraccion> atracciones;
 	protected ArrayList<Espectaculo> espectaculos;
-
+	protected Escritor_Atracciones_Y_Espectaculos escritorAYE;
+	protected Escritor_Lugares_Trabajo escritorLT;
+	
 	
 	public GestorAtracciones(ArrayList<Atraccion> atracciones, ArrayList<Espectaculo> espectaculos,
 			ArrayList<Restriccion_clima> restriccionesClima, ArrayList<RestriccionSalud> restriccionesSalud) {
@@ -110,6 +115,9 @@ public class GestorAtracciones {
 		Mecanica mecanica = new Mecanica(nombre, lugar, numeroEmpleados, funcionando, cupoMaximo,
 				restriccionesClima, minAltura, maxAltura, minPeso, maxPeso, nivelRiesgo, restriccionSalud);
 		atracciones.add(mecanica);
+		ArrayList<Atraccion> input = new ArrayList<Atraccion>();
+		input.add(mecanica);
+		escritorAYE.escribirAtracciones(input);
 	}
 
 	public void registrarAtraccionCultural(String nombre, String lugar, int numeroEmpleados, int minEdad,
@@ -117,13 +125,16 @@ public class GestorAtracciones {
 		Cultural cultural = new Cultural(nombre, lugar, numeroEmpleados, funcionando, cupoMaximo,
 				restriccionesClima, minEdad);
 		atracciones.add(cultural);
+		ArrayList<Atraccion> input = new ArrayList<Atraccion>();
+		input.add(cultural);
+		escritorAYE.escribirAtracciones(input);
 	}
 
 	public void activarRestriccionClima(String nombre) {
 		for (Restriccion_clima restriccionClima : restriccionesClima) {
 			if (restriccionClima.getTipo().equals(nombre)) {
-        ArrayList <String>listaAtraccion = restriccionClima.getAtracciones();
-				ArrayList <String> listaEspectaculo= restriccionClima.getEspectaculos();
+			ArrayList <String>listaAtraccion = restriccionClima.getAtracciones();
+			ArrayList <String> listaEspectaculo= restriccionClima.getEspectaculos();
 				
 				for(String atraccion: listaAtraccion) {
 					for (Atraccion atraccion1: atracciones) {
@@ -154,5 +165,13 @@ public class GestorAtracciones {
 		}
 		return null;
 	
+	}
+	public Espectaculo buscarEspectaculoPorNombre(String nombre) {
+		for (Espectaculo espectaculo : espectaculos) {
+			if (espectaculo.getNombre().equalsIgnoreCase(nombre)) {
+				return espectaculo;
+			}
+		}
+		return null;
 	}
 }

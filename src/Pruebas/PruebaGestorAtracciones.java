@@ -50,6 +50,8 @@ class PruebaGestorAtracciones {
 	void testActivarRestriccionClima() {
 		
 		gestor.activarRestriccionClima("Lluvia");
+		System.out.println(gestor.buscarAtraccionPorNombre("VelociRaptor").getNombre());
+		System.out.println(gestor.buscarEspectaculoPorNombre("Factor X").getNombre());
 	}
 
 }

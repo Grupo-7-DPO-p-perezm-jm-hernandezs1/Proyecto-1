@@ -93,43 +93,35 @@ public class LectorUsuario {
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.split("--");
                 
-                if (partes.length >= 4) { 
+                if (partes.length >= 6) { 
                     String usuario = partes[0].trim();
                     String password = partes[1].trim();
                     boolean cocinero = Boolean.parseBoolean(partes[2].trim());
+                    String nombre;
+                    
+                    nombre  = partes[3];
                     
                     
-                    String[] especialidadData = partes[3].split("\\.\\.\\.");
-                    if (especialidadData.length >= 3) {
-                        String nombreEspecialidad = especialidadData[0].trim();
-                        
-                       
-                        ArrayList<String> atracciones = new ArrayList<>();
-                        if (!especialidadData[1].trim().equalsIgnoreCase("")) {
-                            String[] attrs = especialidadData[1].split(",");
-                            for (String attr : attrs) {
-                                atracciones.add(attr.trim());
-                            }
-                        }
-                        
-                        
-                        ArrayList<String> lugares = new ArrayList<>();
-                        if (!especialidadData[2].trim().equalsIgnoreCase("")) {
-                            String[] locs = especialidadData[2].split(",");
-                            for (String loc : locs) {
-                                lugares.add(loc.trim());
-                            }
-                        }
-                        
-                        Especialidad especialidad = new Especialidad(
-                            nombreEspecialidad, 
-                            atracciones, 
-                            lugares
-                        );
-                        
-                        empleados.add(new Empleado(usuario, password, cocinero, especialidad));
+                    ArrayList<String> atracciones = new ArrayList<String>();
+                    System.out.println(partes[4]);
+                    if(!partes[4].isEmpty()) {
+                    	 String[] lista=partes[4].split(",");
+                    	for(String nombres: lista) {
+                    		atracciones.add(nombres);
+                    }
+                    }
+                    ArrayList<String> lugarestrabajo = new ArrayList<String>();
+                    if(!partes[5].isEmpty()) {
+                    String[] lugaresTrabajoS = partes[5].split(",");
+                    for(String nombreS: lugaresTrabajoS) {
+                    	lugarestrabajo.add(nombreS);
+                    }
+                    Especialidad especialidad = new Especialidad(nombre,atracciones,lugarestrabajo);
+                    Empleado empleado= new Empleado(usuario,password,cocinero,especialidad);
+                    empleados.add(empleado);
                     }
                 }
+               
             }
         }
         

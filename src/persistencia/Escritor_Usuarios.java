@@ -37,6 +37,7 @@ public class Escritor_Usuarios {
                 }
 
                 escritor.println(linea);
+                escritor.close();
             }
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo: " + e.getMessage());

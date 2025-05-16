@@ -18,6 +18,7 @@ public class LectorUsuario {
     
     }
 
+    
     public ArrayList<Cliente> leerClientes(String rutaArchivo) throws IOException {
         File archivo = new File(rutaArchivo);
        

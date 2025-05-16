@@ -48,7 +48,7 @@ class PruebaGestorAtracciones {
 
 	@Test
 	void testActivarRestriccionClima() {
-		
+		System.out.println(gestor.getAtracciones().size());
 		gestor.activarRestriccionClima("Lluvia");
 		System.out.println(gestor.buscarAtraccionPorNombre("VelociRaptor").getNombre());
 		System.out.println(gestor.buscarEspectaculoPorNombre("Factor X").getNombre());

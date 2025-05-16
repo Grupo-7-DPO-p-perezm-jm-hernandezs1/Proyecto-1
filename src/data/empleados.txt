@@ -1,3 +1,3 @@
-empleado--password1--false--alto--Hulk,Rip Ride,----
-empleado--password2--true--cocinero----Krusty Burger,--
-empleado--password3--false--medio--VelociRapto,Montana,----
+Alberto--password1--false--alto--Hulk,Rip Ride,--nada--
+Rudencio--password2--true--cocinero--nada--Krusty Burger,--
+Mauricio--password3--false--medio--VelociRapto,Montana,--nada--

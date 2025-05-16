@@ -1,7 +1,9 @@
 package Pruebas;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
@@ -10,19 +12,30 @@ import org.junit.jupiter.api.Test;
 
 import atracciones_y_espectaculos.Atraccion;
 import atracciones_y_espectaculos.Cultural;
+import atracciones_y_espectaculos.Espectaculo;
+import atracciones_y_espectaculos.LugarTrabajo;
 import atracciones_y_espectaculos.Mecanica;
 import atracciones_y_espectaculos.RestriccionSalud;
 import atracciones_y_espectaculos.Restriccion_clima;
 import persistencia.Escritor_Atracciones_Y_Espectaculos;
+import persistencia.LectorLugarTrabajo;
+import persistencia.LectorRerstriccion_clima;
+import persistencia.LectorRestriccionSalud;
 import persistencia.Lector_Atracciones_Y_Espectaculos;
 
 class PruebaPersistenciaAtracciones_y_Espectaculos {
 	private Escritor_Atracciones_Y_Espectaculos escritorAYE;
 	private Lector_Atracciones_Y_Espectaculos lectorAYE;
+	private LectorRerstriccion_clima lectorRestriccionClima;
+	private LectorRestriccionSalud lectorRestriccionSalud;
+	private LectorLugarTrabajo lectorLugarTrabajo;
 	@BeforeEach
 	void setUp() throws Exception {
 		this.escritorAYE = new Escritor_Atracciones_Y_Espectaculos();
 		this.lectorAYE = new Lector_Atracciones_Y_Espectaculos();
+		this.lectorRestriccionClima= new LectorRerstriccion_clima();
+		this.lectorRestriccionSalud= new LectorRestriccionSalud();
+		this.lectorLugarTrabajo = new LectorLugarTrabajo();
 	}
 
 	@AfterEach
@@ -79,8 +92,33 @@ class PruebaPersistenciaAtracciones_y_Espectaculos {
 		
 	}
 	@Test
-	void testLectorAtraccion() {
+	void testLectorAtraccion() throws IOException {
+		
+		ArrayList<Atraccion> atracciones =lectorAYE.leerAtracciones(".\\src\\data\\atracciones_y_espectaculos.txt");
+		assertEquals("Cumbia",atracciones.getFirst().getNombre(),"Incorrecto");
+		System.out.println(atracciones.get(2).getNombre());
+		assertEquals("Rock al Parque",atracciones.getLast().getNombre(),"Incorrecto");
+		
 		
 	}
-
+	@Test 
+	void testLectorRestriccionClima() throws IOException {
+		ArrayList<Restriccion_clima> restriccionesClima = lectorRestriccionClima.leerRestriccion_clima();
+		assertEquals("Lluvia",restriccionesClima.getFirst().getTipo(),"Incorrecto");
+	}
+	@Test
+	void testLectorRestriccionSalud() throws IOException{
+		ArrayList<RestriccionSalud> restriccionesSalud = lectorRestriccionSalud.leerRestriccionSalud();
+	}
+	
+	
+	@Test
+	void testLectorLugarTrabajo() throws IOException{
+		ArrayList<LugarTrabajo> lugaresTrabajo = lectorLugarTrabajo.leerLugarTrabajo();
+	}
+	@Test
+	void testLectorEspectaculo() throws IOException{
+		ArrayList<Espectaculo> espectaculos = lectorAYE.leerEspectaculos(".\\src\\data\\Espectaculos.txt");
+		assertEquals("Factor X",espectaculos.get(0).getNombre(),"Error");
+	}
 }

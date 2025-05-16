@@ -1,0 +1,3 @@
+ Krusty Burger--true--false
+ Three Broomsticks--true--false
+ Jurassic Cafe--true--false

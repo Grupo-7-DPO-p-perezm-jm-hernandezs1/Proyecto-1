@@ -1,2 +1,2 @@
-MECANICA--24--Island of Adventure--VelociRaptor--5--true--:restriccionClima:Lluvia......,VelociRaptor,Cumbia,VelociRaptor...,Cumbia--2.1--100.0--1.5--30.0--medio--Cardio--,VelociRaptor,Hulk,VelociRaptor
-CULTURAL--60--Island of Adventure--Cumbia--7--true--:restriccionClima:Lluvia......,VelociRaptor,Cumbia,VelociRaptor...,Cumbia--12
+MECANICA--24--Island of Adventure--VelociRaptor--5--true--Lluvia##...VelociRaptor,Cumbia,VelociRaptor,...Cumbia,:restriccionClima:--2.1--100.0--1.5--30.0--medio--Cardio--,VelociRaptor,Hulk,VelociRaptor
+CULTURAL--60--Island of Adventure--Cumbia--7--true--Lluvia##...VelociRaptor,Cumbia,VelociRaptor,...Cumbia,:restriccionClima:--12

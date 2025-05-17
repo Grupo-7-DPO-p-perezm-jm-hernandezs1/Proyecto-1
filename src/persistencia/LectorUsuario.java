@@ -10,6 +10,7 @@ import Usuarios.Cliente;
 import Usuarios.Compra;
 import Usuarios.Empleado;
 import Usuarios.Especialidad;
+import atracciones_y_espectaculos.RestriccionSalud;
 
 public class LectorUsuario {
 
@@ -134,4 +135,61 @@ public class LectorUsuario {
     	return empleados;
     	
     }
+    public ArrayList<Especialidad> leerEspecialidades() throws IOException {
+File archivo = new File(".\\src\\data\\Especialidades.txt");
+	    
+	    if (!archivo.exists()) {
+	        try (PrintWriter writer = new PrintWriter(archivo)) {
+	            System.out.println("Archivo no encontrado, creando archivo vacío...");
+	        }
+	    }
+	    ArrayList<Especialidad> especialidades = new ArrayList<>();
+
+	   
+
+
+	    try (BufferedReader lector = new BufferedReader(new FileReader(".\\src\\data\\Especialidades.txt"))) {
+	        String linea;
+	        while ((linea = lector.readLine()) != null) {
+	            // Eliminar cualquier espacio en blanco y la coma final si existe
+	            
+	            String[] partes = linea.split("--");
+	            
+	            String nombre = partes[0];
+	            System.out.println(partes.length);
+	            System.out.println(partes[0]);
+	            System.out.println(partes[1]);
+	            System.out.println(partes[2]);
+	            String[] atraccionesString = partes[1].split(",");
+	            String[] lugaresTrabajoString = partes[2].split(",");
+	            
+	            ArrayList<String> atracciones = new ArrayList<>();
+	            ArrayList<String> lugaresTrabajo = new ArrayList<>();
+	            
+	            if(!atraccionesString[0].trim().equals("nada")) {
+	                for(String atraccion : atraccionesString) {
+	                    if (!atraccion.trim().isEmpty()) {
+	                        atracciones.add(atraccion.trim());
+	                    }
+	                }
+	            }
+	            
+	            if(!lugaresTrabajoString[0].trim().equals("nada")) {
+	                for(String lugar : lugaresTrabajoString) {  // Corregido: usar lugaresTrabajoString
+	                    if (!lugar.trim().isEmpty()) {
+	                        lugaresTrabajo.add(lugar.trim());
+	                    }
+	                }
+	            }
+	            
+	            Especialidad especialidad = new Especialidad(nombre, atracciones, lugaresTrabajo);
+	            especialidades.add(especialidad);
+	        }
+	    } catch (IOException e) {
+	        System.err.println("Error al leer el archivo: " + e.getMessage());
+	        throw e;
+	    }    
+	    return especialidades;
+	    }
+    
 }

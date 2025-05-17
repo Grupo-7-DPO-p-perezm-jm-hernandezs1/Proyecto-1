@@ -15,6 +15,7 @@ public GestorPersonas(ArrayList<Cliente> clientes, ArrayList<Empleado> empleados
 	this.personas = personas;
 	this.especialidades = especialidades;
 }
+
 public ArrayList<Cliente> getClientes() {
 	return clientes;
 }
@@ -51,6 +52,7 @@ public void crearEmpleado(String login, String password, boolean cocinero, Espec
 	empleados.add(empleado);
 	personas.add(empleado);
 }
+
 public void asignarEspecialidad() {
 	
 }

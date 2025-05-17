@@ -22,9 +22,11 @@ public class LectorRestriccionSalud {
 	        try (PrintWriter writer = new PrintWriter(archivo)) {
 	            System.out.println("Archivo no encontrado, creando archivo vacío...");
 	        }
+	        
 	    }
 	    ArrayList<RestriccionSalud> restricciones = new ArrayList<>();
 
+	    
 	   
 
 

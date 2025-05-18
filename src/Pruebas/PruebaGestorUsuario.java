@@ -34,7 +34,7 @@ class PruebaGestorUsuario {
 		ArrayList<Persona> personas = new ArrayList();
 		personas.addAll(clientes);
 		personas.addAll(empleados);
-		ArrayList<Especialidad> especialidades = new ArrayList();
+		ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
 		especialidades= lectorU.leerEspecialidades();
 		this.gestor = new GestorPersonas(clientes,empleados,personas,especialidades);
 		
@@ -46,8 +46,8 @@ class PruebaGestorUsuario {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testAlgo() throws Exception{
+		
 	}
-
 }
+

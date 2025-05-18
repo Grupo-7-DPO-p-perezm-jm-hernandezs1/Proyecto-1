@@ -95,45 +95,48 @@ public class LectorUsuario {
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.split("--");
                 
-                if (partes.length >= 6) { 
+                if (partes.length >= 7) { 
                     String usuario = partes[0].trim();
                     String password = partes[1].trim();
                     boolean cocinero = Boolean.parseBoolean(partes[2].trim());
-                    String nombre;
-                    
-                    nombre  = partes[3];
-                    
+                    String nombre = partes[3];
                     
                     ArrayList<String> atracciones = new ArrayList<String>();
                     System.out.println(partes[4]);
                     if(!partes[4].isEmpty()) {
-                    	 String[] lista=partes[4].split(",");
-                    	for(String nombres: lista) {
-                    		atracciones.add(nombres);
+                        String[] lista = partes[4].split(",");
+                        for(String nombres: lista) {
+                            atracciones.add(nombres);
+                        }
                     }
-                    }
+                    
                     ArrayList<String> lugarestrabajo = new ArrayList<String>();
                     if(!partes[5].isEmpty()) {
-                    String[] lugaresTrabajoS = partes[5].split(",");
-                    for(String nombreS: lugaresTrabajoS) {
-                    	lugarestrabajo.add(nombreS);
+                        String[] lugaresTrabajoS = partes[5].split(",");
+                        for(String nombreS: lugaresTrabajoS) {
+                            lugarestrabajo.add(nombreS);
+                        }
                     }
-                    Especialidad especialidad = new Especialidad(nombre,atracciones,lugarestrabajo);
-                    Empleado empleado= new Empleado(usuario,password,cocinero,especialidad);
+                    
+                    ArrayList<Compra> historial = new ArrayList<Compra>();
+                    if(!partes[6].isEmpty()) {
+                        String[] compras = partes[6].split("compra:");  // Nota: corregí partes[5] a partes[6]
+                        for(String nombreS: compras) {
+                            String[] componentes = nombreS.split(",");
+                            boolean funcionando = Boolean.parseBoolean(componentes[0]);
+                            Compra compra = new Compra(funcionando, componentes[1]);
+                            historial.add(compra);
+                        }
+                    }
+                    
+                    Especialidad especialidad = new Especialidad(nombre, atracciones, lugarestrabajo);
+                    Empleado empleado = new Empleado(usuario, password, cocinero, especialidad, historial);
                     empleados.add(empleado);
-                    }
                 }
-               
             }
         }
         
-      
-
-    	
-    	
-    	
-    	return empleados;
-    	
+        return empleados;
     }
     public ArrayList<Especialidad> leerEspecialidades() throws IOException {
 File archivo = new File(".\\src\\data\\Especialidades.txt");

@@ -22,7 +22,7 @@ public class Escritor_Usuarios {
         
 
         try  {  // try-with-resources
-        	File archivo = new File(".\\data\\clientes2.txt");
+        	File archivo = new File(".\\data\\clientes.txt");
         	PrintWriter escritor = new PrintWriter(archivo);
             for (Cliente cliente : clientes) {
                 String linea = cliente.getLogin() + "--" + cliente.getPassword() + "--";

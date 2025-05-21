@@ -34,7 +34,7 @@ public class LectorLugarTrabajo {
 	            String[] partes = linea.split("--");
 	            
 	            
-	            System.out.println((partes.length)+" --Longitud");
+	            //System.out.println((partes.length)+" --Longitud");
 	            if (partes.length != 3) {
 	                System.err.println("Formato incorrecto en línea: " + linea);
 	                continue;

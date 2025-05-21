@@ -36,13 +36,13 @@ public class LectorRerstriccion_clima {
 	            String[] partes = linea.split("\\.\\.\\.");
 	            
 	            
-	            System.out.println((partes.length)+" --Longitud");
+	           // System.out.println((partes.length)+" --Longitud");
 	            if (partes.length != 3) {
 	                System.err.println("Formato incorrecto en línea: " + linea);
 	                continue;
 	            }
 	            
-	            System.out.println(partes[0]);
+	           // System.out.println(partes[0]);
 	            String tipo = partes[0];
 	            String[] atraccionesString = partes[1].split(",");
 	            String[] espectaculosString = partes[2].split(",");

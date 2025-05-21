@@ -62,7 +62,7 @@ public class LectorUsuario {
                     	
                     }
                     Cliente cliente = new Cliente(login, password, historial);
-                    System.out.println(cliente.historial);
+                    //System.out.println(cliente.historial);
 
                     clientes.add(cliente);
                 }
@@ -102,7 +102,7 @@ public class LectorUsuario {
                     String nombre = partes[3];
                     
                     ArrayList<String> atracciones = new ArrayList<String>();
-                    System.out.println(partes[4]);
+                    //System.out.println(partes[4]);
                     if(!partes[4].isEmpty()) {
                         String[] lista = partes[4].split(",");
                         for(String nombres: lista) {
@@ -143,7 +143,7 @@ File archivo = new File(".\\src\\data\\Especialidades.txt");
 	    
 	    if (!archivo.exists()) {
 	        try (PrintWriter writer = new PrintWriter(archivo)) {
-	            System.out.println("Archivo no encontrado, creando archivo vacío...");
+	            System.out.println("Archivo no encontrado, creando archivo vacío..-.");
 	        }
 	    }
 	    ArrayList<Especialidad> especialidades = new ArrayList<>();
@@ -159,10 +159,10 @@ File archivo = new File(".\\src\\data\\Especialidades.txt");
 	            String[] partes = linea.split("--");
 	            
 	            String nombre = partes[0];
-	            System.out.println(partes.length);
-	            System.out.println(partes[0]);
-	            System.out.println(partes[1]);
-	            System.out.println(partes[2]);
+	            //System.out.println(partes.length);
+	            //System.out.println(partes[0]);
+	            //System.out.println(partes[1]);
+	            //System.out.println(partes[2]);
 	            String[] atraccionesString = partes[1].split(",");
 	            String[] lugaresTrabajoString = partes[2].split(",");
 	            

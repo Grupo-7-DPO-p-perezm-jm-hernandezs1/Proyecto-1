@@ -24,11 +24,11 @@ public class Lector_Atracciones_Y_Espectaculos {
 	        String linea;
 	        while ((linea = lector.readLine()) != null) {
 	            if (linea.startsWith("MECANICA") || linea.startsWith("CULTURAL")) {
-	            	System.out.println("Línea leída: " + linea);
+	            	//System.out.println("Línea leída: " + linea);
 	                
 	                Atraccion atraccion;
 	                String[] partes = linea.split("--");
-	                System.out.println(partes[1]);
+	                //System.out.println(partes[1]);
 	                int cupoMaximo = Integer.parseInt(partes[1]);
 	                
 	                String lugar = partes[2];
@@ -60,7 +60,7 @@ public class Lector_Atracciones_Y_Espectaculos {
 	                }
 
 	                // Crear atracción según el tipo
-	                System.out.println(partes[0]);
+	                //System.out.println(partes[0]);
 	                String tipo = partes[0];
 	                if (tipo.equals("MECANICA")) {
 	                    double alturaMax = Double.parseDouble(partes[7]);
@@ -106,17 +106,17 @@ public class Lector_Atracciones_Y_Espectaculos {
 	                        minEdad
 	                    );
 	                }
-	                System.out.println(atraccion.getLugar());
+	                //System.out.println(atraccion.getLugar());
 	                atracciones.add(atraccion);
 	            }
-	            System.out.println(atracciones);
+	            //System.out.println(atracciones);
 	        }
 	    } catch (IOException e) {
 	        System.err.println("Error al leer el archivo: " + e.getMessage());
 	        throw e;
 	    }
 	    
-	    System.out.println(atracciones);
+	    //System.out.println(atracciones);
 	    return atracciones;
 	}
     public ArrayList<Espectaculo> leerEspectaculos(String rutaArchivo) throws IOException {

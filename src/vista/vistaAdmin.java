@@ -14,6 +14,9 @@ public class vistaAdmin implements vistaGeneral {
 		// TODO Hacer
 		
 	}
+	public void eliminar() {
+		
+	}
 	//TODO Necesita los metodos del administrador 
 	/*
 	 * Añadir / eliminar atraccion

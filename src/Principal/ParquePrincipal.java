@@ -6,21 +6,80 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Usuarios.Cliente;
+import Usuarios.Empleado;
+import Usuarios.Especialidad;
+import Usuarios.GestorPersonas;
+import Usuarios.Persona;
+import atracciones_y_espectaculos.Atraccion;
+import atracciones_y_espectaculos.Espectaculo;
+import atracciones_y_espectaculos.GestorAtracciones;
+import atracciones_y_espectaculos.RestriccionSalud;
+import atracciones_y_espectaculos.Restriccion_clima;
+import persistencia.Escritor_Atracciones_Y_Espectaculos;
+import persistencia.Escritor_Usuarios;
+import persistencia.LectorLugarTrabajo;
+import persistencia.LectorRerstriccion_clima;
+import persistencia.LectorRestriccionSalud;
 import persistencia.LectorUsuario;
-
+import persistencia.Lector_Atracciones_Y_Espectaculos;
 import vista.VistaUsuario;
 import vista.vistaAdmin;
 import vista.vistaEmpleado;
 
 
-public class ParquePrincipal {
+public class ParquePrincipal  {
 
     private static ArrayList<Cliente> clientes;
-
-    public static void main(String[] args) {
+    
+    // Atracciones y Espectaculos
+    private Escritor_Atracciones_Y_Espectaculos escritorAYE;
+	private Lector_Atracciones_Y_Espectaculos lectorAYE;
+	private LectorRerstriccion_clima lectorRestriccionClima;
+	private LectorRestriccionSalud lectorRestriccionSalud;
+	private LectorLugarTrabajo lectorLugarTrabajo;
+	private GestorAtracciones gestorAtracciones;
+	// usuarios
+	private LectorUsuario lectorU;
+	private Escritor_Usuarios escritorU;
+	private GestorPersonas gestorUsuarios;
+    public ParquePrincipal() throws IOException
+    {
+    	
+    	// atracciones y Espectaculos
+    	this.escritorAYE = new Escritor_Atracciones_Y_Espectaculos();
+		this.lectorAYE = new Lector_Atracciones_Y_Espectaculos();
+		this.lectorRestriccionClima= new LectorRerstriccion_clima();
+		this.lectorRestriccionSalud= new LectorRestriccionSalud();
+		this.lectorLugarTrabajo = new LectorLugarTrabajo();
+		ArrayList<Atraccion> atracciones = lectorAYE.leerAtracciones(".\\src\\data\\atracciones_y_espectaculos.txt");
+		ArrayList<Espectaculo> espectaculos = lectorAYE.leerEspectaculos(".\\src\\data\\Espectaculos.txt");
+		ArrayList <Restriccion_clima> restriccionesClima = lectorRestriccionClima.leerRestriccion_clima();
+		ArrayList<RestriccionSalud> restriccionesSalud = lectorRestriccionSalud.leerRestriccionSalud();
+		this.gestorAtracciones = new GestorAtracciones(atracciones, espectaculos, restriccionesClima, restriccionesSalud);
+		
+		// Usuarios
+		this.lectorU = new LectorUsuario();
+		this.escritorU = new Escritor_Usuarios();
+		ArrayList<Cliente> clientes = new ArrayList();
+		ArrayList<Empleado> empleados = new ArrayList();
+		clientes = lectorU.leerClientes(".\\src\\data\\clientes.txt");
+		empleados = lectorU.leerEmpleados(".\\src\\data\\empleados.txt");
+		ArrayList<Persona> personas = new ArrayList();
+		personas.addAll(clientes);
+		personas.addAll(empleados);
+		ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+		especialidades= lectorU.leerEspecialidades();
+		this.gestorUsuarios = new GestorPersonas(clientes,empleados,personas,especialidades);
+		
+	}
+    	
+    	
+    
+    public static void main(String[] args) throws IOException {
+    	ParquePrincipal parque = new ParquePrincipal();
         Scanner scanner = new Scanner(System.in);
         LectorUsuario lector = new LectorUsuario();
-
+        
         try {
             clientes = lector.leerClientes("./data/Clientes.txt");
         } catch (IOException e) {
@@ -34,27 +93,51 @@ public class ParquePrincipal {
         while (!loginExitoso) {
             System.out.print("Ingrese su usuario: ");
             String login = scanner.nextLine();
+            
+            
+            //System.out.println(usuario.getLogin());
+            
             System.out.print("Ingrese su contraseña: ");
             String password = scanner.nextLine();
-
+            
+            //System.out.println(usuario.getPassword());
             if (login.equals("admin") && password.equals("admin")) {
                 vistaAdmin admin = new vistaAdmin();
                 admin.verMenu();
                 loginExitoso = true;
-            } else if (login.equals("empleado") && password.equals("empleado")) {
-                vistaEmpleado empleado = new vistaEmpleado();
-                empleado.verMenu();
-                loginExitoso = true;
             } else {
-                Cliente cliente = autenticarCliente(login, password);
-                if (cliente != null) {
-                	VistaUsuario vistaCliente = new VistaUsuario(cliente);
-                    vistaCliente.verMenu();
-                    loginExitoso = true;
-                } else {
-                    System.out.println("Credenciales incorrectas. Intente de nuevo.");
-                }
+            	Persona usuario = parque.gestorUsuarios.getPersona(login);
+            	if(password.equals(usuario.getPassword())){
+            		if(usuario instanceof Empleado) {
+            		vistaEmpleado vistaE = new vistaEmpleado();
+            		vistaE.verMenu();
+            		}
+            		if(usuario instanceof Cliente) {
+            			VistaUsuario vistaCliente = new VistaUsuario((Cliente) usuario);
+                        vistaCliente.verMenu();
+                		}
+            		
+            	}
+            	
             }
+            
+            
+            //else if (login.equals("empleado") && password.equals("empleado")) {
+              //  vistaEmpleado empleado = new vistaEmpleado();
+                //empleado.verMenu();
+         //       loginExitoso = true;
+           // } else {
+             //   Cliente cliente = autenticarCliente(login, password);
+               // if (cliente != null) {
+                //	VistaUsuario vistaCliente = new VistaUsuario(cliente);
+               //     vistaCliente.verMenu();
+               //     loginExitoso = true;
+               // } else {
+               //     System.out.println("Credenciales incorrectas. Intente de nuevo.");
+               // }
+           // }
+            
+            
         }
     }
 

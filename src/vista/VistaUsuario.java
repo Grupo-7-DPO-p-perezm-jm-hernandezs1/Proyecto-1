@@ -28,6 +28,7 @@ public class VistaUsuario implements vistaGeneral {
 
 	@Override
 	public void verMenu() {
+		System.out.println("menu clientes");
 		// TODO Auto-generated method stub
 		
 	}

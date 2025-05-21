@@ -3,8 +3,7 @@ package vista;
 import Usuarios.Persona;
 
 public interface vistaGeneral {
-	
-	void verAtracciones();
+	void comprarFastPass();
 	void comprarTiquetes();
 	void verMenu();
 }

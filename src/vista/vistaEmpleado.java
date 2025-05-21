@@ -2,13 +2,7 @@ package vista;
 
 public class vistaEmpleado implements vistaGeneral{
 
-	@Override
-	public void verAtracciones() {
-		//TODO LUCASSSSSSS
-		
-		
-		
-	}
+
 
 	@Override
 	public void comprarTiquetes() {
@@ -24,6 +18,12 @@ public class vistaEmpleado implements vistaGeneral{
 		
 		System.out.println("Ver Espectaculos: ");
 		System.out.println("Ver compras: ");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void comprarFastPass() {
 		// TODO Auto-generated method stub
 		
 	}

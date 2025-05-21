@@ -2,11 +2,7 @@ package vista;
 
 public class vistaAdmin implements vistaGeneral {
 
-	@Override
-	public void verAtracciones() {
-		//TODO LUCASSSSSSS
-		
-	}
+
 
 	@Override
 	public void comprarTiquetes() {
@@ -28,6 +24,12 @@ public class vistaAdmin implements vistaGeneral {
 
 	@Override
 	public void verMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void comprarFastPass() {
 		// TODO Auto-generated method stub
 		
 	}

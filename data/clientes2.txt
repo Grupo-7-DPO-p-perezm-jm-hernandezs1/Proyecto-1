@@ -1,0 +1,1 @@
+cliente--password----false,1compra:false,2compra:false,3compra:

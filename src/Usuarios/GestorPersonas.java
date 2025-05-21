@@ -15,6 +15,7 @@ public GestorPersonas(ArrayList<Cliente> clientes, ArrayList<Empleado> empleados
 	this.personas = personas;
 	this.especialidades = especialidades;
 }
+
 public ArrayList<Cliente> getClientes() {
 	return clientes;
 }
@@ -46,11 +47,12 @@ public void crearCliente(String login, String password, ArrayList<Compra> histor
 	clientes.add(cliente);
 	
 }
-public void crearEmpleado(String login, String password, boolean cocinero, Especialidad especialidad) {
-	Empleado empleado = new Empleado(login, password, cocinero, especialidad);
+public void crearEmpleado(String login, String password, boolean cocinero, Especialidad especialidad, ArrayList<Compra> historial) {
+	Empleado empleado = new Empleado(login, password, cocinero, especialidad, historial);
 	empleados.add(empleado);
 	personas.add(empleado);
 }
+
 public void asignarEspecialidad() {
 	
 }

@@ -1,3 +1,3 @@
-Alberto--password1--false--alto--Hulk,Rip Ride,--nada--
-Rudencio--password2--true--cocinero--nada--Krusty Burger,--
-Mauricio--password3--false--medio--VelociRapto,Montana,--nada--
+Alberto--password1--false--alto--Hulk,Rip Ride,--nada--false,3compra:false,3compra:--
+Rudencio--password2--true--cocinero--nada--Krusty Burger,--false,3compra:--
+Mauricio--password3--false--medio--VelociRapto,Montana,--nada--false,3compra:false,3compra:false,3compra:--

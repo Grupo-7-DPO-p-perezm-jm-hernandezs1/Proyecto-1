@@ -29,20 +29,21 @@ class PruebaPersistenciaUsuario {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
+	
 
 	@Test
 	void testLectorEmpleado() throws IOException {
 		ArrayList<Empleado> empleados = lectorUsuario.leerEmpleados(".\\src\\data\\empleados.txt");
-		System.out.println(empleados.size());
+		//System.out.println(empleados.size());
 		
-		System.out.println(empleados.get(1).getLogin());
+		//System.out.println(empleados.get(1).getLogin());
 		
 		
 			}
 	@Test
 	void testLectorCliente() throws IOException{
 		ArrayList<Cliente> clientes = lectorUsuario.leerClientes(".\\src\\data\\clientes.txt");
-		System.out.println(clientes);
+		//System.out.println(clientes);
 		
 		
 		
@@ -64,5 +65,9 @@ class PruebaPersistenciaUsuario {
 		ArrayList<Cliente> clientesPrueba = new ArrayList<Cliente>();
 		clientesPrueba.add(clientePrueba);
 		escritorUsuario.escribirClientes(clientesPrueba); // realizacion
+	}
+	@Test
+	void testLectorEspecialidad() throws IOException {
+		lectorUsuario.leerEspecialidades();
 	}
 }

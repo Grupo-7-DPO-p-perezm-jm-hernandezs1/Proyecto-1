@@ -28,6 +28,7 @@ class PruebaGestorAtracciones {
 	private LectorLugarTrabajo lectorLugarTrabajo;
 	private GestorAtracciones gestor;
 	
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		this.escritorAYE = new Escritor_Atracciones_Y_Espectaculos();

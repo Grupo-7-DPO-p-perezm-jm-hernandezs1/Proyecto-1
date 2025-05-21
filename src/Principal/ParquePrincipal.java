@@ -25,9 +25,12 @@ import persistencia.Lector_Atracciones_Y_Espectaculos;
 import vista.VistaUsuario;
 import vista.vistaAdmin;
 import vista.vistaEmpleado;
+import vista.vistaGeneral;
 
 
-public class ParquePrincipal  {
+public class ParquePrincipal{
+	
+	
 
     private static ArrayList<Cliente> clientes;
     
@@ -113,7 +116,7 @@ public class ParquePrincipal  {
             		vistaE.verMenu();
             		}
             		if(usuario instanceof Cliente) {
-            			VistaUsuario vistaCliente = new VistaUsuario((Cliente) usuario);
+            			VistaUsuario vistaCliente = new VistaUsuario((Cliente) usuario, parque);
                         vistaCliente.verMenu();
                 		}
             		
@@ -139,6 +142,20 @@ public class ParquePrincipal  {
             
             
         }
+    }
+    public void printAtraEsp () {
+    	ArrayList<Atraccion> atracciones = gestorAtracciones.getAtracciones();
+    	ArrayList<Espectaculo> espectaculos = gestorAtracciones.getEspectaculos();
+    	
+    	System.out.println("Atracciones: ");
+    	for(Atraccion atraccion: atracciones) {
+    		System.out.println("   "+atraccion.getNombre());
+    	}
+    	System.out.println("Espectaculos: ");
+    	for(Espectaculo espectaculo: espectaculos) {
+    		System.out.println("   "+espectaculo.getNombre());
+    	}
+    	
     }
 
     private static Cliente autenticarCliente(String login, String password) {

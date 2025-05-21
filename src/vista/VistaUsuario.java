@@ -1,10 +1,14 @@
 package vista;
 
+import java.util.Scanner;
+
 import Usuarios.Cliente;
+import Principal.ParquePrincipal;
 
 public class VistaUsuario implements vistaGeneral {
 	//TODO Solo es hacer los metodos lol
 	Cliente usuario;
+	ParquePrincipal parque;
 	@Override
 	public void verAtracciones() {
 		
@@ -12,8 +16,9 @@ public class VistaUsuario implements vistaGeneral {
 		
 	}
 
-	public VistaUsuario(Cliente usuario) {
+	public VistaUsuario(Cliente usuario,ParquePrincipal parque) {
 		this.usuario = usuario;
+		this.parque = parque;
 	}
 
 	@Override
@@ -28,7 +33,17 @@ public class VistaUsuario implements vistaGeneral {
 
 	@Override
 	public void verMenu() {
-		System.out.println("menu clientes");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("1. Ver compras: ");
+		System.out.println("2. Ver Atracciones y Espectaculos: ");
+		System.out.println("Selecciona una opcion: ");
+		String opcion = scanner.nextLine();
+		if(opcion.equals("1")) {
+			System.out.println("hola");
+		}
+		if(opcion.equals("2")) {
+			parque.printAtraEsp();
+		}
 		// TODO Auto-generated method stub
 		
 	}

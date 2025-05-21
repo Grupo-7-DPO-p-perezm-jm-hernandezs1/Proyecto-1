@@ -33,18 +33,29 @@ public class VistaUsuario implements vistaGeneral {
 
 	@Override
 	public void verMenu() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("1. Ver compras: ");
-		System.out.println("2. Ver Atracciones y Espectaculos: ");
-		System.out.println("Selecciona una opcion: ");
-		String opcion = scanner.nextLine();
-		if(opcion.equals("1")) {
-			System.out.println("hola");
-		}
-		if(opcion.equals("2")) {
-			parque.printAtraEsp();
-		}
-		// TODO Auto-generated method stub
-		
+	    Scanner scanner = new Scanner(System.in);
+	    boolean funciona = true;
+	    
+	    while (funciona) {
+	        System.out.println("1. Ver compras: ");
+	        System.out.println("2. Ver Atracciones y Espectaculos: ");
+	        System.out.println("3. salir");
+	        System.out.println("Selecciona una opcion: ");
+	        
+	        String opcion = scanner.nextLine();  // Leer la opción dentro del bucle
+	        
+	        if (opcion.equals("1")) {
+	        	 parque.printCompras(usuario);
+	        } else if (opcion.equals("2")) {
+	            parque.printAtraEsp();
+	        } else if (opcion.equals("3")) {
+	           parque.printCompras(usuario);
+	        } else if (opcion.equals("4")) {
+	        	 funciona = false;
+	    	}else {
+	            System.out.println("Opción no válida. Intente de nuevo.");
+	        }
+	    }
+	    scanner.close();  // Cerrar el scanner al salir
 	}
 }

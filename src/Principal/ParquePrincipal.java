@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Usuarios.Cliente;
+import Usuarios.Compra;
 import Usuarios.Empleado;
 import Usuarios.Especialidad;
 import Usuarios.GestorPersonas;
@@ -157,6 +158,28 @@ public class ParquePrincipal{
     	}
     	
     }
+    public void printCompras(Cliente persona) {
+    	ArrayList<Compra> historial = persona.historial;
+    	int x = 1;
+    	for(Compra compra : historial) {
+    		System.out.println("Compra numero  "+x+";");
+    		System.out.println(" ");
+    		System.out.println("Identificador de tiquete: ");
+    		System.out.println("   "+ compra.getNumeroTiquete());
+    		
+    		System.out.println("Validador: ");
+    		if(compra.isFechaVencida()==false){
+    				System.out.println("   No esta usado");
+    		}else {
+    			System.out.println("   Si esta vencida");
+    		}
+    		System.out.println(" ");
+    		System.out.println(" ");
+    		System.out.println(" ");
+    		x++;
+    	}
+    }
+    
 
     private static Cliente autenticarCliente(String login, String password) {
         for (Cliente cliente : clientes) {

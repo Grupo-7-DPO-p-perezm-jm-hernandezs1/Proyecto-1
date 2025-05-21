@@ -35,7 +35,7 @@ public class GestorTurnos {
 	    	if (diaTurnos.getMañana().containsKey(login)) {
 	            throw new IllegalStateException("El empleado ya tiene un turno asignado en la mañana.");
 	        }
-	        diaTurnos.getMañana().put(login, nuevoTurno);
+	        diaTurnos.getTarde().put(login, nuevoTurno);
 	    }
 	    else {
 	        throw new IllegalArgumentException("Franja horaria inválida: " + franja);

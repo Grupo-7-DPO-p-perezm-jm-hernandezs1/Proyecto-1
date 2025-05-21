@@ -20,7 +20,8 @@ public class PersistenciaTiquetes {
     private final File archivoContador;
     private final File archivoTiquetesUsados;
     private final File archivoTiquetesTotales;
-    private GestorAtracciones gestoratracciones;
+    private LlamadorGestorAtracciones llamador;
+    private GestorAtracciones gestor;
     
 
     public PersistenciaTiquetes() {
@@ -28,10 +29,16 @@ public class PersistenciaTiquetes {
         if (!carpeta.exists()) {
             carpeta.mkdirs();
         }
-
+		
+		LlamadorGestorAtracciones llamador= new LlamadorGestorAtracciones();
+		this.gestor = llamador.getGestoratracciones();
+				
+		
         this.archivoContador = new File(carpeta, "contador.txt");
         this.archivoTiquetesUsados = new File(carpeta, "tiquete_usado.txt");
         this.archivoTiquetesTotales = new File(carpeta, "tiquetes.txt");
+        
+        
 
         try {
             leerContador(); 
@@ -111,7 +118,7 @@ public class PersistenciaTiquetes {
                     tiquetes.add(tg);
                 } else if (id.startsWith("INDV")) {
                    
-                	Atraccion atraccion = gestoratracciones.buscarAtraccionPorNombre(partes[2]);
+                	Atraccion atraccion = gestor.buscarAtraccionPorNombre(partes[2]);
                 	if (atraccion == null) {
                 	    System.err.println("No se encontró la atraccion con nombre: " + partes[2]);
                 	    continue; 

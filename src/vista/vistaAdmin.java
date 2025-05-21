@@ -1,18 +1,30 @@
 package vista;
 
-public class vistaAdmin extends vistaBasica {
+public class VistaAdmin implements vistaGeneral {
 
-    public vistaAdmin() {
-        super(null); // No requiere cliente
-    }
+	@Override
+	public void verAtracciones() {
+		//TODO LUCASSSSSSS
+		
+	}
 
-    @Override
-    public void mostrarMenu() {
-        System.out.println("Menú de Administrador");
-        System.out.println("1. Gestionar usuarios");
-        System.out.println("2. Ver reportes");
-        System.out.println("3. Salir");
+	@Override
+	public void comprarTiquetes() {
+		// TODO Hacer
+		
+	}
+	//TODO Necesita los metodos del administrador 
+	/*
+	 * Añadir / eliminar atraccion
+	 * Añadir / eliminar empleados
+	 * 
+	 * Metodos heredados de vistaGeneral
+	 * 
+	 * */
 
-        
-    }
+	@Override
+	public void verMenu() {
+		// TODO Auto-generated method stub
+		
+	}
 }

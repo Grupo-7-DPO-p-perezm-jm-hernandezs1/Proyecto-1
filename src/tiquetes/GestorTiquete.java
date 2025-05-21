@@ -1,6 +1,7 @@
 package tiquetes;
 
 import persistencia.CatalogoPrecios;
+import persistencia.LlamadorGestorAtracciones;
 import persistencia.PersistenciaFastPass;
 import persistencia.PersistenciaTiquetes;
 import atracciones_y_espectaculos.Atraccion;
@@ -12,11 +13,13 @@ public class GestorTiquete {
     private CatalogoPrecios catalogoPrecios;
     private PersistenciaTiquetes persistencia;
     private int contador;
+    private LlamadorGestorAtracciones llamadorGestorAtracciones;
 
     public GestorTiquete() {
         catalogoPrecios = new CatalogoPrecios();
         persistencia = new PersistenciaTiquetes();
         contador = persistencia.leerContador();  // Leemos el contador desde el archivo
+        this.llamadorGestorAtracciones = new LlamadorGestorAtracciones();
     }
 
     public String crearIdentificador(String prefijo) {

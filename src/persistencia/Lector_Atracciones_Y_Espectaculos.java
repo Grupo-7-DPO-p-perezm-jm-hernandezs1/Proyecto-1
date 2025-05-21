@@ -24,6 +24,7 @@ public class Lector_Atracciones_Y_Espectaculos {
 	        String linea;
 	        while ((linea = lector.readLine()) != null) {
 	            if (linea.startsWith("MECANICA") || linea.startsWith("CULTURAL")) {
+	            	System.out.println("Línea leída: " + linea);
 	                
 	                Atraccion atraccion;
 	                String[] partes = linea.split("--");

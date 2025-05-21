@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 import Usuarios.Cliente;
 import persistencia.LectorUsuario;
-import vista.vistaAdmin;
-import vista.vistaBasica;
-import vista.vistaEmpleado;
+import vista.VistaAdmin;
+import vista.VistaUsuario;
+import vista.VistaEmpleado;
 
 public class ParquePrincipal {
 
@@ -36,18 +36,18 @@ public class ParquePrincipal {
             String password = scanner.nextLine();
 
             if (login.equals("admin") && password.equals("admin")) {
-                vistaAdmin admin = new vistaAdmin();
-                admin.mostrarMenu();
+                VistaAdmin admin = new VistaAdmin();
+                admin.verMenu();
                 loginExitoso = true;
             } else if (login.equals("empleado") && password.equals("empleado")) {
-                vistaEmpleado empleado = new vistaEmpleado();
-                empleado.mostrarMenu();
+                VistaEmpleado empleado = new VistaEmpleado();
+                empleado.verMenu();
                 loginExitoso = true;
             } else {
                 Cliente cliente = autenticarCliente(login, password);
                 if (cliente != null) {
-                    vistaBasica vistaCliente = new vistaBasica(cliente);
-                    vistaCliente.mostrarMenu();
+                	VistaUsuario vistaCliente = new VistaUsuario(cliente);
+                    vistaCliente.verMenu();
                     loginExitoso = true;
                 } else {
                     System.out.println("Credenciales incorrectas. Intente de nuevo.");

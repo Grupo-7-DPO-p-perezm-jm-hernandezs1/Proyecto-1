@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 import Usuarios.Cliente;
 import persistencia.LectorUsuario;
-import vista.VistaAdmin;
+
 import vista.VistaUsuario;
-import vista.VistaEmpleado;
+import vista.vistaAdmin;
+import vista.vistaEmpleado;
+
 
 public class ParquePrincipal {
 
@@ -36,11 +38,11 @@ public class ParquePrincipal {
             String password = scanner.nextLine();
 
             if (login.equals("admin") && password.equals("admin")) {
-                VistaAdmin admin = new VistaAdmin();
+                vistaAdmin admin = new vistaAdmin();
                 admin.verMenu();
                 loginExitoso = true;
             } else if (login.equals("empleado") && password.equals("empleado")) {
-                VistaEmpleado empleado = new VistaEmpleado();
+                vistaEmpleado empleado = new vistaEmpleado();
                 empleado.verMenu();
                 loginExitoso = true;
             } else {

@@ -1,6 +1,6 @@
 package vista;
 
-public class VistaAdmin implements vistaGeneral {
+public class vistaAdmin implements vistaGeneral {
 
 	@Override
 	public void verAtracciones() {
@@ -10,6 +10,7 @@ public class VistaAdmin implements vistaGeneral {
 
 	@Override
 	public void comprarTiquetes() {
+		
 		// TODO Hacer
 		
 	}

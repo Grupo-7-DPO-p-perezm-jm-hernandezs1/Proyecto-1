@@ -1,10 +1,11 @@
 package vista;
 
-public class VistaEmpleado implements vistaGeneral{
+public class vistaEmpleado implements vistaGeneral{
 
 	@Override
 	public void verAtracciones() {
 		//TODO LUCASSSSSSS
+		
 		
 	}
 

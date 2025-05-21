@@ -1,2 +1,7 @@
-lucas--password--false,1compra:false,2compra:false,3compra:
-cliente1--password--false,77compra:false,45compra:
+lucas--password--true,5compra:false,10compra:true,15compra:
+cliente1--password--false,20compra:true,30compra:
+anuel--KarolG--true,8compra:false,12compra:true,7compra:
+ozuna--Caramelo--false,3compra:true,9compra:false,6compra:
+Vader--luki--true,11compra:false,4compra:true,14compra:
+Jesus--puede--false,2compra:true,13compra:false,16compra:
+felipe--tobias--true,17compra:false,18compra:true,19compra:

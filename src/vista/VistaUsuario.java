@@ -13,6 +13,7 @@ public class VistaUsuario implements vistaGeneral {
 	public void verAtracciones() {
 		
 		//TODO LUCASSSSSSS
+		parque.printAtraEsp();
 		
 	}
 
@@ -24,6 +25,8 @@ public class VistaUsuario implements vistaGeneral {
 	@Override
 	public void comprarTiquetes() {
 		// TODO Auto-generated method stub
+		parque.printCompras(usuario);
+		
 		
 	}
 	public void verTiquetesComprados(){

@@ -104,13 +104,15 @@ public class ParquePrincipal{
             System.out.print("Ingrese su contraseña: ");
             String password = scanner.nextLine();
             
-            //System.out.println(usuario.getPassword());
+            
             if (login.equals("admin") && password.equals("admin")) {
                 vistaAdmin admin = new vistaAdmin();
                 admin.verMenu();
                 loginExitoso = true;
             } else {
+            	
             	Persona usuario = parque.gestorUsuarios.getPersona(login);
+            	if(usuario!= null) {
             	if(password.equals(usuario.getPassword())){
             		if(usuario instanceof Empleado) {
             		vistaEmpleado vistaE = new vistaEmpleado();
@@ -120,27 +122,20 @@ public class ParquePrincipal{
             			VistaUsuario vistaCliente = new VistaUsuario((Cliente) usuario, parque);
                         vistaCliente.verMenu();
                 		}
-            		
-            	}
             	
+            	}else {
+            		System.out.println("   ");
+            		System.out.println("    --Username or password does not exist--");
+            		System.out.println("   ");
+            		System.out.println("   ");
+            	}
+            	}else {
+            		System.out.println("   ");
+            		System.out.println("    --Username or password does not exist--");
+            		System.out.println("   ");
+            		System.out.println("   ");
+            	}
             }
-            
-            
-            //else if (login.equals("empleado") && password.equals("empleado")) {
-              //  vistaEmpleado empleado = new vistaEmpleado();
-                //empleado.verMenu();
-         //       loginExitoso = true;
-           // } else {
-             //   Cliente cliente = autenticarCliente(login, password);
-               // if (cliente != null) {
-                //	VistaUsuario vistaCliente = new VistaUsuario(cliente);
-               //     vistaCliente.verMenu();
-               //     loginExitoso = true;
-               // } else {
-               //     System.out.println("Credenciales incorrectas. Intente de nuevo.");
-               // }
-           // }
-            
             
         }
     }
@@ -177,6 +172,8 @@ public class ParquePrincipal{
     		System.out.println(" ");
     		System.out.println(" ");
     		x++;
+    		
+    		
     	}
     }
     

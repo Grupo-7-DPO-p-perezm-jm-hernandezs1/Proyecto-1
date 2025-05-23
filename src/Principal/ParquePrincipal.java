@@ -12,8 +12,10 @@ import Usuarios.Especialidad;
 import Usuarios.GestorPersonas;
 import Usuarios.Persona;
 import atracciones_y_espectaculos.Atraccion;
+import atracciones_y_espectaculos.Cultural;
 import atracciones_y_espectaculos.Espectaculo;
 import atracciones_y_espectaculos.GestorAtracciones;
+import atracciones_y_espectaculos.Mecanica;
 import atracciones_y_espectaculos.RestriccionSalud;
 import atracciones_y_espectaculos.Restriccion_clima;
 import persistencia.Escritor_Atracciones_Y_Espectaculos;
@@ -106,7 +108,7 @@ public class ParquePrincipal{
             
             
             if (login.equals("admin") && password.equals("admin")) {
-                vistaAdmin admin = new vistaAdmin();
+                vistaAdmin admin = new vistaAdmin(parque);
                 admin.verMenu();
                 loginExitoso = true;
             } else {
@@ -173,10 +175,106 @@ public class ParquePrincipal{
     		System.out.println(" ");
     		x++;
     		
+    	}
+    }
+    public void printComprasE(Empleado persona) {
+    	ArrayList<Compra> historial = persona.historial;
+    	int x = 1;
+    	for(Compra compra : historial) {
+    		System.out.println("Compra numero  "+x+";");
+    		System.out.println(" ");
+    		System.out.println("Identificador de tiquete: ");
+    		System.out.println("   "+ compra.getNumeroTiquete());
+    		
+    		System.out.println("Validador: ");
+    		if(compra.isFechaVencida()==false){
+    				System.out.println("   No esta usado");
+    		}else {
+    			System.out.println("   Si esta vencida");
+    		}
+    		System.out.println(" ");
+    		System.out.println(" ");
+    		System.out.println(" ");
+    		x++;
     		
     	}
     }
     
+    public void crearAtraccion () {
+    	Atraccion atraccion;
+    	Scanner scanner = new Scanner(System.in);
+    	System.out.println("Mecanica o Cultural?");
+    	String atra = scanner.nextLine();
+    	System.out.println("nombre:");
+    	String nombre = scanner.nextLine();
+    	
+    	System.out.println("Lugar:");
+    	String lugar = scanner.nextLine();
+    	
+    	System.out.println("Cupo Maximo:");
+    	int cupoMaximo = Integer.parseInt(scanner.nextLine());
+    	
+    	ArrayList<Restriccion_clima> restriccionClima = new ArrayList<Restriccion_clima>();
+    	ArrayList<Restriccion_clima> restriccionClimaParque = gestorAtracciones.getRestriccionesClima();
+    	System.out.println("Estas son las restricciones de clima vigentes: ");
+    	for(Restriccion_clima restriccion: restriccionClimaParque) {
+    		System.out.println("   - "+restriccion.getTipo());
+    	}
+    	System.out.println("Seleccione una: ");
+    	String nombreRestriccion = scanner.nextLine();
+    	for(Restriccion_clima restriccion: restriccionClimaParque) {
+    		if(nombreRestriccion.equals(restriccion.getTipo())) {
+    			restriccionClima.add(restriccion);
+    		}
+    	}
+    	System.out.println("Numero de Empleados:");
+    	int numeroEmpleados = Integer.parseInt(scanner.nextLine());
+    	
+    	System.out.println("Funcionando: ");
+    	boolean funcionando = Boolean.parseBoolean(scanner.nextLine());
+    	
+    	if (atra.equals("Mecanica")){
+    		System.out.println("Altura minima; ");
+    		double minAltura = Double.parseDouble(scanner.nextLine());
+    		
+    		System.out.println("Altura maxima");
+    		double maxAltura = Double.parseDouble(scanner.nextLine());
+    		
+    		System.out.println("Peso minimo: ");
+    		double minPeso = Double.parseDouble(scanner.nextLine());
+    		
+    		System.out.println("Peso maximo: ");
+    		double maxPeso = Double.parseDouble(scanner.nextLine());
+    		
+    		ArrayList<RestriccionSalud> saludes = gestorAtracciones.getRestriccionesSalud();
+    		System.out.println("Restriccion de salud vigentes: ");
+    		for(RestriccionSalud restriccion: saludes) {
+    			System.out.println("   - "+restriccion.getNombre());
+    		}
+    		System.out.println("Restriccion Salud: ");
+    		String nombreRestriccionSalud = scanner.nextLine();
+    		RestriccionSalud restriccionSalud = null;
+        	for(RestriccionSalud restriccion: saludes) {
+        		if(restriccion.getNombre().equals(nombreRestriccionSalud)) {
+        			restriccionSalud= restriccion;
+        			
+        		}
+        	}
+        	System.out.println("Nivel Riesgo: ");
+    		String nivelRiesgo = scanner.nextLine();
+        	
+    	 atraccion = new Mecanica(nombre, lugar,numeroEmpleados,funcionando,cupoMaximo,restriccionClima, minAltura,maxAltura,minPeso,maxPeso,nivelRiesgo,restriccionSalud);
+    	
+    	}else {
+    		System.out.println("Edad minima: ");
+    		int edadMin = Integer.parseInt(scanner.nextLine());
+    		
+    		 atraccion = new Cultural(nombre, lugar,numeroEmpleados,funcionando,cupoMaximo,restriccionClima,edadMin);
+    		
+    	}
+    	
+    	gestorAtracciones.agregarAtraccion(gestorAtracciones.getAtracciones(), atraccion);
+    	}
 
     private static Cliente autenticarCliente(String login, String password) {
         for (Cliente cliente : clientes) {

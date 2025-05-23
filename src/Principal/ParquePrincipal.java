@@ -278,8 +278,75 @@ public class ParquePrincipal{
     	ArrayList<Atraccion>  atraccionesActualizada = gestorAtracciones.getAtracciones();
 		 atraccionesActualizada.add(atraccion);
 		 escritorAYE.escribirAtracciones(atraccionesActualizada);
+		 scanner.close();
     	}
-
+    public void verRestriccionClima() {
+    	
+    	ArrayList<Restriccion_clima> restricciones = gestorAtracciones.getRestriccionesClima();
+    	for(Restriccion_clima restriccion : restricciones) {
+    		System.out.println("Restricciones clima: "+restriccion.getTipo());
+    		ArrayList<String> atraNombres = restriccion.getAtracciones();
+    		ArrayList<String> espNombres = restriccion.getEspectaculos();
+    		for(String atraccion : atraNombres) {
+    			System.out.println("   - " + atraccion);
+    		}
+    		for(String espectaculo: espNombres) {
+    			System.out.println("   - "+espectaculo);
+    		}
+    	}
+    }
+    public void verRestriccionSalud() {
+    	ArrayList<RestriccionSalud> restricciones = gestorAtracciones.getRestriccionesSalud();
+    	for(RestriccionSalud restriccion : restricciones) {
+    		System.out.println("Restricciones clima: "+restriccion.getNombre());
+    		ArrayList<String> atraNombres = restriccion.getAtraccionesMecanica();
+    		
+    		for(String atraccion : atraNombres) {
+    			System.out.println("   - " + atraccion);
+    		}
+    	}
+    }
+    public void crearRestriccionClima(){
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	System.out.println("Nombre: ");
+    	String nombre = scanner.nextLine();
+    	System.out.println("Atracciones");
+    	ArrayList<String> atracciones= new ArrayList<String>();
+    	ArrayList<String> espectaculos= new ArrayList<String>();
+    	boolean atracBool = true;
+    	boolean especBool = true;
+    	while(atracBool) {
+    		System.out.println("Si quiere terminar, escriba terminar");
+    		System.out.println("Nombre de atraccion: ");
+    		String whileAtracciones = scanner.nextLine();
+    		if (!whileAtracciones.equals("terminar")) {
+    			atracciones.add(whileAtracciones);
+    			
+    		}else {
+    			atracBool = false;
+    		}
+    	}
+    	System.out.println("Espectaculos");
+    	while(especBool) {
+    		System.out.println("Si quiere terminar, escriba terminar");
+    		System.out.println("Nombre de espectaculo: ");
+    		String whileEspectaculo = scanner.nextLine();
+    		if (!whileEspectaculo.equals("terminar")) {
+    			espectaculos.add(whileEspectaculo);
+    			
+    		}else {
+    			especBool = false;
+    		}
+    	}
+    	Restriccion_clima restriccion = new Restriccion_clima(nombre, atracciones,espectaculos);
+    	ArrayList<Restriccion_clima> restricciones = gestorAtracciones.getRestriccionesClima();
+    	
+    	
+    	
+    	
+    	scanner.close();
+    }
     private static Cliente autenticarCliente(String login, String password) {
         for (Cliente cliente : clientes) {
             if (cliente.getLogin().equals(login) && cliente.getPassword().equals(password)) {

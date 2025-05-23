@@ -270,10 +270,14 @@ public class ParquePrincipal{
     		int edadMin = Integer.parseInt(scanner.nextLine());
     		
     		 atraccion = new Cultural(nombre, lugar,numeroEmpleados,funcionando,cupoMaximo,restriccionClima,edadMin);
+    		 
     		
     	}
     	
     	gestorAtracciones.agregarAtraccion(gestorAtracciones.getAtracciones(), atraccion);
+    	ArrayList<Atraccion>  atraccionesActualizada = gestorAtracciones.getAtracciones();
+		 atraccionesActualizada.add(atraccion);
+		 escritorAYE.escribirAtracciones(atraccionesActualizada);
     	}
 
     private static Cliente autenticarCliente(String login, String password) {

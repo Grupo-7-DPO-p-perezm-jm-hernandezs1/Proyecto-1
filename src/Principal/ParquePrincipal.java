@@ -296,8 +296,8 @@ public class ParquePrincipal{
         }
         return null;
     }
-    public void comprarTiquetesBas() {
-    	gestorTiquetes.comprarTiqueteBasico();
+    public String comprarTiquetesBas() {
+    	return gestorTiquetes.comprarTiqueteBasico();
     }
     public String comprarTiquetesGen(String cat) {
     	if (cat.equals("Diamante")) {

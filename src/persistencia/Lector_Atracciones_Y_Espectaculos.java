@@ -51,10 +51,7 @@ public class Lector_Atracciones_Y_Espectaculos {
 	                    for(String atraccion12 : atracciones1) {
 	                        atraccionesNombre.add(atraccion12);
 	                    }
-	                    for(String atraccion12 : espectaculos1) {
-	                        System.out.println(atraccion12);
-	                    }
-	                    
+	                   
 	                    Restriccion_clima restriccion_partecita = new Restriccion_clima(tipo, atraccionesNombre, espectaculosNombre);
 	                    restriccionesClima.add(restriccion_partecita);
 	                }

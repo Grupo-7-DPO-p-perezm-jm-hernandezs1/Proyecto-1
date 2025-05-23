@@ -6,19 +6,18 @@ import Usuarios.Cliente;
 import Principal.ParquePrincipal;
 
 public class VistaUsuario implements vistaGeneral {
-	
+
 	Cliente usuario;
 	ParquePrincipal parque;
 
-
-	public VistaUsuario(Cliente usuario,ParquePrincipal parque) {
+	public VistaUsuario(Cliente usuario, ParquePrincipal parque) {
 		this.usuario = usuario;
 		this.parque = parque;
 	}
 
 	@Override
 	public void comprarTiquetes() {
-		 boolean funcionando = true;
+		boolean funcionando = true;
 		while (funcionando) {
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("Tipos de tiquetes");
@@ -26,18 +25,50 @@ public class VistaUsuario implements vistaGeneral {
 			System.out.println("2. Tiquete General");
 			System.out.println("3. Tiquete Individual");
 			System.out.println("4. Tiquete Temporada");
+			System.out.println("5. Salir");
 			System.out.println("Selecciona una opcion: ");
 			String opcion = scanner.nextLine();
 			switch (opcion) {
+			case "5": {
+				funcionando = false;
+				break;
+			}
 			case "1": {
+				System.out.println(parque.comprarTiquetesBas());
+				System.out.println("Desea seguir comprando? (si/no)");
+				String resp = scanner.nextLine();
 
-				parque.comprarTiquetesBas();
+				if (resp.toLowerCase().equals("no")) {
+					funcionando = false;
+				}
+				break;
 			}
 			case "2": {
-				parque.comprarTiquetesBas();
+				System.out.println("Que categoria quiere comprar: ");
+				System.out.println("1. Diamante");
+				System.out.println("2. Oro");
+				System.out.println("3. Familiar");
+				System.out.println("Selecciona una opcion: ");
+				String cat = scanner.nextLine();
+				parque.comprarTiquetesGen(cat);
+				System.out.println("Desea seguir comprando? (si/no)");
+				String resp = scanner.nextLine();
+
+				if (resp.toLowerCase().equals("no")) {
+					funcionando = false;
+					break;
+				}
+				break;
 			}
 			case "3": {
 				parque.comprarTiquetesIndividual(opcion);
+				System.out.println("Desea seguir comprando? (si/no)");
+				String resp = scanner.nextLine();
+
+				if (resp.toLowerCase().equals("no")) {
+					funcionando = false;
+				}
+				break;
 			}
 			case "4": {
 				System.out.println("Que categoria quiere comprar: ");
@@ -62,61 +93,59 @@ public class VistaUsuario implements vistaGeneral {
 				} else if (iden.equals("-2")) {
 					System.out.println("Categoria Temporada");
 					funcionando = false;
-				}
-				else {
+				} else {
 					System.out.println("El identificador de su tiquete es: " + iden);
 					System.out.println("Desea seguir comprando? (si/no)");
 					String resp = scanner.nextLine();
-					
+
 					if (resp.toLowerCase().equals("no")) {
-						funcionando=false;
+						funcionando = false;
 					}
 				}
+				break;
 			}
 			default:
 				throw new IllegalArgumentException("Opcion inesperada " + opcion);
 			}
 		}
-		
-	}
 
-	
+	}
 
 	@Override
 	public void verMenu() {
-	    Scanner scanner = new Scanner(System.in);
-	    boolean funciona = true;
-	    
-	    while (funciona) {
-	        System.out.println("1. Ver compras: ");
-	        System.out.println("2. Ver Atracciones y Espectaculos: ");
-	        System.out.println("3. Comprar Tiquetes");
-	        System.out.println("4. Comprar FastPass");
-	        System.out.println("5. salir");
-	        System.out.println("Selecciona una opcion: ");
-	        
-	        String opcion = scanner.nextLine();  // Leer la opción dentro del bucle
-	        
-	        if (opcion.equals("1")) {
-	        	 parque.printCompras(usuario);
-	        } else if (opcion.equals("2")) {
-	            parque.printAtraEsp();
-	        } else if (opcion.equals("3")) {
-	        	comprarTiquetes();
-	        } else if (opcion.equals("4")) {
-	        	comprarFastPass();
-	        }else if (opcion.equals("5")) {
-	        	 funciona = false;
-	    	}else {
-	            System.out.println("Opción no válida. Intente de nuevo.");
-	        }
-	    }
-	    scanner.close();  // Cerrar el scanner al salir
+		Scanner scanner = new Scanner(System.in);
+		boolean funciona = true;
+
+		while (funciona) {
+			System.out.println("1. Ver compras: ");
+			System.out.println("2. Ver Atracciones y Espectaculos: ");
+			System.out.println("3. Comprar Tiquetes");
+			System.out.println("4. Comprar FastPass");
+			System.out.println("5. salir");
+			System.out.println("Selecciona una opcion: ");
+
+			String opcion = scanner.nextLine(); // Leer la opción dentro del bucle
+
+			if (opcion.equals("1")) {
+				parque.printCompras(usuario);
+			} else if (opcion.equals("2")) {
+				parque.printAtraEsp();
+			} else if (opcion.equals("3")) {
+				comprarTiquetes();
+			} else if (opcion.equals("4")) {
+				comprarFastPass();
+			} else if (opcion.equals("5")) {
+				funciona = false;
+			} else {
+				System.out.println("Opción no válida. Intente de nuevo.");
+			}
+		}
+		scanner.close(); // Cerrar el scanner al salir
 	}
 
 	@Override
 	public void comprarFastPass() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

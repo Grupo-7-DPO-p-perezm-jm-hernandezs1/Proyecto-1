@@ -340,14 +340,14 @@ public class ParquePrincipal{
     		}
     	}
     	Restriccion_clima restriccion = new Restriccion_clima(nombre, atracciones,espectaculos);
-    	ArrayList<Restriccion_clima> restricciones = gestorAtracciones.getRestriccionesClima();
+    	gestorAtracciones.getRestriccionesClima().add(restriccion);
     	
     	
     	
     	
     	
     	
-    	scanner.close();
+    	
     }
     private static Cliente autenticarCliente(String login, String password) {
         for (Cliente cliente : clientes) {

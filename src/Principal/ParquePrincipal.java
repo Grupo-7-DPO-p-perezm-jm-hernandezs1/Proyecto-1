@@ -2,7 +2,9 @@ package Principal;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 import Usuarios.Cliente;
@@ -25,6 +27,8 @@ import persistencia.LectorRerstriccion_clima;
 import persistencia.LectorRestriccionSalud;
 import persistencia.LectorUsuario;
 import persistencia.Lector_Atracciones_Y_Espectaculos;
+import tiquetes.Categoria;
+import tiquetes.GestorTiquete;
 import vista.VistaUsuario;
 import vista.vistaAdmin;
 import vista.vistaEmpleado;
@@ -48,6 +52,8 @@ public class ParquePrincipal{
 	private LectorUsuario lectorU;
 	private Escritor_Usuarios escritorU;
 	private GestorPersonas gestorUsuarios;
+	//Tiquetes
+	private GestorTiquete gestorTiquetes;
     public ParquePrincipal() throws IOException
     {
     	
@@ -77,6 +83,8 @@ public class ParquePrincipal{
 		especialidades= lectorU.leerEspecialidades();
 		this.gestorUsuarios = new GestorPersonas(clientes,empleados,personas,especialidades);
 		
+		//Tiquetes
+		this.gestorTiquetes = new GestorTiquete();
 	}
     	
     	
@@ -283,5 +291,81 @@ public class ParquePrincipal{
             }
         }
         return null;
+    }
+    public void comprarTiquetesBas() {
+    	gestorTiquetes.comprarTiqueteBasico();
+    }
+    public String comprarTiquetesGen(String cat) {
+    	if (cat.equals("Diamante")) {
+    		Categoria categoria = Categoria.Diamante;
+    		return gestorTiquetes.comprarTiqueteGeneral(categoria);
+    	}
+    	else if (cat.equals("Familiar")) {
+    		Categoria categoria = Categoria.Familiar;
+    		
+    		return gestorTiquetes.comprarTiqueteGeneral(categoria);
+    	}
+    	else if (cat.equals("Oro")) {
+    		Categoria categoria = Categoria.Oro;
+    		
+    		return gestorTiquetes.comprarTiqueteGeneral(categoria);
+    	}
+    	else {
+    		return "-1";
+    	}
+    }
+    public String comprarTiquetesIndividual(String atraccionABuscar) {
+    	Atraccion atra = gestorAtracciones.buscarAtraccionPorNombre(atraccionABuscar);
+    	if (atra != null){
+    		return gestorTiquetes.comprarTiqueteIndividual(atra);
+    	}
+    	else {
+    		return "-1";
+    	}
+    	
+    }
+    public String comprarTiquetesTemp(String cat, String temporada) {
+    	Categoria categoria = Categoria.Familiar;
+    	if (cat.toLowerCase().equals("diamante")) {
+    		categoria = Categoria.Diamante;
+    	}
+    	else if (cat.toLowerCase().equals("oro") ) {
+    		categoria = Categoria.Familiar;
+    	}
+    	else if (cat.toLowerCase().equals("familiar")) {
+    		categoria = Categoria.Oro;
+    	}
+    	else {
+    		return "-1";
+    	}
+        LocalDate PrimavIni = LocalDate.of(2025, 3, 21);
+        LocalDate PrimavFin = LocalDate.of(2025, 6, 20);
+
+        LocalDate VeranoIni = LocalDate.of(2025, 6, 21);
+        LocalDate VeranoFin = LocalDate.of(2025, 9, 22);
+
+        LocalDate OtonioIni = LocalDate.of(2025, 9, 23);
+        LocalDate OtonioFin = LocalDate.of(2025, 12, 20);
+
+        LocalDate InviernoIni = LocalDate.of(2025, 12, 21);
+        LocalDate InviernoFin = LocalDate.of(2026, 3, 20);
+    	
+    	if(temporada.toLowerCase().equals("otoño")) {
+    		
+    		return gestorTiquetes.comprarTiqueteTemporada(OtonioIni, OtonioFin, categoria);
+    		
+    	}
+    	else if(temporada.toLowerCase().equals("verano")) {
+    		return gestorTiquetes.comprarTiqueteTemporada(VeranoIni, VeranoFin, categoria);
+    	}
+    	else if(temporada.toLowerCase().equals("invierno")) {
+    		return gestorTiquetes.comprarTiqueteTemporada(InviernoIni, InviernoFin, categoria);
+    	}
+    	else if(temporada.toLowerCase().equals("primavera")) {
+    		return gestorTiquetes.comprarTiqueteTemporada(PrimavIni, PrimavFin, categoria);
+    	}
+    	else{
+    		return "-2";
+    	}
     }
 }  

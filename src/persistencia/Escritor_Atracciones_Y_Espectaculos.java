@@ -26,7 +26,7 @@ public class Escritor_Atracciones_Y_Espectaculos {
 	        }
 	        
 	        
-	        PrintWriter escritor = new PrintWriter(new File("./data/atracciones_y_espectaculos.txt"));
+	        PrintWriter escritor = new PrintWriter(new File(".\\src\\data\\atracciones_y_espectaculos.txt"));
 	        
 	        for (Atraccion atraccion : atracciones) {
 	            String linea = atraccion.getCupoMaximo() + "--" +

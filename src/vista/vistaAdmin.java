@@ -37,11 +37,14 @@ public class vistaAdmin implements vistaGeneral {
 	    boolean funciona = true;
 	    
 	    while (funciona) {
-	        System.out.println("1. Agregar Atraccion ");
+	        System.out.println("1. Agregar Atraccion: ");
 	        System.out.println("2. Ver Atracciones y Espectaculos: ");
 	        System.out.println("3. Comprar Tiquetes");
 	        System.out.println("4. Comprar FastPass");
-	        System.out.println("5. salir");
+	        System.out.println("5. Ver restricciones Clima: ");
+	        System.out.println("6. Ver restricciones salud: ");
+	        System.out.println("7. Agregar restricciones clima: ");
+	        System.out.println("8. salir");
 	        System.out.println("Selecciona una opcion: ");
 	        
 	        String opcion = scanner.nextLine();  // Leer la opción dentro del bucle
@@ -55,9 +58,16 @@ public class vistaAdmin implements vistaGeneral {
 	        	comprarTiquetes();
 	        } else if (opcion.equals("4")) {
 	        	comprarFastPass();
-	        }else if (opcion.equals("5")) {
+	        }else if (opcion.equals("8")) {
 	        	 funciona = false;
-	    	}else {
+	    	}else if(opcion.equals("5")){
+	        parque.verRestriccionClima();
+	    	}else if(opcion.equals("6")){
+		        parque.verRestriccionSalud();
+		    }else if(opcion.equals("7")){
+		        parque.crearRestriccionClima();;
+		    	}
+	    	else {
 	            System.out.println("Opción no válida. Intente de nuevo.");
 	        }
 	    }

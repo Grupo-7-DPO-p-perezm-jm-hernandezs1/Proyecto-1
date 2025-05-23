@@ -59,7 +59,10 @@ public class GestorAtracciones {
 	public void agregarAtraccion(ArrayList<Atraccion> atracciones, Atraccion atraccion) {
 		atracciones.add(atraccion);
 	}
-
+	public void agregarRestriccionClimaNuevo(ArrayList<Restriccion_clima> restricciones, Restriccion_clima restriccion) {
+		restricciones.add(restriccion);
+		
+}
 	public void eliminarAtraccion(String nombre) {
 		for (Atraccion atraccion : atracciones) {
 			if (atraccion.getNombre().equals(nombre)) {

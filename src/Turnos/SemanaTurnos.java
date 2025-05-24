@@ -1,6 +1,9 @@
 package Turnos;
 
+import java.util.ArrayList;
+
 public class SemanaTurnos {
+
     public DiaTurnos lunes = new DiaTurnos();
     public DiaTurnos martes = new DiaTurnos();
     public DiaTurnos miercoles = new DiaTurnos();

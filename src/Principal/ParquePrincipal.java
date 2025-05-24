@@ -4,9 +4,15 @@ package Principal;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
+import Turnos.DiaTurnos;
+import Turnos.GestorTurnos;
+import Turnos.SemanaTurnos;
+import Turnos.TipoTurno;
 import Usuarios.Cliente;
 import Usuarios.Compra;
 import Usuarios.Empleado;
@@ -47,13 +53,15 @@ public class ParquePrincipal{
 	private LectorRerstriccion_clima lectorRestriccionClima;
 	private LectorRestriccionSalud lectorRestriccionSalud;
 	private LectorLugarTrabajo lectorLugarTrabajo;
-	private GestorAtracciones gestorAtracciones;
+	public GestorAtracciones gestorAtracciones;
 	// usuarios
 	private LectorUsuario lectorU;
 	private Escritor_Usuarios escritorU;
-	private GestorPersonas gestorUsuarios;
+	public GestorPersonas gestorUsuarios;
 	//Tiquetes
 	private GestorTiquete gestorTiquetes;
+	//Turnos
+	private GestorTurnos gestorTurnos;
     public ParquePrincipal() throws IOException
     {
     	
@@ -440,5 +448,57 @@ public class ParquePrincipal{
     	else{
     		return "-2";
     	}
+    }
+   
+    public String comprarFastPass(String fecha) {
+    	
+    	try {
+            String[] partes = fecha.split(",");
+            int anio = Integer.parseInt(partes[0].trim());
+            int mes = Integer.parseInt(partes[1].trim());
+            int dia = Integer.parseInt(partes[2].trim());
+
+            LocalDate fechaFastPass = LocalDate.of(anio, mes, dia);
+
+         
+            return gestorTiquetes.comprarFastPass(fechaFastPass);
+        } catch (Exception e) {
+            System.out.println("Fecha inválida. Asegúrese de usar el formato año,mes,día");
+        }
+		return "-1";
+    }
+
+
+
+	public Map<String, DiaTurnos> verTurnos() {
+		
+		SemanaTurnos semana = (SemanaTurnos) gestorTurnos.getSemana();
+		Map<String, DiaTurnos> dias = new LinkedHashMap<>();
+		dias.put("Lunes", semana.getLunes());
+		dias.put("Martes", semana.getMartes());
+		dias.put("Miércoles", semana.getMiercoles());
+		dias.put("Jueves", semana.getJueves());
+		dias.put("Viernes", semana.getViernes());
+		dias.put("Sábado", semana.getSabado());
+		dias.put("Domingo", semana.getDomingo());
+
+		return dias;
+		
+	}
+
+
+
+	public void crearTurno(Empleado empleado, Object destino, String tipoStr, String dia, String franja) {
+        TipoTurno tipo;
+        if (tipoStr.equalsIgnoreCase("atraccion")) {
+            tipo = TipoTurno.ATRACCION;
+        } else if (tipoStr.equalsIgnoreCase("lugar_trabajo")) {
+            tipo = TipoTurno.LUGAR_TRABAJO;
+        } else {
+            throw new IllegalArgumentException("Tipo de turno inválido: " + tipoStr);
+        }
+
+        gestorTurnos.guardarTurnoSemana(tipo, destino, empleado, dia, franja);
+        System.out.println("Turno asignado exitosamente a " + empleado.getLogin());
     }
 }  

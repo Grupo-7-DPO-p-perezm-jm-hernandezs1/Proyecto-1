@@ -136,6 +136,7 @@ public class VistaUsuario implements vistaGeneral {
 				comprarFastPass();
 			} else if (opcion.equals("5")) {
 				funciona = false;
+				break;
 			} else {
 				System.out.println("Opción no válida. Intente de nuevo.");
 			}
@@ -145,7 +146,27 @@ public class VistaUsuario implements vistaGeneral {
 
 	@Override
 	public void comprarFastPass() {
-		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		boolean funcio = true;
+		while(funcio) {
+			System.out.println("Para que fecha quiere comprar su FastPass? Responda año,mes,dia separados por ,");
+			String fecha = scanner.nextLine();
+			String retorno = parque.comprarFastPass(fecha);
+			if (retorno.equals("-1")) {
+				System.out.println("Algo salio mal, vuelva a intentarlo, recuerde usar el formato año,mes,dia");
+				funcio = false;
+				break;
+			}
+			else {
+				System.out.println("Su fastPass es: "+retorno);
+				System.out.println("Quiere comprar otro FastPass?");
+				String wa = scanner.nextLine();
+				if (wa.toLowerCase().equals("no")) {
+					funcio = false;
+					break;
+				}
+			}
+		}
 
 	}
 }

@@ -178,7 +178,7 @@ public class vistaAdmin implements vistaGeneral {
 		Scanner scanner = new Scanner(System.in);
 		String login = scanner.nextLine();
 		System.out.println("Escriba el log in para el que va a crear el turno: ");
-		Empleado empleado = parque.gestorUsuarios.buscarEmpleado(login); //Falta implementar el metodo buscarEmpleado
+		Empleado empleado = (Empleado) parque.gestorUsuarios.getPersona(login);
 	    if (empleado == null) {
 	        System.out.println("Empleado no encontrado.");
 	        return;
@@ -186,7 +186,7 @@ public class vistaAdmin implements vistaGeneral {
 		System.out.println("¿Es turno para atracción o lugar de trabajo? (atraccion/lugar_trabajo)");
 	    String tipoStr = scanner.nextLine();
 
-	    Object destino;
+	    Object destino = null;
 	    if (tipoStr.equalsIgnoreCase("atraccion")) {
 	        System.out.println("Ingrese nombre de la atracción:");
 	        String nombre = scanner.nextLine();
@@ -198,7 +198,7 @@ public class vistaAdmin implements vistaGeneral {
 	    } else if (tipoStr.equalsIgnoreCase("lugar_trabajo")) {
 	        System.out.println("Ingrese nombre del lugar de trabajo:");
 	        String nombre = scanner.nextLine();
-	     
+	        destino = nombre;
 	        if (destino == null) {
 	            System.out.println("Lugar de trabajo no encontrado.");
 	            return;

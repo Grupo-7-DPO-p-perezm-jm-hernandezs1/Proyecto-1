@@ -44,6 +44,7 @@ public class PruebasGestorTiquetesComprar {
 		private Mecanica mecanica;
 		private Escritor_Atracciones_Y_Espectaculos escritorAYE;
 		
+		
 		@BeforeEach
 		void setUp() throws IOException {
 			// Vaciar contenido de los archivos
@@ -104,7 +105,7 @@ public class PruebasGestorTiquetesComprar {
 		}
 		
 		@Test
-		void comprarTiqueteIndividualTest() {
+		void comprarTiqueteIndividualTest() throws IOException {
 			//Crear Atra
 			ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
 			ArrayList<Restriccion_clima> restricciones_clima = new ArrayList<Restriccion_clima>();

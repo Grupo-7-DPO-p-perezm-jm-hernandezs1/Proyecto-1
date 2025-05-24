@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import Principal.ParquePrincipal;
@@ -32,7 +33,7 @@ public class vistaAdmin implements vistaGeneral {
 	 * */
 
 	@Override
-	public void verMenu() {
+	public void verMenu() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 	    boolean funciona = true;
 	    
@@ -65,13 +66,14 @@ public class vistaAdmin implements vistaGeneral {
 	    	}else if(opcion.equals("6")){
 		        parque.verRestriccionSalud();
 		    }else if(opcion.equals("7")){
-		        parque.crearRestriccionClima();;
+	
+		    parque.crearRestriccionClima();;
 		    	}
 	    	else {
 	            System.out.println("Opción no válida. Intente de nuevo.");
 	        }
 	    }
-	    scanner.close(); 
+	    //scanner.close(); 
 
 		
 	}

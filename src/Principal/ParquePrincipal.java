@@ -141,6 +141,7 @@ public class ParquePrincipal{
                         vistaCliente.verMenu();
                 		}
             	
+            		
             	}else {
             		System.out.println("   ");
             		System.out.println("    --Username or password does not exist--");
@@ -156,6 +157,7 @@ public class ParquePrincipal{
             }
             
         }
+       
     }
     public void printAtraEsp () {
     	ArrayList<Atraccion> atracciones = gestorAtracciones.getAtracciones();
@@ -192,6 +194,7 @@ public class ParquePrincipal{
     		x++;
     		
     	}
+    	
     }
     public void printComprasE(Empleado persona) {
     	ArrayList<Compra> historial = persona.historial;
@@ -216,7 +219,7 @@ public class ParquePrincipal{
     	}
     }
     
-    public void crearAtraccion () {
+    public void crearAtraccion () throws IOException {
     	Atraccion atraccion;
     	Scanner scanner = new Scanner(System.in);
     	System.out.println("Mecanica o Cultural?");
@@ -246,7 +249,7 @@ public class ParquePrincipal{
     	System.out.println("Numero de Empleados:");
     	int numeroEmpleados = Integer.parseInt(scanner.nextLine());
     	
-    	System.out.println("Funcionando: ");
+    	System.out.println("Funcionando (true o false): ");
     	boolean funcionando = Boolean.parseBoolean(scanner.nextLine());
     	
     	if (atra.equals("Mecanica")){
@@ -292,9 +295,8 @@ public class ParquePrincipal{
     	
     	gestorAtracciones.agregarAtraccion(gestorAtracciones.getAtracciones(), atraccion);
     	ArrayList<Atraccion>  atraccionesActualizada = gestorAtracciones.getAtracciones();
-		 atraccionesActualizada.add(atraccion);
-		 escritorAYE.escribirAtracciones(atraccionesActualizada);
-		 scanner.close();
+		escritorAYE.escribirAtracciones(atraccionesActualizada);
+		 
     	}
     public void verRestriccionClima() {
     	
@@ -310,6 +312,8 @@ public class ParquePrincipal{
     			System.out.println("   - "+espectaculo);
     		}
     	}
+    	
+    	
     }
     public void verRestriccionSalud() {
     	ArrayList<RestriccionSalud> restricciones = gestorAtracciones.getRestriccionesSalud();

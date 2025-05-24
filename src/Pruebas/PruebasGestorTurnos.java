@@ -15,6 +15,7 @@ import Usuarios.Compra;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PruebasGestorTurnos {
@@ -26,7 +27,7 @@ public class PruebasGestorTurnos {
     private Escritor_Atracciones_Y_Espectaculos escritorAYE;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
     	gestorTurnos = new GestorTurnos();
 		ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
 		ArrayList<Restriccion_clima> restricciones_clima = new ArrayList<Restriccion_clima>();

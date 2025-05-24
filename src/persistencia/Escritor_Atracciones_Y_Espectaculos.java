@@ -18,75 +18,93 @@ public class Escritor_Atracciones_Y_Espectaculos {
 		
 	}
 
-	public void escribirAtracciones(ArrayList<Atraccion> atracciones) {
-	    try {
-	        File carpeta = new File("./data/");
-	        if (!carpeta.exists()) {
-	            carpeta.mkdirs();
-	        }
-	        
-	        
-	        PrintWriter escritor = new PrintWriter(new File(".\\src\\data\\atracciones_y_espectaculos.txt"));
-	        
+	public void escribirAtracciones(ArrayList<Atraccion> atracciones) throws IOException {
+	    // Crear directorio si no existe
+	    File carpeta = new File("./data/");
+	    if (!carpeta.exists()) {
+	        carpeta.mkdirs();
+	    }
+
+	    try (PrintWriter escritor = new PrintWriter(new File("./data/atracciones_y_espectaculos.txt"))) {
 	        for (Atraccion atraccion : atracciones) {
-	            String linea = atraccion.getCupoMaximo() + "--" +
-	                          atraccion.getLugar() + "--" +
-	                          atraccion.getNombre() + "--" +
-	                          atraccion.getNumeroEmpleados() + "--" +
-	                          atraccion.isFuncionando();
-	            
-	            List<Restriccion_clima> restriccionesClima = atraccion.getRestriccionClima();
-	            linea = linea + "--";
-	            
-	            for(Restriccion_clima restriccionClima: restriccionesClima) {
-	            	linea = linea + restriccionClima.getTipo()+"##" ;
-	                
-	                ArrayList<String>listaAtraccion = restriccionClima.getAtracciones();
-	                ArrayList<String>listaEspectaculo = restriccionClima.getEspectaculos();
-	              
-	                linea = linea + "...";
-	                for(String atraccion1 :listaAtraccion) {
-	                	linea= linea+atraccion1+",";
-	                	
-	                }
-	                
-	                linea = linea + "...";
-	                for(String atraccion1 :listaEspectaculo) {
-	                	linea= linea+atraccion1+",";
-	                
-	                }
-	             
-	                linea = linea + ":restriccionClima:";
-	            }
-	          
-	            
-	            // Restricciones de salud (solo para Mecanica)
+	            StringBuilder linea = new StringBuilder();
+
+	            // Determinar tipo de atracción
 	            if (atraccion instanceof Mecanica) {
-	                Mecanica mecanica = (Mecanica) atraccion;
-	                linea = "MECANICA--" + linea + "--" +
-	                        mecanica.getMaxAltura() + "--" +
-	                        mecanica.getMaxPeso() + "--" +
-	                        mecanica.getMinAltura() + "--" +
-	                        mecanica.getMinPeso() + "--" +
-	                        mecanica.getNivelRiesgo() + "--"+  
-	                        mecanica.getRestriccionSalud().getNombre()+"--";
-	                
-	                ArrayList<String> mecanicas = mecanica.getRestriccionSalud().getAtraccionesMecanica();
-	                for(String mecanica1:mecanicas) {
-	                	linea = linea+ ","+mecanica1;
-	                }
-	                
+	                linea.append("MECANICA--");
 	            } else if (atraccion instanceof Cultural) {
-	                Cultural cultural = (Cultural) atraccion;
-	                linea = "CULTURAL--" + linea + "--" +
-	                        cultural.getEdadMin();
+	                linea.append("CULTURAL--");
 	            }
 
-	            escritor.println(linea);
+	            // Datos básicos de la atracción
+	            linea.append(atraccion.getCupoMaximo()).append("--")
+	                .append(atraccion.getLugar()).append("--")
+	                .append(atraccion.getNombre()).append("--")
+	                .append(atraccion.getNumeroEmpleados()).append("--")
+	                .append(atraccion.isFuncionando()).append("--");
+
+	            // Restricciones de clima
+	            ArrayList<Restriccion_clima> restriccionesClima = atraccion.getRestriccionClima();
+	            for (Restriccion_clima restriccion : restriccionesClima) {
+	                linea.append(restriccion.getTipo()).append("##");
+
+	                // Atracciones afectadas
+	                ArrayList<String> atraccionesAfectadas = restriccion.getAtracciones();
+	                if (atraccionesAfectadas.isEmpty()) {
+	                    linea.append(",");
+	                } else {
+	                    for (int j = 0; j < atraccionesAfectadas.size(); j++) {
+	                        linea.append(atraccionesAfectadas.get(j));
+	                        if (j < atraccionesAfectadas.size() - 1) {
+	                            linea.append(",");
+	                        }
+	                    }
+	                }
+	                linea.append("##");
+
+	                // Espectáculos afectados
+	                ArrayList<String> espectaculosAfectados = restriccion.getEspectaculos();
+	                if (espectaculosAfectados.isEmpty()) {
+	                    linea.append(",");
+	                } else {
+	                    for (int j = 0; j < espectaculosAfectados.size(); j++) {
+	                        linea.append(espectaculosAfectados.get(j));
+	                        if (j < espectaculosAfectados.size() - 1) {
+	                            linea.append(",");
+	                        }
+	                    }
+	                }
+	            }
+
+	            // Datos específicos según el tipo
+	            if (atraccion instanceof Mecanica) {
+	                Mecanica mecanica = (Mecanica) atraccion;
+	                linea.append("--")
+	                    .append(mecanica.getMaxAltura()).append("--")
+	                    .append(mecanica.getMaxPeso()).append("--")
+	                    .append(mecanica.getMinAltura()).append("--")
+	                    .append(mecanica.getMinPeso()).append("--")
+	                    .append(mecanica.getNivelRiesgo()).append("--")
+	                    .append(mecanica.getRestriccionSalud().getNombre()).append("--");
+
+	                // Atracciones mecánicas para restricción de salud
+	                ArrayList<String> mecanicas = mecanica.getRestriccionSalud().getAtraccionesMecanica();
+	                for (int i = 0; i < mecanicas.size(); i++) {
+	                    if (i > 0) {
+	                        linea.append(",");
+	                    }
+	                    linea.append(mecanicas.get(i));
+	                }
+	            } else if (atraccion instanceof Cultural) {
+	                Cultural cultural = (Cultural) atraccion;
+	                linea.append("--").append(cultural.getEdadMin());
+	            }
+
+	            escritor.println(linea.toString());
 	        }
-	        escritor.close();
 	    } catch (IOException e) {
 	        System.err.println("Error al escribir el archivo: " + e.getMessage());
+	        throw e;
 	    }
 	}
 

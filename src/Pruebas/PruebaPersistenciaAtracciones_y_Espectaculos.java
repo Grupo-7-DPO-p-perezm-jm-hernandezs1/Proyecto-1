@@ -43,7 +43,7 @@ class PruebaPersistenciaAtracciones_y_Espectaculos {
 	}
 
 	@Test
-	void testEscritorAtraccion() {
+	void testEscritorAtraccion() throws IOException {
 		ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
 		
 		ArrayList<Restriccion_clima> restricciones_clima = new ArrayList<Restriccion_clima>();
@@ -61,6 +61,7 @@ class PruebaPersistenciaAtracciones_y_Espectaculos {
 		
 		// prueba de atraccion mecanica
 		String nombre = "VelociRaptor"; 
+		
         String lugar = "Island of Adventure";
         int numeroEmpleados= 5;
         boolean funcionando= true;

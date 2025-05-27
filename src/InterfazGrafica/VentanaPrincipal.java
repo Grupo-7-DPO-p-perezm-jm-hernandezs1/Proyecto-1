@@ -24,6 +24,7 @@ public class VentanaPrincipal extends JFrame {
 private LogInVentana logIn;
 private ParquePrincipal parque;
 private ClienteVentana clienteVentana;
+private AdminVentana adminVentana;
 private AtracEspecVentana atracEspec;
 private String tipoUsuario;
 private String user;
@@ -34,7 +35,7 @@ public VentanaPrincipal() throws IOException {
 	this.tipoUsuario = "";
 	this.parque = new ParquePrincipal();
 	this.clienteVentana= new ClienteVentana(this);
-	
+	this.adminVentana= new AdminVentana(this);
 	
 	
 	setLayout(new BorderLayout ());
@@ -58,7 +59,7 @@ public void revistarUsuario(String username, String password) {
         if(!respuesta.equals("ninguno")) {
         	this.logIn.setVisible(false);
         	if(respuesta.equals("admin")) {
-        		
+        		add(adminVentana);
         	}
         	if(respuesta.equals("cliente")) {
         		add(clienteVentana);
@@ -67,6 +68,7 @@ public void revistarUsuario(String username, String password) {
         	if(respuesta.equals("empleado")) {
         		user = username;
         	}
+        	
         	tipoUsuario= respuesta;
         	
         }
@@ -131,7 +133,7 @@ private void mostrarMenuPrincipal() {
 	 if(!respuesta.equals("ninguno")) {
      	this.logIn.setVisible(false);
      	if(respuesta.equals("admin")) {
-     		
+     		add(adminVentana);
      	}
      	if(respuesta.equals("cliente")) {
      		add(clienteVentana);
@@ -162,6 +164,33 @@ public void mostrarCompras() {
     // 5. Actualizar UI
     revalidate();
     repaint();
+}
+public void volverLogIn() {
+    // 1. Limpiar todos los componentes
+    getContentPane().removeAll();
+    
+    // 2. Resetear variables de sesión
+    this.logIn = null;
+    this.user = null;
+    this.tipoUsuario = null;
+    
+    // 3. Liberar recursos de los paneles
+    this.clienteVentana = null;
+    this.atracEspec = null;
+    this.comprasPanel = null;
+    
+    // 4. Crear nueva instancia de login (o reusar la existente)
+    if (this.logIn == null) {
+        this.logIn = new LogInVentana(this);
+    } else {
+        this.logIn.limpiarCampos(); // Añade este método a LogInVentana
+    }
+
+    add(logIn);
+    
+    revalidate();
+    repaint();
+
 }
 }
 

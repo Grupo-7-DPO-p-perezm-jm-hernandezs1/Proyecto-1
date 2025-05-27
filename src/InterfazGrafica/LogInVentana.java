@@ -84,5 +84,16 @@ public class LogInVentana extends JPanel {
         // Llama al método de la ventana principal
         ventanaPrincipal.revistarUsuario(username, password);
     }
+    public void limpiarCampos() {
+        // Limpiar los campos de texto
+    	usernameField.setText("");
+    	passwordField.setText("");
+        
+        // Restablecer el foco al campo de usuario
+    	usernameField.requestFocusInWindow();
+        
+        // Opcional: Limpiar mensajes de error si existen
+       
+    }
     
 }

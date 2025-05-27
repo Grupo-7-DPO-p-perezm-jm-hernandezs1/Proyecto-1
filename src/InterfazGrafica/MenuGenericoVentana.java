@@ -10,7 +10,10 @@ public class MenuGenericoVentana extends JPanel implements ActionListener{
 private VentanaPrincipal ventanaPrincipal;
 private JButton verAtracciones;
 private JButton verCompras;
+private JButton logOut;
 
+
+private static final String LOGOUT= "logOut";
 private static final String VER_ATRAC = "atracciones";
 private static final String VER_COMPRAS = "compras";
 
@@ -22,6 +25,10 @@ public MenuGenericoVentana(VentanaPrincipal ventanaPrincipal) {
 	verAtracciones.addActionListener(this);
     add(verAtracciones);
 	
+    logOut = new JButton("Cambiar de usuario");
+    logOut.setActionCommand(LOGOUT);
+    logOut.addActionListener(this);
+    add(logOut);
 	
 	verCompras =  new JButton("Ver Compras");
 	verCompras.setActionCommand(VER_COMPRAS);
@@ -43,7 +50,10 @@ public void actionPerformed(ActionEvent e) {
 	if(comando.equals(VER_COMPRAS)) {
 		ventanaPrincipal.mostrarCompras();
 	}
-	
+	if(comando.equals(LOGOUT)) {
+		ventanaPrincipal.volverLogIn();
+		
+	}
 	
 	
 }

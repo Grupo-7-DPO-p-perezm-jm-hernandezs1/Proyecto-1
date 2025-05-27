@@ -40,7 +40,9 @@ public void actionPerformed(ActionEvent e) {
 		ventanaPrincipal.agregarVentanaAtracciones();
 		
 	}
-	
+	if(comando.equals(VER_COMPRAS)) {
+		ventanaPrincipal.mostrarCompras();
+	}
 	
 	
 }

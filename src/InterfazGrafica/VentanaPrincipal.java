@@ -1,8 +1,12 @@
 package InterfazGrafica;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import Principal.ParquePrincipal;
+import Usuarios.Cliente;
+import Usuarios.Empleado;
+import Usuarios.Persona;
 
 import java.awt.BorderLayout;
 import java.io.IOException;
@@ -22,6 +26,8 @@ private ParquePrincipal parque;
 private ClienteVentana clienteVentana;
 private AtracEspecVentana atracEspec;
 private String tipoUsuario;
+private String user;
+private VerComprasVentana verCompras;
 public VentanaPrincipal() throws IOException {
 	
 	
@@ -46,6 +52,7 @@ public void revistarUsuario(String username, String password) {
     // Asegúrate de que parque no es null
     if (parque != null) {
         String respuesta = parque.revisarUsuario(username, password);
+        
         System.out.println(respuesta);
         
         if(!respuesta.equals("ninguno")) {
@@ -55,9 +62,10 @@ public void revistarUsuario(String username, String password) {
         	}
         	if(respuesta.equals("cliente")) {
         		add(clienteVentana);
+        		user = username;
         	}
         	if(respuesta.equals("empleado")) {
-        		
+        		user = username;
         	}
         	tipoUsuario= respuesta;
         	
@@ -115,6 +123,25 @@ private void mostrarMenuPrincipal() {
 	
 }
 
+}
+public void mostrarCompras() {
+    // 1. Obtener datos
+    Persona persona = parque.gestorUsuarios.getPersona(user);
+    if (persona == null || !(persona instanceof Cliente)) return;
+    
+    // 2. Limpiar contenido actual
+    getContentPane().removeAll();
+    
+    // 3. Obtener compras (puede ser en un hilo separado si es lento)
+    ArrayList<ArrayList<String>> compras = parque.verComprasCliente((Cliente)persona);
+    
+    // 4. Crear y mostrar panel
+    VerComprasVentana comprasPanel = new VerComprasVentana(this, compras);
+    getContentPane().add(new JScrollPane(comprasPanel), BorderLayout.CENTER);
+    
+    // 5. Actualizar UI
+    revalidate();
+    repaint();
 }
 }
 

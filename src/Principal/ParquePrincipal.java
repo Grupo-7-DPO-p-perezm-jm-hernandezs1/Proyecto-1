@@ -366,6 +366,21 @@ public class ParquePrincipal{
     	
     	return respuesta;
     }
+
+    public ArrayList<ArrayList<String>> verComprasCliente(Cliente cliente) {
+        ArrayList<ArrayList<String>> respuesta = new ArrayList<>(); 
+        ArrayList<Compra> historial = cliente.getHistorial();
+        
+        for (Compra compra : historial) {
+            ArrayList<String> unidad = new ArrayList<>();
+            unidad.add(compra.getNumeroTiquete()); 
+            String usado = String.valueOf(compra.isFechaVencida()); 
+            unidad.add(usado);  
+            respuesta.add(unidad); 
+        }
+        
+        return respuesta;
+    }
     
     
     public void crearRestriccionClima(){

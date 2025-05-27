@@ -27,7 +27,7 @@ private ClienteVentana clienteVentana;
 private AtracEspecVentana atracEspec;
 private String tipoUsuario;
 private String user;
-private VerComprasVentana verCompras;
+private VerComprasVentana comprasPanel;
 public VentanaPrincipal() throws IOException {
 	
 	
@@ -96,16 +96,35 @@ public void agregarVentanaAtracciones() {
 }
 public void quitarVentanaAtracciones() {
     if (atracEspec != null) {
-        this.remove(atracEspec); // Remueve el panel de atracciones
-        atracEspec = null; // Libera memoria
+        this.remove(atracEspec);
+        atracEspec = null; 
 
-        // Vuelve a mostrar el menú principal (o el contenido que había antes)
-        // Método que debes implementar
+        
         mostrarMenuPrincipal();
         // Actualiza la interfaz
         revalidate(); // Recalcula el layout
         repaint();   // Redibuja los componentes
     }
+}
+public void quitarVentanaVerCompras() {
+    // 1. Verificar y remover el panel de compras si existe
+    if (comprasPanel != null) {
+        this.remove(comprasPanel);
+        comprasPanel = null;
+    }
+    
+    // 2. Limpiar cualquier otro componente que pueda estar presente
+    getContentPane().removeAll();
+    
+    // 3. Volver a mostrar el menú principal
+    mostrarMenuPrincipal();
+    
+    // 4. Actualizar la interfaz
+    revalidate();
+    repaint();
+    
+    // Opcional: Forzar el enfoque en la ventana principal
+    requestFocusInWindow();
 }
 private void mostrarMenuPrincipal() {
 	String respuesta = tipoUsuario;
@@ -128,6 +147,7 @@ public void mostrarCompras() {
     // 1. Obtener datos
     Persona persona = parque.gestorUsuarios.getPersona(user);
     if (persona == null || !(persona instanceof Cliente)) return;
+    
     
     // 2. Limpiar contenido actual
     getContentPane().removeAll();

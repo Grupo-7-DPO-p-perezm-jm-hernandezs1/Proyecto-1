@@ -4,22 +4,33 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class VerComprasVentana extends JPanel {
+public class VerComprasVentana extends JPanel implements ActionListener{
 
+	private JButton salir;
+	public final static String SALIR = "salir";
     private VentanaPrincipal parent;
     
     public VerComprasVentana(VentanaPrincipal ventanaPrincipal, ArrayList<ArrayList<String>> historial) {
         this.parent = ventanaPrincipal;
         initComponents(historial);
+        
+        salir = new JButton("Volver");
+        salir.setActionCommand(SALIR);
+        salir.addActionListener(this);
+        add(salir, BorderLayout.SOUTH);
+        
     }
     
     private void initComponents(ArrayList<ArrayList<String>> historial) {
@@ -142,4 +153,13 @@ public class VerComprasVentana extends JPanel {
         label.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
         return label;
     }
+    
+    @Override
+	public void actionPerformed(ActionEvent e) {
+		String comando = e.getActionCommand();
+		if(comando.equals(SALIR)) {
+			parent.quitarVentanaVerCompras();
+		}
+		
+	}
 }

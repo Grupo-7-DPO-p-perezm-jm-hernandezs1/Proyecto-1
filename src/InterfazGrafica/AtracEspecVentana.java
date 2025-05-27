@@ -47,6 +47,7 @@ public class AtracEspecVentana extends JPanel implements ActionListener {
             return panel;
         }
         
+        
         for(String item : items) {
             JLabel label = new JLabel(item);
             label.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));

@@ -21,11 +21,11 @@ private LogInVentana logIn;
 private ParquePrincipal parque;
 private ClienteVentana clienteVentana;
 private AtracEspecVentana atracEspec;
-
+private String tipoUsuario;
 public VentanaPrincipal() throws IOException {
 	
 	
-	
+	this.tipoUsuario = "";
 	this.parque = new ParquePrincipal();
 	this.clienteVentana= new ClienteVentana(this);
 	
@@ -59,6 +59,7 @@ public void revistarUsuario(String username, String password) {
         	if(respuesta.equals("empleado")) {
         		
         	}
+        	tipoUsuario= respuesta;
         	
         }
         // Opcional: muestra un diálogo al usuario
@@ -85,10 +86,39 @@ public void agregarVentanaAtracciones() {
     revalidate();
     repaint();
 }
-    
+public void quitarVentanaAtracciones() {
+    if (atracEspec != null) {
+        this.remove(atracEspec); // Remueve el panel de atracciones
+        atracEspec = null; // Libera memoria
 
+        // Vuelve a mostrar el menú principal (o el contenido que había antes)
+        // Método que debes implementar
+        mostrarMenuPrincipal();
+        // Actualiza la interfaz
+        revalidate(); // Recalcula el layout
+        repaint();   // Redibuja los componentes
+    }
+}
+private void mostrarMenuPrincipal() {
+	String respuesta = tipoUsuario;
+	 if(!respuesta.equals("ninguno")) {
+     	this.logIn.setVisible(false);
+     	if(respuesta.equals("admin")) {
+     		
+     	}
+     	if(respuesta.equals("cliente")) {
+     		add(clienteVentana);
+     	}
+     	if(respuesta.equals("empleado")) {
+     		
+     	}
+	
+}
+
+}
 }
 
 	
 	
+
 

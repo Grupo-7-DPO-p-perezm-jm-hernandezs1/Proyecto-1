@@ -326,6 +326,48 @@ public class ParquePrincipal{
     		}
     	}
     }
+    public String revisarUsuario(String username, String password) {
+    	String respuesta = "ninguno";
+    	Persona persona = gestorUsuarios.getPersona(username);
+    	if(username.equals("admin")|| password.equals("admin")) {
+    		respuesta = "admin";
+    	}
+    	if(persona != null) {
+    		if(persona.getPassword().equals(password)) {
+    			
+    		
+    		if (persona instanceof Cliente) {
+    			respuesta = "cliente";
+    		}
+    		if(persona instanceof Empleado) {
+    			respuesta = "empleado";
+    		}
+    	}
+    	}
+    	
+    	return respuesta;
+    }
+    public ArrayList<String> atraccionesNombre(){
+    	ArrayList<Atraccion> atracciones = gestorAtracciones.getAtracciones();
+    	ArrayList <String> respuesta = new ArrayList<String>();
+    	for(Atraccion atraccion : atracciones) {
+    		respuesta.add(atraccion.getNombre());
+    	}
+    	
+		return respuesta;
+    	
+    }
+    public ArrayList<String> espectaculosNombre(){
+    	ArrayList<Espectaculo> espectaculos = gestorAtracciones.getEspectaculos();
+    	ArrayList<String> respuesta = new ArrayList<String>();
+    	for(Espectaculo espectaculo : espectaculos) {
+    		respuesta.add(espectaculo.getNombre());
+    	}
+    	
+    	return respuesta;
+    }
+    
+    
     public void crearRestriccionClima(){
     	Scanner scanner = new Scanner(System.in);
     	
@@ -361,6 +403,7 @@ public class ParquePrincipal{
     	}
     	Restriccion_clima restriccion = new Restriccion_clima(nombre, atracciones,espectaculos);
     	gestorAtracciones.getRestriccionesClima().add(restriccion);
+    	
     	
     	
     	

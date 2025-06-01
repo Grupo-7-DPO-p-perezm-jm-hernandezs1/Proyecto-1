@@ -29,6 +29,8 @@ private AtracEspecVentana atracEspec;
 private String tipoUsuario;
 private String user;
 private VerComprasVentana comprasPanel;
+private CrearMecanicaVentana crearMecanica;
+private CrearRestriccionClimaVentana crearRestriccionClima;
 public VentanaPrincipal() throws IOException {
 	
 	
@@ -192,6 +194,88 @@ public void volverLogIn() {
     repaint();
 
 }
+public void crearAtraccionMecanica() {
+	
+	ArrayList<String> restriccionClimaString = parque.restriccionesClimaString();
+    ArrayList<String> restricionSaludString = parque.restriccionSaludString();
+    crearMecanica = new CrearMecanicaVentana(this, restriccionClimaString, restricionSaludString);
+    
+    // Limpia el contenedor actual y añade el nuevo panel
+    getContentPane().removeAll(); // Si es un JFrame
+    add(crearMecanica, BorderLayout.CENTER); // Asegura la posición
+    
+    // Actualiza la interfaz
+    revalidate();
+    repaint();
+	
+}
+public void crearAtraccionMecanicaParque(String nombre, String lugar, String cupoMax, String restriccionesClima, String numEmpleados, String funcionando, String minAltura, String maxAltura, String minPeso, String maxPeso, String restriccionSalud, String nivelRiesgo) throws IOException {
+	parque.crearAtraccionMecanica( nombre,  lugar,  cupoMax,  restriccionesClima,  numEmpleados,  funcionando,  minAltura,  maxAltura,  minPeso,  maxPeso,  restriccionSalud,  nivelRiesgo);
+	
+}
+public void quitarCrearMecanica() {
+	 if (crearMecanica != null) {
+	        this.remove(crearMecanica);
+	        crearMecanica = null;
+	    }
+	    
+	    // 2. Limpiar cualquier otro componente que pueda estar presente
+	    getContentPane().removeAll();
+	    
+	    // 3. Volver a mostrar el menú principal
+	    mostrarMenuPrincipal();
+	    
+	    // 4. Actualizar la interfaz
+	    revalidate();
+	    repaint();
+	    
+	    // Opcional: Forzar el enfoque en la ventana principal
+	    requestFocusInWindow();
+	
+}
+public void crearRestriccionClima() {
+	ArrayList<String> atracciones = parque.atraccionesNombre();
+    ArrayList<String> espectaculos = parque.espectaculosNombre();
+    crearRestriccionClima = new CrearRestriccionClimaVentana(this, atracciones, espectaculos);
+    
+    // Limpia el contenedor actual y añade el nuevo panel
+    getContentPane().removeAll(); // Si es un JFrame
+    add(crearRestriccionClima, BorderLayout.CENTER); // Asegura la posición
+    
+    // Actualiza la interfaz
+    revalidate();
+    repaint();
+	
+}
+public void crearRestriccionSalud() {
+	// TODO Auto-generated method stub
+	
+}
+public void crearRestriccionClimaParque(String text, ArrayList<String> atracciones, ArrayList<String> espectaculos) {
+	parque.crearRestriccionClimaInter(text,atracciones,espectaculos);
+	
+}
+public void quitarCrearRestriccionClima() {
+	if (crearRestriccionClima != null) {
+        this.remove(crearRestriccionClima);
+        crearRestriccionClima = null;
+    }
+    
+    // 2. Limpiar cualquier otro componente que pueda estar presente
+    getContentPane().removeAll();
+    
+    // 3. Volver a mostrar el menú principal
+    mostrarMenuPrincipal();
+    
+    // 4. Actualizar la interfaz
+    revalidate();
+    repaint();
+    
+    // Opcional: Forzar el enfoque en la ventana principal
+    requestFocusInWindow();
+	
+}
+
 }
 
 	

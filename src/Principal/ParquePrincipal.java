@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
@@ -59,9 +60,9 @@ public class ParquePrincipal{
 	private Escritor_Usuarios escritorU;
 	public GestorPersonas gestorUsuarios;
 	//Tiquetes
-	private GestorTiquete gestorTiquetes;
+	public GestorTiquete gestorTiquetes;
 	//Turnos
-	private GestorTurnos gestorTurnos;
+	public GestorTurnos gestorTurnos;
     public ParquePrincipal() throws IOException
     {
     	
@@ -512,6 +513,12 @@ public class ParquePrincipal{
     	}
     }
    
+    public List<String> preciosTiquetes() {
+    	
+		return gestorTiquetes.getPrecios();
+    	
+    }
+    
     public String comprarFastPass(String fecha) {
     	
     	try {

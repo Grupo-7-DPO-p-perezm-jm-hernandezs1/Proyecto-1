@@ -7,6 +7,8 @@ import persistencia.PersistenciaTiquetes;
 import atracciones_y_espectaculos.Atraccion;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class GestorTiquete {
@@ -73,7 +75,25 @@ public class GestorTiquete {
 
         return id;
     }
-
+    
+    public List<String> getPrecios(){
+    	double precioInd = catalogoPrecios.getPrecio("TiqueteIndividual"); 
+    	double precioBasico = catalogoPrecios.getPrecio("TiqueteBasico");
+    	double precioTempo = catalogoPrecios.getPrecio("TiqueteTemporada");
+    	double precioGen = catalogoPrecios.getPrecio("TiqueteGeneral");
+    	
+    	String precioInStrig = String.valueOf(precioInd);
+    	String precioBasStrig = String.valueOf(precioBasico);
+    	String precioTempStrig = String.valueOf(precioTempo);
+    	String precioGenStrig = String.valueOf(precioGen);
+    	List<String> lista = new ArrayList<String>();
+    	lista.add(precioBasStrig);
+    	lista.add(precioTempStrig);
+    	lista.add(precioGenStrig);
+    	lista.add(precioInStrig);
+    	 return lista  ;
+    }
+   
     public void cambiarPrecioTiquete(String tipo, double nuevoPrecio) {
         catalogoPrecios.setPrecio(tipo.toUpperCase(), nuevoPrecio);
     }

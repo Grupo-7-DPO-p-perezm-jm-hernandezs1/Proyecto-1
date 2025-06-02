@@ -1,5 +1,7 @@
 package InterfazGrafica;
 
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,14 +13,18 @@ private VentanaPrincipal ventanaPrincipal;
 private JButton verAtracciones;
 private JButton verCompras;
 private JButton logOut;
+private JButton comprarTiquete;
 
 
 private static final String LOGOUT= "logOut";
 private static final String VER_ATRAC = "atracciones";
 private static final String VER_COMPRAS = "compras";
+private static final String COMPRAR_TIQUETE = "comprar tiquete";
 
 public MenuGenericoVentana(VentanaPrincipal ventanaPrincipal) {
 	this.ventanaPrincipal = ventanaPrincipal;
+	
+	setLayout(new GridLayout(4,1));
 	
 	verAtracciones = new JButton("Ver Atracciones y Espectaculos");
 	verAtracciones.setActionCommand(VER_ATRAC);
@@ -35,8 +41,15 @@ public MenuGenericoVentana(VentanaPrincipal ventanaPrincipal) {
 	verCompras.addActionListener(this);
     add(verCompras);
 	
+    comprarTiquete = new JButton("Comprar Tiquetes");
+    comprarTiquete.setActionCommand(COMPRAR_TIQUETE);
+    comprarTiquete.addActionListener(this);
+    add(comprarTiquete);
 	
 }
+
+
+
 
 
 @Override
@@ -55,6 +68,11 @@ public void actionPerformed(ActionEvent e) {
 		
 	}
 	
+	if(comando.equals(COMPRAR_TIQUETE)) {
+		
+		ventanaPrincipal.agregarVentanaTiquetes();
+		
+	}
 	
 }
 

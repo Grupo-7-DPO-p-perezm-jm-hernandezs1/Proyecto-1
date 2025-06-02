@@ -24,6 +24,7 @@ public class VentanaPrincipal extends JFrame {
 private LogInVentana logIn;
 private ParquePrincipal parque;
 private ClienteVentana clienteVentana;
+private EmpleadoVentana empleadoVentana;
 private AdminVentana adminVentana;
 private AtracEspecVentana atracEspec;
 private String tipoUsuario;
@@ -34,10 +35,11 @@ public VentanaPrincipal() throws IOException {
 	
 	this.tipoUsuario = "";
 	this.parque = new ParquePrincipal();
+	this.empleadoVentana = new EmpleadoVentana(this);
 	this.clienteVentana= new ClienteVentana(this);
 	this.adminVentana= new AdminVentana(this);
 	
-	
+	setTitle("Bienvenido" );
 	setLayout(new BorderLayout ());
 	logIn = new LogInVentana(this);
 	add(logIn);
@@ -66,6 +68,7 @@ public void revistarUsuario(String username, String password) {
         		user = username;
         	}
         	if(respuesta.equals("empleado")) {
+        		add(empleadoVentana);
         		user = username;
         	}
         	
@@ -108,6 +111,12 @@ public void quitarVentanaAtracciones() {
         repaint();   // Redibuja los componentes
     }
 }
+public void agregarVentanaTiquetes() {
+	
+	ventanaComprarTiquetes cpt = new ventanaComprarTiquetes(parque);
+	cpt.setVisible(true);
+}
+
 public void quitarVentanaVerCompras() {
     // 1. Verificar y remover el panel de compras si existe
     if (comprasPanel != null) {
@@ -139,7 +148,7 @@ private void mostrarMenuPrincipal() {
      		add(clienteVentana);
      	}
      	if(respuesta.equals("empleado")) {
-     		
+     		add(empleadoVentana);
      	}
 	
 }
@@ -178,6 +187,7 @@ public void volverLogIn() {
     this.clienteVentana = null;
     this.atracEspec = null;
     this.comprasPanel = null;
+    this.empleadoVentana = null;
     
     // 4. Crear nueva instancia de login (o reusar la existente)
     if (this.logIn == null) {

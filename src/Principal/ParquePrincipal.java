@@ -299,6 +299,115 @@ public class ParquePrincipal{
 		escritorAYE.escribirAtracciones(atraccionesActualizada);
 		 
     	}
+    public void crearAtraccionMecanica(String nombre, String lugar, String cupoMax, 
+            String restriccionesClima, String numEmpleados, 
+            String funcionando, String minAltura, String maxAltura, 
+            String minPeso, String maxPeso, String restriccionSalud, 
+            String nivelRiesgo) throws IOException, IllegalArgumentException {
+
+// Validación de campos obligatorios
+if (nombre == null || nombre.trim().isEmpty()) {
+throw new IllegalArgumentException("El nombre no puede estar vacío");
+}
+if (lugar == null || lugar.trim().isEmpty()) {
+throw new IllegalArgumentException("El lugar no puede estar vacío");
+}
+
+try {
+// Parseo de valores numéricos con validación
+int intCupoMax = parseAndValidatePositiveInt(cupoMax, "Cupo Máximo");
+int intNumEmpleados = parseAndValidatePositiveInt(numEmpleados, "Número de Empleados");
+boolean booleanFuncionando = parseBoolean(funcionando);
+
+double intMinAltura = parseAndValidateDouble(minAltura, "Altura Mínima");
+double intMaxAltura = parseAndValidateDouble(maxAltura, "Altura Máxima");
+double intMinPeso = parseAndValidateDouble(minPeso, "Peso Mínimo");
+double intMaxPeso = parseAndValidateDouble(maxPeso, "Peso Máximo");
+
+// Validar que los máximos sean mayores que los mínimos
+if (intMaxAltura <= intMinAltura) {
+throw new IllegalArgumentException("La altura máxima debe ser mayor que la altura mínima");
+}
+if (intMaxPeso <= intMinPeso) {
+throw new IllegalArgumentException("El peso máximo debe ser mayor que el peso mínimo");
+}
+
+// Procesar restricciones de clima
+ArrayList<Restriccion_clima> restriccionClimaFinal = new ArrayList<>();
+ArrayList<Restriccion_clima> restriccionesClimaObj = gestorAtracciones.getRestriccionesClima();
+
+if (restriccionesClima != null && !restriccionesClima.trim().isEmpty()) {
+for (Restriccion_clima restriccion : restriccionesClimaObj) {
+if (restriccionesClima.equals(restriccion.getTipo())) {
+restriccionClimaFinal.add(restriccion);
+}
+}
+}
+
+// Buscar restricción de salud
+RestriccionSalud restriccionSaludfinal = null;
+if (restriccionSalud != null && !restriccionSalud.trim().isEmpty()) {
+restriccionSaludfinal = gestorAtracciones.buscarRestriccionSalud(restriccionSalud);
+if (restriccionSaludfinal == null) {
+throw new IllegalArgumentException("Restricción de salud no encontrada: " + restriccionSalud);
+}
+}
+
+// Validar nivel de riesgo
+if (nivelRiesgo == null || nivelRiesgo.trim().isEmpty()) {
+throw new IllegalArgumentException("El nivel de riesgo no puede estar vacío");
+}
+
+// Crear la atracción
+Mecanica atraccion = new Mecanica(
+nombre.trim(), 
+lugar.trim(),
+intNumEmpleados,
+booleanFuncionando,
+intCupoMax,
+restriccionClimaFinal, 
+intMinAltura,
+intMaxAltura,
+intMinPeso,
+intMaxPeso,
+nivelRiesgo.trim(),
+restriccionSaludfinal
+);
+
+// Agregar y guardar la atracción
+gestorAtracciones.agregarAtraccion(gestorAtracciones.getAtracciones(), atraccion);
+ArrayList<Atraccion> atraccionesActualizada = gestorAtracciones.getAtracciones();
+escritorAYE.escribirAtracciones(atraccionesActualizada);
+
+} catch (NumberFormatException e) {
+throw new IllegalArgumentException("Formato numérico inválido: " + e.getMessage());
+}
+}
+
+//Métodos auxiliares para validación
+private int parseAndValidatePositiveInt(String value, String fieldName) {
+if (value == null || value.trim().isEmpty()) {
+throw new IllegalArgumentException(fieldName + " no puede estar vacío");
+}
+int num = Integer.parseInt(value.trim());
+if (num <= 0) {
+throw new IllegalArgumentException(fieldName + " debe ser un número positivo");
+}
+return num;
+}
+
+private double parseAndValidateDouble(String value, String fieldName) {
+if (value == null || value.trim().isEmpty()) {
+throw new IllegalArgumentException(fieldName + " no puede estar vacío");
+}
+return Double.parseDouble(value.trim());
+}
+
+private boolean parseBoolean(String value) {
+if (value == null) return false;
+String trimmed = value.trim().toLowerCase();
+return trimmed.equals("true") || trimmed.equals("verdadero") || trimmed.equals("1") || trimmed.equals("sí");
+}
     public void verRestriccionClima() {
     	
     	ArrayList<Restriccion_clima> restricciones = gestorAtracciones.getRestriccionesClima();
@@ -383,7 +492,30 @@ public class ParquePrincipal{
         return respuesta;
     }
     
+    public ArrayList<String> restriccionesClimaString(){
+    	ArrayList <String> respuesta = new ArrayList <String>();
+    	ArrayList<Restriccion_clima> restriccionClima = gestorAtracciones.getRestriccionesClima();
+    	for(Restriccion_clima restriccion: restriccionClima) {
+    		respuesta.add(restriccion.getTipo());
+    	}
+    	return respuesta;
+    }
     
+    
+    public ArrayList<String> restriccionSaludString(){
+    	ArrayList <String> respuesta = new ArrayList <String>();
+    	ArrayList<RestriccionSalud> restriccionSalud = gestorAtracciones.getRestriccionesSalud();
+    	for(RestriccionSalud restriccion: restriccionSalud) {
+    		respuesta.add(restriccion.getNombre());
+    	}
+    	return respuesta;
+    }
+    
+    public void crearRestriccionClimaInter(String nombre, ArrayList<String> atracciones, ArrayList<String> espectaculos ) {
+    	Restriccion_clima restriccion = new Restriccion_clima(nombre, atracciones, espectaculos);
+    	gestorAtracciones.agregarRestriccionClima(restriccion);
+    }
+   
     public void crearRestriccionClima(){
     	Scanner scanner = new Scanner(System.in);
     	

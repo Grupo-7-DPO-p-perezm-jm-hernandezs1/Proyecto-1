@@ -72,6 +72,24 @@ public class GestorAtracciones {
 			}
 		}
 	}
+	public Restriccion_clima buscarRestriccionClima (String nombre) {
+		Restriccion_clima respuesta = null; 
+		for(Restriccion_clima restriccion: restriccionesClima ) {
+			if (restriccion.getTipo().equals(nombre)) {
+				respuesta  = restriccion;
+			}
+		}
+		return respuesta;
+	}
+	public RestriccionSalud buscarRestriccionSalud(String nombre) {
+		RestriccionSalud respuesta = null;
+		for(RestriccionSalud restriccion : restriccionesSalud) {
+			if(restriccion.getNombre().equals(nombre)) {
+				respuesta = restriccion;
+			}
+		}
+		return respuesta;
+	}
 
 	public void agregarEspectaculo(Espectaculo espectaculo) {
 		espectaculos.add(espectaculo);

@@ -16,6 +16,7 @@ public class AtracEspecVentana extends JPanel implements ActionListener {
         setLayout(new BorderLayout(10, 10));
         this.parent = parent;
         
+        
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         
         // Panel principal
